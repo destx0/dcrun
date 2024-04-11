@@ -1,0 +1,135 @@
+[
+    {
+        "label": "matplotlib.pyplot",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "matplotlib.pyplot",
+        "description": "matplotlib.pyplot",
+        "detail": "matplotlib.pyplot",
+        "documentation": {}
+    },
+    {
+        "label": "networkx",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "networkx",
+        "description": "networkx",
+        "detail": "networkx",
+        "documentation": {}
+    },
+    {
+        "label": "graphviz_layout",
+        "importPath": "networkx.drawing.nx_agraph",
+        "description": "networkx.drawing.nx_agraph",
+        "isExtraImport": true,
+        "detail": "networkx.drawing.nx_agraph",
+        "documentation": {}
+    },
+    {
+        "label": "heapq",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "heapq",
+        "description": "heapq",
+        "detail": "heapq",
+        "documentation": {}
+    },
+    {
+        "label": "make_blobs",
+        "importPath": "sklearn.datasets",
+        "description": "sklearn.datasets",
+        "isExtraImport": true,
+        "detail": "sklearn.datasets",
+        "documentation": {}
+    },
+    {
+        "label": "math",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "math",
+        "description": "math",
+        "detail": "math",
+        "documentation": {}
+    },
+    {
+        "label": "copy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "copy",
+        "description": "copy",
+        "detail": "copy",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "KDNode",
+        "kind": 6,
+        "importPath": "kdtree",
+        "description": "kdtree",
+        "peekOfCode": "class KDNode:\n    def __init__(self, point, axis, left=None, right=None):\n        self.point = point\n        self.axis = axis\n        self.left = left\n        self.right = right\nclass KDTree:\n    def __init__(self):\n        self.root = None\n    def build(self, points, depth=0):",
+        "detail": "kdtree",
+        "documentation": {}
+    },
+    {
+        "label": "KDTree",
+        "kind": 6,
+        "importPath": "kdtree",
+        "description": "kdtree",
+        "peekOfCode": "class KDTree:\n    def __init__(self):\n        self.root = None\n    def build(self, points, depth=0):\n        if not points:\n            return None\n        k = len(points[0])  # Dimensionality of the data\n        axis = depth % k\n        # Sort points by the current axis and choose the median as the pivot\n        points.sort(key=lambda x: x[axis])",
+        "detail": "kdtree",
+        "documentation": {}
+    },
+    {
+        "label": "i_neighbors",
+        "kind": 2,
+        "importPath": "kdtree",
+        "description": "kdtree",
+        "peekOfCode": "def i_neighbors(tree, query_point, i):\n    \"\"\"Find the ith nearest neighbor of the given point using a set to track visited nodes.\"\"\"\n    if tree.root is None:\n        return None\n    i += 1\n    # Priority queue to maintain i nearest neighbors\n    neighbors = []\n    # Set to track visited nodes\n    visited = set()\n    def _search(node):",
+        "detail": "kdtree",
+        "documentation": {}
+    },
+    {
+        "label": "euclidean_distance",
+        "kind": 2,
+        "importPath": "utils",
+        "description": "utils",
+        "peekOfCode": "def euclidean_distance(coord1, coord2):\n    dis = math.sqrt((coord1[0] - coord2[0]) ** 2 + (coord1[1] - coord2[1]) ** 2)\n    return dis\ndef count_connected_components(graph):\n    return len(list(nx.connected_components(graph)))\ndef cusrandis(k, maxdis):\n    windowsize = max(maxdis - k + 1, 1)\n    lpp = np.random.laplace(0, windowsize**0.1)\n    lpp = int(k + (abs(lpp)) % windowsize)\n    return lpp",
+        "detail": "utils",
+        "documentation": {}
+    },
+    {
+        "label": "count_connected_components",
+        "kind": 2,
+        "importPath": "utils",
+        "description": "utils",
+        "peekOfCode": "def count_connected_components(graph):\n    return len(list(nx.connected_components(graph)))\ndef cusrandis(k, maxdis):\n    windowsize = max(maxdis - k + 1, 1)\n    lpp = np.random.laplace(0, windowsize**0.1)\n    lpp = int(k + (abs(lpp)) % windowsize)\n    return lpp\n# def graphify(graph , to_plot):\n#     # pos = {i: coord for coord, i in cordmap.items()}\n#     if not to_plot :",
+        "detail": "utils",
+        "documentation": {}
+    },
+    {
+        "label": "cusrandis",
+        "kind": 2,
+        "importPath": "utils",
+        "description": "utils",
+        "peekOfCode": "def cusrandis(k, maxdis):\n    windowsize = max(maxdis - k + 1, 1)\n    lpp = np.random.laplace(0, windowsize**0.1)\n    lpp = int(k + (abs(lpp)) % windowsize)\n    return lpp\n# def graphify(graph , to_plot):\n#     # pos = {i: coord for coord, i in cordmap.items()}\n#     if not to_plot :\n#         return\n#     pos = nx.get_node_attributes(graph, \"pos\")",
+        "detail": "utils",
+        "documentation": {}
+    },
+    {
+        "label": "graphify",
+        "kind": 2,
+        "importPath": "utils",
+        "description": "utils",
+        "peekOfCode": "def graphify(graph, to_plot, bottom_text=\"\"):\n    if not to_plot:\n        return\n    pos = nx.get_node_attributes(graph, \"pos\")\n    # nx.draw(\n    #     graph,\n    #     pos,\n    #     # with_labels=True,\n    #     alpha=0.5,\n    #     with_labels=False,",
+        "detail": "utils",
+        "documentation": {}
+    }
+]
