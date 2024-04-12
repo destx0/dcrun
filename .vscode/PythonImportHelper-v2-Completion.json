@@ -137,6 +137,14 @@
         "documentation": {}
     },
     {
+        "label": "tqdm",
+        "importPath": "tqdm",
+        "description": "tqdm",
+        "isExtraImport": true,
+        "detail": "tqdm",
+        "documentation": {}
+    },
+    {
         "label": "*",
         "importPath": "kdtree",
         "description": "kdtree",
@@ -261,7 +269,7 @@
         "kind": 2,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "def prim_mst(points):\n    n = len(points)\n    visited = [False] * n\n    min_cost = [float(\"inf\")] * n\n    parent = [None] * n\n    min_cost[0] = 0\n    parent[0] = -1\n    for _ in range(n):\n        min_index = -1\n        for i in range(n):",
+        "peekOfCode": "def prim_mst(points):\n    n = len(points)\n    visited = [False] * n\n    min_cost = [float(\"inf\")] * n\n    parent = [None] * n\n    min_cost[0] = 0\n    parent[0] = -1\n    for _ in tqdm(\n        range(n), desc=\"Running Prim's Algorithm\", unit=\"iteration\"\n    ):  # Use tqdm for progress bar",
         "detail": "m",
         "documentation": {}
     },
@@ -333,7 +341,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "noise = 0.05  # Amount of noise\n# Generate the data\nX, y = make_circles(n_samples=points_count, noise=noise, factor=0.5, random_state=42)\n# Convert the data to a list of tuples\npoints = [(x, y) for x, y in X]\nmaxdis = math.ceil(math.log2(points_count))\ndef build():\n    tree = KDTree()\n    tree.root = tree.build(points)\n    G = nx.Graph()",
+        "peekOfCode": "noise = 0.05  # Amount of noise\n# Generate the data\nX, y = make_circles(n_samples=points_count, noise=noise, factor=0.5, random_state=42)\n# Convert the data to a list of tuples\npoints = [(x, y) for x, y in X]\nmaxdis = math.ceil(math.log2(points_count))\ndcran_start_time = time.time()\ndef build():\n    tree = KDTree()\n    tree.root = tree.build(points)",
         "detail": "m",
         "documentation": {}
     },
@@ -342,7 +350,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "points = [(x, y) for x, y in X]\nmaxdis = math.ceil(math.log2(points_count))\ndef build():\n    tree = KDTree()\n    tree.root = tree.build(points)\n    G = nx.Graph()\n    for point in points:\n        G.add_node(point, pos=point)\n    neighbours = {}\n    maxdis = math.ceil(math.log2(points_count))",
+        "peekOfCode": "points = [(x, y) for x, y in X]\nmaxdis = math.ceil(math.log2(points_count))\ndcran_start_time = time.time()\ndef build():\n    tree = KDTree()\n    tree.root = tree.build(points)\n    G = nx.Graph()\n    for point in points:\n        G.add_node(point, pos=point)\n    neighbours = {}",
         "detail": "m",
         "documentation": {}
     },
@@ -351,7 +359,16 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "maxdis = math.ceil(math.log2(points_count))\ndef build():\n    tree = KDTree()\n    tree.root = tree.build(points)\n    G = nx.Graph()\n    for point in points:\n        G.add_node(point, pos=point)\n    neighbours = {}\n    maxdis = math.ceil(math.log2(points_count))\n    for point in points:",
+        "peekOfCode": "maxdis = math.ceil(math.log2(points_count))\ndcran_start_time = time.time()\ndef build():\n    tree = KDTree()\n    tree.root = tree.build(points)\n    G = nx.Graph()\n    for point in points:\n        G.add_node(point, pos=point)\n    neighbours = {}\n    maxdis = math.ceil(math.log2(points_count))",
+        "detail": "m",
+        "documentation": {}
+    },
+    {
+        "label": "dcran_start_time",
+        "kind": 5,
+        "importPath": "m",
+        "description": "m",
+        "peekOfCode": "dcran_start_time = time.time()\ndef build():\n    tree = KDTree()\n    tree.root = tree.build(points)\n    G = nx.Graph()\n    for point in points:\n        G.add_node(point, pos=point)\n    neighbours = {}\n    maxdis = math.ceil(math.log2(points_count))\n    for point in points:",
         "detail": "m",
         "documentation": {}
     },
@@ -360,7 +377,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "dcran_end_time = time.time()\ndcran_elapsed_time = dcran_end_time - dcran_start_time\nprim_end_time = time.time()\nprim_elapsed_time = prim_end_time - prim_start_time\nimport math\neprim_start_time = time.time()\ndef calculate_distance(p1, p2):\n    x1, y1 = p1\n    x2, y2 = p2\n    return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)",
+        "peekOfCode": "dcran_end_time = time.time()\ndcran_elapsed_time = dcran_end_time - dcran_start_time\nimport math\neprim_start_time = time.time()\ndef calculate_distance(p1, p2):\n    x1, y1 = p1\n    x2, y2 = p2\n    return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)\ndef prim_mst(points):\n    n = len(points)",
         "detail": "m",
         "documentation": {}
     },
@@ -369,25 +386,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "dcran_elapsed_time = dcran_end_time - dcran_start_time\nprim_end_time = time.time()\nprim_elapsed_time = prim_end_time - prim_start_time\nimport math\neprim_start_time = time.time()\ndef calculate_distance(p1, p2):\n    x1, y1 = p1\n    x2, y2 = p2\n    return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)\ndef prim_mst(points):",
-        "detail": "m",
-        "documentation": {}
-    },
-    {
-        "label": "prim_end_time",
-        "kind": 5,
-        "importPath": "m",
-        "description": "m",
-        "peekOfCode": "prim_end_time = time.time()\nprim_elapsed_time = prim_end_time - prim_start_time\nimport math\neprim_start_time = time.time()\ndef calculate_distance(p1, p2):\n    x1, y1 = p1\n    x2, y2 = p2\n    return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)\ndef prim_mst(points):\n    n = len(points)",
-        "detail": "m",
-        "documentation": {}
-    },
-    {
-        "label": "prim_elapsed_time",
-        "kind": 5,
-        "importPath": "m",
-        "description": "m",
-        "peekOfCode": "prim_elapsed_time = prim_end_time - prim_start_time\nimport math\neprim_start_time = time.time()\ndef calculate_distance(p1, p2):\n    x1, y1 = p1\n    x2, y2 = p2\n    return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)\ndef prim_mst(points):\n    n = len(points)\n    visited = [False] * n",
+        "peekOfCode": "dcran_elapsed_time = dcran_end_time - dcran_start_time\nimport math\neprim_start_time = time.time()\ndef calculate_distance(p1, p2):\n    x1, y1 = p1\n    x2, y2 = p2\n    return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)\ndef prim_mst(points):\n    n = len(points)\n    visited = [False] * n",
         "detail": "m",
         "documentation": {}
     },

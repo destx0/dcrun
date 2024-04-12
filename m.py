@@ -11,6 +11,7 @@ import time
 from tabulate import tabulate
 from sklearn.datasets import load_iris
 from sklearn.mixture import GaussianMixture
+from tqdm import tqdm  # Import tqdm
 
 from kdtree import *
 from utils import *
@@ -32,6 +33,8 @@ X, y = make_circles(n_samples=points_count, noise=noise, factor=0.5, random_stat
 # Convert the data to a list of tuples
 points = [(x, y) for x, y in X]
 maxdis = math.ceil(math.log2(points_count))
+
+dcran_start_time = time.time()
 
 
 def build():
@@ -126,8 +129,6 @@ dc_weight, dc_edgecount = dcrun()
 dcran_end_time = time.time()
 dcran_elapsed_time = dcran_end_time - dcran_start_time
 
-prim_end_time = time.time()
-prim_elapsed_time = prim_end_time - prim_start_time
 
 import math
 
@@ -149,7 +150,9 @@ def prim_mst(points):
     min_cost[0] = 0
     parent[0] = -1
 
-    for _ in range(n):
+    for _ in tqdm(
+        range(n), desc="Running Prim's Algorithm", unit="iteration"
+    ):  # Use tqdm for progress bar
         min_index = -1
         for i in range(n):
             if not visited[i] and (
