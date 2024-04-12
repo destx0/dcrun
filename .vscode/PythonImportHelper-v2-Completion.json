@@ -59,14 +59,6 @@
         "documentation": {}
     },
     {
-        "label": "make_blobs",
-        "importPath": "sklearn.datasets",
-        "description": "sklearn.datasets",
-        "isExtraImport": true,
-        "detail": "sklearn.datasets",
-        "documentation": {}
-    },
-    {
         "label": "make_circles",
         "importPath": "sklearn.datasets",
         "description": "sklearn.datasets",
@@ -224,7 +216,7 @@
         "kind": 2,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "def build():\n    tree = KDTree()\n    tree.root = tree.build(points)\n    G = nx.Graph()\n    for point in points:\n        G.add_node(point , pos = point)\n    neighbours = {}\n    maxdis = math.ceil(math.log2(points_count))\n    for point in points:\n        neighbours[point] = i_neighbors(tree, point, maxdis)",
+        "peekOfCode": "def build():\n    tree = KDTree()\n    tree.root = tree.build(points)\n    G = nx.Graph()\n    for point in points:\n        G.add_node(point, pos=point)\n    neighbours = {}\n    maxdis = math.ceil(math.log2(points_count))\n    for point in points:\n        neighbours[point] = i_neighbors(tree, point, maxdis)",
         "detail": "m",
         "documentation": {}
     },
@@ -233,7 +225,7 @@
         "kind": 2,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "def merge_comps(core1 , core2, core_points_map , mst):\n    pivot2 = min(core_points_map[core2], key=lambda node: euclidean_distance(node, core1))\n    pivot1 = min(core_points_map[core1], key=lambda node: euclidean_distance(node, pivot2))\n    mst.add_edge(pivot1, pivot2 , weight = euclidean_distance(pivot1, pivot2))\n    print(f\"merging {core1} and {core2} with pivot {pivot1} and {pivot2}\")\n# In[ ]:\ndef merge_phase(G):\n    core_points_map = {}\n    for component in nx.connected_components(G):\n        centroid = np.mean([node for node in component], axis=0)",
+        "peekOfCode": "def merge_comps(core1, core2, core_points_map, mst):\n    pivot2 = min(\n        core_points_map[core2], key=lambda node: euclidean_distance(node, core1)\n    )\n    pivot1 = min(\n        core_points_map[core1], key=lambda node: euclidean_distance(node, pivot2)\n    )\n    mst.add_edge(pivot1, pivot2, weight=euclidean_distance(pivot1, pivot2))\n    print(f\"merging {core1} and {core2} with pivot {pivot1} and {pivot2}\")\ndef merge_phase(G):",
         "detail": "m",
         "documentation": {}
     },
@@ -242,7 +234,7 @@
         "kind": 2,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "def merge_phase(G):\n    core_points_map = {}\n    for component in nx.connected_components(G):\n        centroid = np.mean([node for node in component], axis=0)\n        closest_point = min(component, key=lambda node: euclidean_distance(node, centroid))\n        core_points_map[closest_point] = component\n    core_points = list(core_points_map.keys())\n    minc = [float(\"inf\")] * len(core_points[0])\n    maxc = [float(\"-inf\")] * len(core_points[0])\n    for point in core_points:",
+        "peekOfCode": "def merge_phase(G):\n    core_points_map = {}\n    for component in nx.connected_components(G):\n        centroid = np.mean([node for node in component], axis=0)\n        closest_point = min(\n            component, key=lambda node: euclidean_distance(node, centroid)\n        )\n        core_points_map[closest_point] = component\n    core_points = list(core_points_map.keys())\n    minc = [float(\"inf\")] * len(core_points[0])",
         "detail": "m",
         "documentation": {}
     },
@@ -251,7 +243,7 @@
         "kind": 2,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "def dcrun():\n    G,   neighbours = build()\n    print(G.number_of_nodes() , G.number_of_edges())\n    k = 0\n    while ( k**k   < maxdis) :\n        if(len(connected_components := list(nx.connected_components(G)))) == 1 : break\n        for component in connected_components:\n            for node in component:\n                wt , pos = neighbours[node][k]\n                # if pos in component : continue",
+        "peekOfCode": "def dcrun():\n    G, neighbours = build()\n    print(G.number_of_nodes(), G.number_of_edges())\n    k = 0\n    while k**k < maxdis:\n        if (len(connected_components := list(nx.connected_components(G)))) == 1:\n            break\n        for component in connected_components:\n            for node in component:\n                wt, pos = neighbours[node][k]",
         "detail": "m",
         "documentation": {}
     },
@@ -305,7 +297,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "savefile = \"data.json\"\npoints_count = 30000\nto_plot = False\nno_centres = 1\n# In[ ]:\nfrom sklearn.datasets import make_blobs\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt",
+        "peekOfCode": "savefile = \"data.json\"\npoints_count = 30000\nto_plot = False\nno_centres = 1\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\n# Generate the data\nX, y = make_circles(n_samples=points_count, noise=noise, factor=0.5, random_state=42)",
         "detail": "m",
         "documentation": {}
     },
@@ -314,7 +306,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "points_count = 30000\nto_plot = False\nno_centres = 1\n# In[ ]:\nfrom sklearn.datasets import make_blobs\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\n# Initialize the parameters",
+        "peekOfCode": "points_count = 30000\nto_plot = False\nno_centres = 1\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\n# Generate the data\nX, y = make_circles(n_samples=points_count, noise=noise, factor=0.5, random_state=42)\n# Convert the data to a list of tuples",
         "detail": "m",
         "documentation": {}
     },
@@ -323,7 +315,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "to_plot = False\nno_centres = 1\n# In[ ]:\nfrom sklearn.datasets import make_blobs\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nnoise = 0.05  # Amount of noise",
+        "peekOfCode": "to_plot = False\nno_centres = 1\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\n# Generate the data\nX, y = make_circles(n_samples=points_count, noise=noise, factor=0.5, random_state=42)\n# Convert the data to a list of tuples\npoints = [(x, y) for x, y in X]",
         "detail": "m",
         "documentation": {}
     },
@@ -332,7 +324,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "no_centres = 1\n# In[ ]:\nfrom sklearn.datasets import make_blobs\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\n# Generate the data",
+        "peekOfCode": "no_centres = 1\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\n# Generate the data\nX, y = make_circles(n_samples=points_count, noise=noise, factor=0.5, random_state=42)\n# Convert the data to a list of tuples\npoints = [(x, y) for x, y in X]\nmaxdis = math.ceil(math.log2(points_count))",
         "detail": "m",
         "documentation": {}
     },
@@ -341,7 +333,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "noise = 0.05  # Amount of noise\n# Generate the data\nX, y = make_circles(n_samples=points_count, noise=noise, factor=0.5, random_state=42)\n# Convert the data to a list of tuples\npoints = [(x, y) for x, y in X]\n# points = [(round(x , 1), round(y , 1)) for x, y in X]\nmaxdis = math.ceil(math.log2(points_count))\n# In[ ]:\nX, Y = make_blobs(n_samples=points_count, centers=no_centres, random_state=42)\npoints = [(x, y) for x, y in X]",
+        "peekOfCode": "noise = 0.05  # Amount of noise\n# Generate the data\nX, y = make_circles(n_samples=points_count, noise=noise, factor=0.5, random_state=42)\n# Convert the data to a list of tuples\npoints = [(x, y) for x, y in X]\nmaxdis = math.ceil(math.log2(points_count))\ndef build():\n    tree = KDTree()\n    tree.root = tree.build(points)\n    G = nx.Graph()",
         "detail": "m",
         "documentation": {}
     },
@@ -350,7 +342,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "points = [(x, y) for x, y in X]\n# points = [(round(x , 1), round(y , 1)) for x, y in X]\nmaxdis = math.ceil(math.log2(points_count))\n# In[ ]:\nX, Y = make_blobs(n_samples=points_count, centers=no_centres, random_state=42)\npoints = [(x, y) for x, y in X]\n# In[ ]:\ndcran_start_time = time.time()\n# In[ ]:",
+        "peekOfCode": "points = [(x, y) for x, y in X]\nmaxdis = math.ceil(math.log2(points_count))\ndef build():\n    tree = KDTree()\n    tree.root = tree.build(points)\n    G = nx.Graph()\n    for point in points:\n        G.add_node(point, pos=point)\n    neighbours = {}\n    maxdis = math.ceil(math.log2(points_count))",
         "detail": "m",
         "documentation": {}
     },
@@ -359,25 +351,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "maxdis = math.ceil(math.log2(points_count))\n# In[ ]:\nX, Y = make_blobs(n_samples=points_count, centers=no_centres, random_state=42)\npoints = [(x, y) for x, y in X]\n# In[ ]:\ndcran_start_time = time.time()\n# In[ ]:\ndef build():",
-        "detail": "m",
-        "documentation": {}
-    },
-    {
-        "label": "points",
-        "kind": 5,
-        "importPath": "m",
-        "description": "m",
-        "peekOfCode": "points = [(x, y) for x, y in X]\n# In[ ]:\ndcran_start_time = time.time()\n# In[ ]:\ndef build():\n    tree = KDTree()\n    tree.root = tree.build(points)\n    G = nx.Graph()\n    for point in points:\n        G.add_node(point , pos = point)",
-        "detail": "m",
-        "documentation": {}
-    },
-    {
-        "label": "dcran_start_time",
-        "kind": 5,
-        "importPath": "m",
-        "description": "m",
-        "peekOfCode": "dcran_start_time = time.time()\n# In[ ]:\ndef build():\n    tree = KDTree()\n    tree.root = tree.build(points)\n    G = nx.Graph()\n    for point in points:\n        G.add_node(point , pos = point)\n    neighbours = {}\n    maxdis = math.ceil(math.log2(points_count))",
+        "peekOfCode": "maxdis = math.ceil(math.log2(points_count))\ndef build():\n    tree = KDTree()\n    tree.root = tree.build(points)\n    G = nx.Graph()\n    for point in points:\n        G.add_node(point, pos=point)\n    neighbours = {}\n    maxdis = math.ceil(math.log2(points_count))\n    for point in points:",
         "detail": "m",
         "documentation": {}
     },
@@ -386,7 +360,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "dcran_end_time = time.time()\ndcran_elapsed_time = dcran_end_time - dcran_start_time\n# In[ ]:\nprim_start_time = time.time()\n# In[ ]:\n# Gst = nx.Graph()\n# for pointi in points:\n#     Gst.add_node(pointi, pos=pointi)\n# for pointi in points:    \n#     for pointj in points:",
+        "peekOfCode": "dcran_end_time = time.time()\ndcran_elapsed_time = dcran_end_time - dcran_start_time\nprim_end_time = time.time()\nprim_elapsed_time = prim_end_time - prim_start_time\nimport math\neprim_start_time = time.time()\ndef calculate_distance(p1, p2):\n    x1, y1 = p1\n    x2, y2 = p2\n    return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)",
         "detail": "m",
         "documentation": {}
     },
@@ -395,16 +369,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "dcran_elapsed_time = dcran_end_time - dcran_start_time\n# In[ ]:\nprim_start_time = time.time()\n# In[ ]:\n# Gst = nx.Graph()\n# for pointi in points:\n#     Gst.add_node(pointi, pos=pointi)\n# for pointi in points:    \n#     for pointj in points:\n#         if pointi != pointj:",
-        "detail": "m",
-        "documentation": {}
-    },
-    {
-        "label": "prim_start_time",
-        "kind": 5,
-        "importPath": "m",
-        "description": "m",
-        "peekOfCode": "prim_start_time = time.time()\n# In[ ]:\n# Gst = nx.Graph()\n# for pointi in points:\n#     Gst.add_node(pointi, pos=pointi)\n# for pointi in points:    \n#     for pointj in points:\n#         if pointi != pointj:\n#             dis = euclidean_distance(pointi, pointj)\n#             Gst.add_edge(pointi , pointj , weight=dis)",
+        "peekOfCode": "dcran_elapsed_time = dcran_end_time - dcran_start_time\nprim_end_time = time.time()\nprim_elapsed_time = prim_end_time - prim_start_time\nimport math\neprim_start_time = time.time()\ndef calculate_distance(p1, p2):\n    x1, y1 = p1\n    x2, y2 = p2\n    return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)\ndef prim_mst(points):",
         "detail": "m",
         "documentation": {}
     },
@@ -413,7 +378,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "prim_end_time = time.time()\nprim_elapsed_time = prim_end_time - prim_start_time\n# In[ ]:\nimport math\neprim_start_time = time.time()\ndef calculate_distance(p1, p2):\n    x1, y1 = p1\n    x2, y2 = p2\n    return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)\ndef prim_mst(points):",
+        "peekOfCode": "prim_end_time = time.time()\nprim_elapsed_time = prim_end_time - prim_start_time\nimport math\neprim_start_time = time.time()\ndef calculate_distance(p1, p2):\n    x1, y1 = p1\n    x2, y2 = p2\n    return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)\ndef prim_mst(points):\n    n = len(points)",
         "detail": "m",
         "documentation": {}
     },
@@ -422,7 +387,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "prim_elapsed_time = prim_end_time - prim_start_time\n# In[ ]:\nimport math\neprim_start_time = time.time()\ndef calculate_distance(p1, p2):\n    x1, y1 = p1\n    x2, y2 = p2\n    return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)\ndef prim_mst(points):\n    n = len(points)",
+        "peekOfCode": "prim_elapsed_time = prim_end_time - prim_start_time\nimport math\neprim_start_time = time.time()\ndef calculate_distance(p1, p2):\n    x1, y1 = p1\n    x2, y2 = p2\n    return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)\ndef prim_mst(points):\n    n = len(points)\n    visited = [False] * n",
         "detail": "m",
         "documentation": {}
     },
@@ -440,7 +405,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "mst = prim_mst(points)\neprim_end_time = time.time()\neprim_elapsed_time = eprim_end_time - eprim_start_time\nprint(\"MST Weight: \", eprim_wt := sum([calculate_distance(points[u], points[v]) for u, v in mst]))\nprint(\"time taken by dcran : \", eprim_elapsed_time)\n# In[ ]:\nspeedup = eprim_elapsed_time / dcran_elapsed_time\nprint(f\"Speedup: {speedup:.2f}\")\n# In[ ]:\nwt_error = abs(dc_weight - eprim_wt) / eprim_wt * 100",
+        "peekOfCode": "mst = prim_mst(points)\neprim_end_time = time.time()\neprim_elapsed_time = eprim_end_time - eprim_start_time\nprint(\n    \"MST Weight: \",\n    eprim_wt := sum([calculate_distance(points[u], points[v]) for u, v in mst]),\n)\nprint(\"time taken by dcran : \", eprim_elapsed_time)\nspeedup = eprim_elapsed_time / dcran_elapsed_time\nprint(f\"Speedup: {speedup:.2f}\")",
         "detail": "m",
         "documentation": {}
     },
@@ -449,7 +414,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "eprim_end_time = time.time()\neprim_elapsed_time = eprim_end_time - eprim_start_time\nprint(\"MST Weight: \", eprim_wt := sum([calculate_distance(points[u], points[v]) for u, v in mst]))\nprint(\"time taken by dcran : \", eprim_elapsed_time)\n# In[ ]:\nspeedup = eprim_elapsed_time / dcran_elapsed_time\nprint(f\"Speedup: {speedup:.2f}\")\n# In[ ]:\nwt_error = abs(dc_weight - eprim_wt) / eprim_wt * 100\nprint(f\"Weight Error: {wt_error}%\")",
+        "peekOfCode": "eprim_end_time = time.time()\neprim_elapsed_time = eprim_end_time - eprim_start_time\nprint(\n    \"MST Weight: \",\n    eprim_wt := sum([calculate_distance(points[u], points[v]) for u, v in mst]),\n)\nprint(\"time taken by dcran : \", eprim_elapsed_time)\nspeedup = eprim_elapsed_time / dcran_elapsed_time\nprint(f\"Speedup: {speedup:.2f}\")\nwt_error = abs(dc_weight - eprim_wt) / eprim_wt * 100",
         "detail": "m",
         "documentation": {}
     },
@@ -458,7 +423,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "eprim_elapsed_time = eprim_end_time - eprim_start_time\nprint(\"MST Weight: \", eprim_wt := sum([calculate_distance(points[u], points[v]) for u, v in mst]))\nprint(\"time taken by dcran : \", eprim_elapsed_time)\n# In[ ]:\nspeedup = eprim_elapsed_time / dcran_elapsed_time\nprint(f\"Speedup: {speedup:.2f}\")\n# In[ ]:\nwt_error = abs(dc_weight - eprim_wt) / eprim_wt * 100\nprint(f\"Weight Error: {wt_error}%\")\n# In[ ]:",
+        "peekOfCode": "eprim_elapsed_time = eprim_end_time - eprim_start_time\nprint(\n    \"MST Weight: \",\n    eprim_wt := sum([calculate_distance(points[u], points[v]) for u, v in mst]),\n)\nprint(\"time taken by dcran : \", eprim_elapsed_time)\nspeedup = eprim_elapsed_time / dcran_elapsed_time\nprint(f\"Speedup: {speedup:.2f}\")\nwt_error = abs(dc_weight - eprim_wt) / eprim_wt * 100\nprint(f\"Weight Error: {wt_error}%\")",
         "detail": "m",
         "documentation": {}
     },
@@ -467,7 +432,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "speedup = eprim_elapsed_time / dcran_elapsed_time\nprint(f\"Speedup: {speedup:.2f}\")\n# In[ ]:\nwt_error = abs(dc_weight - eprim_wt) / eprim_wt * 100\nprint(f\"Weight Error: {wt_error}%\")\n# In[ ]:\n# In[ ]:",
+        "peekOfCode": "speedup = eprim_elapsed_time / dcran_elapsed_time\nprint(f\"Speedup: {speedup:.2f}\")\nwt_error = abs(dc_weight - eprim_wt) / eprim_wt * 100\nprint(f\"Weight Error: {wt_error}%\")\nfrom sklearn.cluster import KMeans\nfrom scipy.sparse.csgraph import minimum_spanning_tree\nfrom scipy.spatial.distance import pdist, squareform\nfmst_start_time = time.time()\ndef euclidean_distance(p1, p2):\n    return sum((a - b) ** 2 for a, b in zip(p1, p2)) ** 0.5",
         "detail": "m",
         "documentation": {}
     },
@@ -476,7 +441,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "wt_error = abs(dc_weight - eprim_wt) / eprim_wt * 100\nprint(f\"Weight Error: {wt_error}%\")\n# In[ ]:\n# In[ ]:\n# In[ ]:\nfrom sklearn.cluster import KMeans",
+        "peekOfCode": "wt_error = abs(dc_weight - eprim_wt) / eprim_wt * 100\nprint(f\"Weight Error: {wt_error}%\")\nfrom sklearn.cluster import KMeans\nfrom scipy.sparse.csgraph import minimum_spanning_tree\nfrom scipy.spatial.distance import pdist, squareform\nfmst_start_time = time.time()\ndef euclidean_distance(p1, p2):\n    return sum((a - b) ** 2 for a, b in zip(p1, p2)) ** 0.5\ndef detect_connecting_edge(cluster1, cluster2):\n    center1 = [sum(x) / len(cluster1) for x in zip(*cluster1)]",
         "detail": "m",
         "documentation": {}
     },
@@ -494,7 +459,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "fmst_end_time = time.time()\nfmst_edgecount = len(mst_edges)\nfmst_elapsed_time = fmst_end_time - fmst_start_time\nprint(\"time taken by fast mst : \", fmst_elapsed_time)\nprint(\"Total weight of the MST:\", fmst_weight)\n# In[ ]:\nwith open(savefile, \"r\") as f:\n    loaded_data = json.load(f)\nprint(loaded_data)\ncurrres = []",
+        "peekOfCode": "fmst_end_time = time.time()\nfmst_edgecount = len(mst_edges)\nfmst_elapsed_time = fmst_end_time - fmst_start_time\nprint(\"time taken by fast mst : \", fmst_elapsed_time)\nprint(\"Total weight of the MST:\", fmst_weight)\nwith open(savefile, \"r\") as f:\n    loaded_data = json.load(f)\nprint(loaded_data)\ncurrres = []\nloaded_data.append(",
         "detail": "m",
         "documentation": {}
     },
@@ -503,7 +468,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "fmst_edgecount = len(mst_edges)\nfmst_elapsed_time = fmst_end_time - fmst_start_time\nprint(\"time taken by fast mst : \", fmst_elapsed_time)\nprint(\"Total weight of the MST:\", fmst_weight)\n# In[ ]:\nwith open(savefile, \"r\") as f:\n    loaded_data = json.load(f)\nprint(loaded_data)\ncurrres = []\nloaded_data.append(",
+        "peekOfCode": "fmst_edgecount = len(mst_edges)\nfmst_elapsed_time = fmst_end_time - fmst_start_time\nprint(\"time taken by fast mst : \", fmst_elapsed_time)\nprint(\"Total weight of the MST:\", fmst_weight)\nwith open(savefile, \"r\") as f:\n    loaded_data = json.load(f)\nprint(loaded_data)\ncurrres = []\nloaded_data.append(\n    [",
         "detail": "m",
         "documentation": {}
     },
@@ -512,7 +477,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "fmst_elapsed_time = fmst_end_time - fmst_start_time\nprint(\"time taken by fast mst : \", fmst_elapsed_time)\nprint(\"Total weight of the MST:\", fmst_weight)\n# In[ ]:\nwith open(savefile, \"r\") as f:\n    loaded_data = json.load(f)\nprint(loaded_data)\ncurrres = []\nloaded_data.append(\n    [",
+        "peekOfCode": "fmst_elapsed_time = fmst_end_time - fmst_start_time\nprint(\"time taken by fast mst : \", fmst_elapsed_time)\nprint(\"Total weight of the MST:\", fmst_weight)\nwith open(savefile, \"r\") as f:\n    loaded_data = json.load(f)\nprint(loaded_data)\ncurrres = []\nloaded_data.append(\n    [\n        points_count,",
         "detail": "m",
         "documentation": {}
     },

@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
-
-
 import matplotlib.pyplot as plt
 import networkx as nx
 import numpy as np
@@ -18,23 +15,11 @@ from sklearn.mixture import GaussianMixture
 from kdtree import *
 from utils import *
 
-
-# In[ ]:
-
-
 savefile = "data.json"
 points_count = 30000
 to_plot = False
 no_centres = 1
 
-
-# In[ ]:
-
-
-from sklearn.datasets import make_blobs
-import matplotlib.pyplot as plt
-
-# Initialize the parameters
 from sklearn.datasets import make_circles
 import matplotlib.pyplot as plt
 
@@ -46,24 +31,7 @@ X, y = make_circles(n_samples=points_count, noise=noise, factor=0.5, random_stat
 
 # Convert the data to a list of tuples
 points = [(x, y) for x, y in X]
-# points = [(round(x , 1), round(y , 1)) for x, y in X]
 maxdis = math.ceil(math.log2(points_count))
-
-
-# In[ ]:
-
-
-X, Y = make_blobs(n_samples=points_count, centers=no_centres, random_state=42)
-points = [(x, y) for x, y in X]
-
-
-# In[ ]:
-
-
-dcran_start_time = time.time()
-
-
-# In[ ]:
 
 
 def build():
@@ -73,34 +41,33 @@ def build():
     G = nx.Graph()
 
     for point in points:
-        G.add_node(point , pos = point)
+        G.add_node(point, pos=point)
 
     neighbours = {}
     maxdis = math.ceil(math.log2(points_count))
     for point in points:
         neighbours[point] = i_neighbors(tree, point, maxdis)
-    return  G,  neighbours
-    
+    return G, neighbours
 
 
-# In[ ]:
-
-
-def merge_comps(core1 , core2, core_points_map , mst):
-    pivot2 = min(core_points_map[core2], key=lambda node: euclidean_distance(node, core1))
-    pivot1 = min(core_points_map[core1], key=lambda node: euclidean_distance(node, pivot2))
-    mst.add_edge(pivot1, pivot2 , weight = euclidean_distance(pivot1, pivot2))
+def merge_comps(core1, core2, core_points_map, mst):
+    pivot2 = min(
+        core_points_map[core2], key=lambda node: euclidean_distance(node, core1)
+    )
+    pivot1 = min(
+        core_points_map[core1], key=lambda node: euclidean_distance(node, pivot2)
+    )
+    mst.add_edge(pivot1, pivot2, weight=euclidean_distance(pivot1, pivot2))
     print(f"merging {core1} and {core2} with pivot {pivot1} and {pivot2}")
-
-
-# In[ ]:
 
 
 def merge_phase(G):
     core_points_map = {}
     for component in nx.connected_components(G):
         centroid = np.mean([node for node in component], axis=0)
-        closest_point = min(component, key=lambda node: euclidean_distance(node, centroid))
+        closest_point = min(
+            component, key=lambda node: euclidean_distance(node, centroid)
+        )
         core_points_map[closest_point] = component
 
     core_points = list(core_points_map.keys())
@@ -117,105 +84,56 @@ def merge_phase(G):
     min_diff_axis = diff.index(max(diff))
 
     sorted_core_points = sorted(core_points, key=lambda point: point[min_diff_axis])
-    for core1 , core2 in zip(sorted_core_points, sorted_core_points[1:]):
+    for core1, core2 in zip(sorted_core_points, sorted_core_points[1:]):
         merge_comps(core1, core2, core_points_map, G)
-        
-    
-    
-
-
-# In[ ]:
 
 
 def dcrun():
-    G,   neighbours = build()
-    print(G.number_of_nodes() , G.number_of_edges())
+    G, neighbours = build()
+    print(G.number_of_nodes(), G.number_of_edges())
     k = 0
-    while ( k**k   < maxdis) :
+    while k**k < maxdis:
 
-        if(len(connected_components := list(nx.connected_components(G)))) == 1 : break
+        if (len(connected_components := list(nx.connected_components(G)))) == 1:
+            break
         for component in connected_components:
             for node in component:
-                wt , pos = neighbours[node][k]
-                # if pos in component : continue
-                G.add_edge(node , pos , weight = wt)
-                
+                wt, pos = neighbours[node][k]
+                G.add_edge(node, pos, weight=wt)
+
                 wt, pos = neighbours[node][k**k]
-                # if pos in component:
-                    # continue
                 G.add_edge(node, pos, weight=wt)
         k += 1
-    else :
+    else:
         print("merge phase")
         merge_phase(G)
         print(
             f"The graph has {G.number_of_nodes()} nodes and {G.number_of_edges()} edges."
         )
-        print("Connected Components : " , len(list(nx.connected_components(G))))
+        print("Connected Components : ", len(list(nx.connected_components(G))))
     edgecount = G.number_of_edges()
-    mst = nx.minimum_spanning_tree(G)    
-    print(mst.number_of_nodes() , mst.number_of_edges())
-    mst_weight = sum(data["weight"] for u, v, data in mst.edges(data=True)) 
+    mst = nx.minimum_spanning_tree(G)
+    print(mst.number_of_nodes(), mst.number_of_edges())
+    mst_weight = sum(data["weight"] for u, v, data in mst.edges(data=True))
     print(
         f"Minimum Spanning Tree: {mst.number_of_nodes()} nodes, {mst.number_of_edges()} edges, Total Weight: {mst_weight}"
     )
-    return mst_weight , edgecount
-
-
-# In[ ]:
+    return mst_weight, edgecount
 
 
 dc_weight, dc_edgecount = dcrun()
 
-
-# In[ ]:
-
-
 dcran_end_time = time.time()
 dcran_elapsed_time = dcran_end_time - dcran_start_time
-
-
-# In[ ]:
-
-
-prim_start_time = time.time()
-
-
-# In[ ]:
-
-
-# Gst = nx.Graph()
-
-# for pointi in points:
-#     Gst.add_node(pointi, pos=pointi)
-    
-# for pointi in points:    
-#     for pointj in points:
-#         if pointi != pointj:
-#             dis = euclidean_distance(pointi, pointj)
-#             Gst.add_edge(pointi , pointj , weight=dis)
-
-
-# In[ ]:
-
-
-# Gst = nx.minimum_spanning_tree(Gst, algorithm="prim", weight="weight")
-# gst_weight = sum(data["weight"] for u, v, data in Gst.edges(data=True))
-
-
-# In[ ]:
-
 
 prim_end_time = time.time()
 prim_elapsed_time = prim_end_time - prim_start_time
 
-
-# In[ ]:
-
-
 import math
 
 eprim_start_time = time.time()
+
+
 def calculate_distance(p1, p2):
     x1, y1 = p1
     x2, y2 = p2
@@ -258,48 +176,25 @@ def prim_mst(points):
 mst = prim_mst(points)
 eprim_end_time = time.time()
 eprim_elapsed_time = eprim_end_time - eprim_start_time
-print("MST Weight: ", eprim_wt := sum([calculate_distance(points[u], points[v]) for u, v in mst]))
+print(
+    "MST Weight: ",
+    eprim_wt := sum([calculate_distance(points[u], points[v]) for u, v in mst]),
+)
 print("time taken by dcran : ", eprim_elapsed_time)
-
-
-# In[ ]:
-
 
 speedup = eprim_elapsed_time / dcran_elapsed_time
 print(f"Speedup: {speedup:.2f}")
 
-
-# In[ ]:
-
-
 wt_error = abs(dc_weight - eprim_wt) / eprim_wt * 100
 print(f"Weight Error: {wt_error}%")
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
 
 from sklearn.cluster import KMeans
 from scipy.sparse.csgraph import minimum_spanning_tree
 from scipy.spatial.distance import pdist, squareform
 
-
-# In[ ]:
-
-
 fmst_start_time = time.time()
+
+
 def euclidean_distance(p1, p2):
     return sum((a - b) ** 2 for a, b in zip(p1, p2)) ** 0.5
 
@@ -395,9 +290,6 @@ def fast_mst(points):
     return mst_edges, total_weight
 
 
-# Example usage
-
-
 mst_edges, fmst_weight = fast_mst(points)
 fmst_end_time = time.time()
 fmst_edgecount = len(mst_edges)
@@ -405,10 +297,6 @@ fmst_elapsed_time = fmst_end_time - fmst_start_time
 print("time taken by fast mst : ", fmst_elapsed_time)
 
 print("Total weight of the MST:", fmst_weight)
-
-
-# In[ ]:
-
 
 with open(savefile, "r") as f:
     loaded_data = json.load(f)
@@ -432,7 +320,7 @@ loaded_data.append(
         eprim_elapsed_time / dcran_elapsed_time,
     ]
 )
-# Save the updated dictionary back to the JSON file
+
 with open(savefile, "r") as f:
     loaded_data = json.load(f)
 print(loaded_data)
@@ -455,7 +343,7 @@ loaded_data.append(
         eprim_elapsed_time / dcran_elapsed_time,
     ]
 )
-# Save the updated dictionary back to the JSON file
+
 with open(savefile, "w") as f:
     json.dump(loaded_data, f)
 
@@ -475,7 +363,7 @@ headers = [
     "Prim's Speedup",
     "DCRAN Speedup",
 ]
-# Format the data as a table using tabulate
+
 table_str = tabulate(
     loaded_data[-15:],
     headers,
@@ -498,4 +386,3 @@ table_str = tabulate(
     ),
 )
 print(table_str)
-
