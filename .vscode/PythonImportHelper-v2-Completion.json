@@ -153,14 +153,6 @@
         "documentation": {}
     },
     {
-        "label": "KMeans",
-        "importPath": "sklearn.cluster",
-        "description": "sklearn.cluster",
-        "isExtraImport": true,
-        "detail": "sklearn.cluster",
-        "documentation": {}
-    },
-    {
         "label": "GaussianMixture",
         "importPath": "sklearn.mixture",
         "description": "sklearn.mixture",
@@ -174,30 +166,6 @@
         "description": "scipy.sparse.csgraph",
         "isExtraImport": true,
         "detail": "scipy.sparse.csgraph",
-        "documentation": {}
-    },
-    {
-        "label": "minimum_spanning_tree",
-        "importPath": "scipy.sparse.csgraph",
-        "description": "scipy.sparse.csgraph",
-        "isExtraImport": true,
-        "detail": "scipy.sparse.csgraph",
-        "documentation": {}
-    },
-    {
-        "label": "pdist",
-        "importPath": "scipy.spatial.distance",
-        "description": "scipy.spatial.distance",
-        "isExtraImport": true,
-        "detail": "scipy.spatial.distance",
-        "documentation": {}
-    },
-    {
-        "label": "squareform",
-        "importPath": "scipy.spatial.distance",
-        "description": "scipy.spatial.distance",
-        "isExtraImport": true,
-        "detail": "scipy.spatial.distance",
         "documentation": {}
     },
     {
@@ -260,92 +228,11 @@
         "documentation": {}
     },
     {
-        "label": "build",
-        "kind": 2,
-        "importPath": "m",
-        "description": "m",
-        "peekOfCode": "def build():\n    tree = KDTree()\n    tree.root = tree.build(points)\n    G = nx.Graph()\n    for point in points:\n        G.add_node(point, pos=point)\n    neighbours = {}\n    maxdis = math.ceil(math.log2(points_count))\n    for point in points:\n        neighbours[point] = i_neighbors(tree, point, maxdis)",
-        "detail": "m",
-        "documentation": {}
-    },
-    {
-        "label": "merge_comps",
-        "kind": 2,
-        "importPath": "m",
-        "description": "m",
-        "peekOfCode": "def merge_comps(core1, core2, core_points_map, mst):\n    pivot2 = min(\n        core_points_map[core2], key=lambda node: euclidean_distance(node, core1)\n    )\n    pivot1 = min(\n        core_points_map[core1], key=lambda node: euclidean_distance(node, pivot2)\n    )\n    mst.add_edge(pivot1, pivot2, weight=euclidean_distance(pivot1, pivot2))\n    print(f\"merging {core1} and {core2} with pivot {pivot1} and {pivot2}\")\ndef merge_phase(G):",
-        "detail": "m",
-        "documentation": {}
-    },
-    {
-        "label": "merge_phase",
-        "kind": 2,
-        "importPath": "m",
-        "description": "m",
-        "peekOfCode": "def merge_phase(G):\n    core_points_map = {}\n    for component in nx.connected_components(G):\n        centroid = np.mean([node for node in component], axis=0)\n        closest_point = min(\n            component, key=lambda node: euclidean_distance(node, centroid)\n        )\n        core_points_map[closest_point] = component\n    core_points = list(core_points_map.keys())\n    minc = [float(\"inf\")] * len(core_points[0])",
-        "detail": "m",
-        "documentation": {}
-    },
-    {
-        "label": "dcrun",
-        "kind": 2,
-        "importPath": "m",
-        "description": "m",
-        "peekOfCode": "def dcrun():\n    G, neighbours = build()\n    print(G.number_of_nodes(), G.number_of_edges())\n    k = 0\n    while k**k < maxdis:\n        if (len(connected_components := list(nx.connected_components(G)))) == 1:\n            break\n        for component in connected_components:\n            for node in component:\n                wt, pos = neighbours[node][k]",
-        "detail": "m",
-        "documentation": {}
-    },
-    {
-        "label": "calculate_distance",
-        "kind": 2,
-        "importPath": "m",
-        "description": "m",
-        "peekOfCode": "def calculate_distance(p1, p2):\n    x1, y1 = p1\n    x2, y2 = p2\n    return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)\ndef prim_mst(points):\n    n = len(points)\n    visited = [False] * n\n    min_cost = [float(\"inf\")] * n\n    parent = [None] * n\n    min_cost[0] = 0",
-        "detail": "m",
-        "documentation": {}
-    },
-    {
-        "label": "prim_mst",
-        "kind": 2,
-        "importPath": "m",
-        "description": "m",
-        "peekOfCode": "def prim_mst(points):\n    n = len(points)\n    visited = [False] * n\n    min_cost = [float(\"inf\")] * n\n    parent = [None] * n\n    min_cost[0] = 0\n    parent[0] = -1\n    for _ in tqdm(\n        range(n), desc=\"Running Prim's Algorithm\", unit=\"iteration\"\n    ):  # Use tqdm for progress bar",
-        "detail": "m",
-        "documentation": {}
-    },
-    {
-        "label": "euclidean_distance",
-        "kind": 2,
-        "importPath": "m",
-        "description": "m",
-        "peekOfCode": "def euclidean_distance(p1, p2):\n    return sum((a - b) ** 2 for a, b in zip(p1, p2)) ** 0.5\ndef detect_connecting_edge(cluster1, cluster2):\n    center1 = [sum(x) / len(cluster1) for x in zip(*cluster1)]\n    center2 = [sum(x) / len(cluster2) for x in zip(*cluster2)]\n    min_dist1 = float(\"inf\")\n    min_point1 = None\n    for point in cluster1:\n        dist = euclidean_distance(point, center2)\n        if dist < min_dist1:",
-        "detail": "m",
-        "documentation": {}
-    },
-    {
-        "label": "detect_connecting_edge",
-        "kind": 2,
-        "importPath": "m",
-        "description": "m",
-        "peekOfCode": "def detect_connecting_edge(cluster1, cluster2):\n    center1 = [sum(x) / len(cluster1) for x in zip(*cluster1)]\n    center2 = [sum(x) / len(cluster2) for x in zip(*cluster2)]\n    min_dist1 = float(\"inf\")\n    min_point1 = None\n    for point in cluster1:\n        dist = euclidean_distance(point, center2)\n        if dist < min_dist1:\n            min_dist1 = dist\n            min_point1 = point",
-        "detail": "m",
-        "documentation": {}
-    },
-    {
-        "label": "fast_mst",
-        "kind": 2,
-        "importPath": "m",
-        "description": "m",
-        "peekOfCode": "def fast_mst(points):\n    n = len(points)\n    k = int(n**0.5)\n    # Divide-and-conquer stage\n    kmeans = KMeans(n_clusters=k).fit(points)\n    labels = kmeans.labels_\n    centers = kmeans.cluster_centers_.tolist()\n    mst_edges = []\n    total_weight = 0\n    for i in range(k):",
-        "detail": "m",
-        "documentation": {}
-    },
-    {
         "label": "savefile",
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "savefile = \"data.json\"\npoints_count = 30000\nto_plot = False\nno_centres = 1\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\n# Generate the data\nX, _ = make_blobs(n_samples=points_count, centers=no_centres, random_state=42)",
+        "peekOfCode": "savefile = \"data.json\"\npoints_count = 30000\nto_plot = False\nno_centres = 1\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\npoints_range = [100, 200, 3000, 4000, 5000]\ncenters_range = [1, 2, 3, 4, 5]",
         "detail": "m",
         "documentation": {}
     },
@@ -354,7 +241,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "points_count = 30000\nto_plot = False\nno_centres = 1\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\n# Generate the data\nX, _ = make_blobs(n_samples=points_count, centers=no_centres, random_state=42)\npoints = [(x, y) for x, y in X]",
+        "peekOfCode": "points_count = 30000\nto_plot = False\nno_centres = 1\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\npoints_range = [100, 200, 3000, 4000, 5000]\ncenters_range = [1, 2, 3, 4, 5]\nresults = []",
         "detail": "m",
         "documentation": {}
     },
@@ -363,7 +250,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "to_plot = False\nno_centres = 1\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\n# Generate the data\nX, _ = make_blobs(n_samples=points_count, centers=no_centres, random_state=42)\npoints = [(x, y) for x, y in X]\nmaxdis = math.ceil(math.log2(points_count))",
+        "peekOfCode": "to_plot = False\nno_centres = 1\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\npoints_range = [100, 200, 3000, 4000, 5000]\ncenters_range = [1, 2, 3, 4, 5]\nresults = []\nfor points_count in points_range:",
         "detail": "m",
         "documentation": {}
     },
@@ -372,7 +259,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "no_centres = 1\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\n# Generate the data\nX, _ = make_blobs(n_samples=points_count, centers=no_centres, random_state=42)\npoints = [(x, y) for x, y in X]\nmaxdis = math.ceil(math.log2(points_count))\ndcran_start_time = time.time()",
+        "peekOfCode": "no_centres = 1\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\npoints_range = [100, 200, 3000, 4000, 5000]\ncenters_range = [1, 2, 3, 4, 5]\nresults = []\nfor points_count in points_range:\n    for no_centres in centers_range:",
         "detail": "m",
         "documentation": {}
     },
@@ -381,178 +268,34 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "noise = 0.05  # Amount of noise\n# Generate the data\nX, _ = make_blobs(n_samples=points_count, centers=no_centres, random_state=42)\npoints = [(x, y) for x, y in X]\nmaxdis = math.ceil(math.log2(points_count))\ndcran_start_time = time.time()\ndef build():\n    tree = KDTree()\n    tree.root = tree.build(points)\n    G = nx.Graph()",
+        "peekOfCode": "noise = 0.05  # Amount of noise\npoints_range = [100, 200, 3000, 4000, 5000]\ncenters_range = [1, 2, 3, 4, 5]\nresults = []\nfor points_count in points_range:\n    for no_centres in centers_range:\n        # Generate the data\n        X, _ = make_blobs(n_samples=points_count, centers=no_centres, random_state=42)\n        points = [(x, y) for x, y in X]\n        maxdis = math.ceil(math.log2(points_count))",
         "detail": "m",
         "documentation": {}
     },
     {
-        "label": "points",
+        "label": "points_range",
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "points = [(x, y) for x, y in X]\nmaxdis = math.ceil(math.log2(points_count))\ndcran_start_time = time.time()\ndef build():\n    tree = KDTree()\n    tree.root = tree.build(points)\n    G = nx.Graph()\n    for point in points:\n        G.add_node(point, pos=point)\n    neighbours = {}",
+        "peekOfCode": "points_range = [100, 200, 3000, 4000, 5000]\ncenters_range = [1, 2, 3, 4, 5]\nresults = []\nfor points_count in points_range:\n    for no_centres in centers_range:\n        # Generate the data\n        X, _ = make_blobs(n_samples=points_count, centers=no_centres, random_state=42)\n        points = [(x, y) for x, y in X]\n        maxdis = math.ceil(math.log2(points_count))\n        dcran_start_time = time.time()",
         "detail": "m",
         "documentation": {}
     },
     {
-        "label": "maxdis",
+        "label": "centers_range",
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "maxdis = math.ceil(math.log2(points_count))\ndcran_start_time = time.time()\ndef build():\n    tree = KDTree()\n    tree.root = tree.build(points)\n    G = nx.Graph()\n    for point in points:\n        G.add_node(point, pos=point)\n    neighbours = {}\n    maxdis = math.ceil(math.log2(points_count))",
+        "peekOfCode": "centers_range = [1, 2, 3, 4, 5]\nresults = []\nfor points_count in points_range:\n    for no_centres in centers_range:\n        # Generate the data\n        X, _ = make_blobs(n_samples=points_count, centers=no_centres, random_state=42)\n        points = [(x, y) for x, y in X]\n        maxdis = math.ceil(math.log2(points_count))\n        dcran_start_time = time.time()\n        def build():",
         "detail": "m",
         "documentation": {}
     },
     {
-        "label": "dcran_start_time",
+        "label": "results",
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "dcran_start_time = time.time()\ndef build():\n    tree = KDTree()\n    tree.root = tree.build(points)\n    G = nx.Graph()\n    for point in points:\n        G.add_node(point, pos=point)\n    neighbours = {}\n    maxdis = math.ceil(math.log2(points_count))\n    for point in points:",
-        "detail": "m",
-        "documentation": {}
-    },
-    {
-        "label": "dcran_end_time",
-        "kind": 5,
-        "importPath": "m",
-        "description": "m",
-        "peekOfCode": "dcran_end_time = time.time()\ndcran_elapsed_time = dcran_end_time - dcran_start_time\nimport math\neprim_start_time = time.time()\ndef calculate_distance(p1, p2):\n    x1, y1 = p1\n    x2, y2 = p2\n    return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)\ndef prim_mst(points):\n    n = len(points)",
-        "detail": "m",
-        "documentation": {}
-    },
-    {
-        "label": "dcran_elapsed_time",
-        "kind": 5,
-        "importPath": "m",
-        "description": "m",
-        "peekOfCode": "dcran_elapsed_time = dcran_end_time - dcran_start_time\nimport math\neprim_start_time = time.time()\ndef calculate_distance(p1, p2):\n    x1, y1 = p1\n    x2, y2 = p2\n    return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)\ndef prim_mst(points):\n    n = len(points)\n    visited = [False] * n",
-        "detail": "m",
-        "documentation": {}
-    },
-    {
-        "label": "eprim_start_time",
-        "kind": 5,
-        "importPath": "m",
-        "description": "m",
-        "peekOfCode": "eprim_start_time = time.time()\ndef calculate_distance(p1, p2):\n    x1, y1 = p1\n    x2, y2 = p2\n    return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)\ndef prim_mst(points):\n    n = len(points)\n    visited = [False] * n\n    min_cost = [float(\"inf\")] * n\n    parent = [None] * n",
-        "detail": "m",
-        "documentation": {}
-    },
-    {
-        "label": "mst",
-        "kind": 5,
-        "importPath": "m",
-        "description": "m",
-        "peekOfCode": "mst = prim_mst(points)\neprim_end_time = time.time()\neprim_elapsed_time = eprim_end_time - eprim_start_time\nprint(\n    \"MST Weight: \",\n    eprim_wt := sum([calculate_distance(points[u], points[v]) for u, v in mst]),\n)\nprint(\"time taken by dcran : \", eprim_elapsed_time)\nspeedup = eprim_elapsed_time / dcran_elapsed_time\nprint(f\"Speedup: {speedup:.2f}\")",
-        "detail": "m",
-        "documentation": {}
-    },
-    {
-        "label": "eprim_end_time",
-        "kind": 5,
-        "importPath": "m",
-        "description": "m",
-        "peekOfCode": "eprim_end_time = time.time()\neprim_elapsed_time = eprim_end_time - eprim_start_time\nprint(\n    \"MST Weight: \",\n    eprim_wt := sum([calculate_distance(points[u], points[v]) for u, v in mst]),\n)\nprint(\"time taken by dcran : \", eprim_elapsed_time)\nspeedup = eprim_elapsed_time / dcran_elapsed_time\nprint(f\"Speedup: {speedup:.2f}\")\nwt_error = abs(dc_weight - eprim_wt) / eprim_wt * 100",
-        "detail": "m",
-        "documentation": {}
-    },
-    {
-        "label": "eprim_elapsed_time",
-        "kind": 5,
-        "importPath": "m",
-        "description": "m",
-        "peekOfCode": "eprim_elapsed_time = eprim_end_time - eprim_start_time\nprint(\n    \"MST Weight: \",\n    eprim_wt := sum([calculate_distance(points[u], points[v]) for u, v in mst]),\n)\nprint(\"time taken by dcran : \", eprim_elapsed_time)\nspeedup = eprim_elapsed_time / dcran_elapsed_time\nprint(f\"Speedup: {speedup:.2f}\")\nwt_error = abs(dc_weight - eprim_wt) / eprim_wt * 100\nprint(f\"Weight Error: {wt_error}%\")",
-        "detail": "m",
-        "documentation": {}
-    },
-    {
-        "label": "speedup",
-        "kind": 5,
-        "importPath": "m",
-        "description": "m",
-        "peekOfCode": "speedup = eprim_elapsed_time / dcran_elapsed_time\nprint(f\"Speedup: {speedup:.2f}\")\nwt_error = abs(dc_weight - eprim_wt) / eprim_wt * 100\nprint(f\"Weight Error: {wt_error}%\")\nfrom sklearn.cluster import KMeans\nfrom scipy.sparse.csgraph import minimum_spanning_tree\nfrom scipy.spatial.distance import pdist, squareform\nfmst_start_time = time.time()\ndef euclidean_distance(p1, p2):\n    return sum((a - b) ** 2 for a, b in zip(p1, p2)) ** 0.5",
-        "detail": "m",
-        "documentation": {}
-    },
-    {
-        "label": "wt_error",
-        "kind": 5,
-        "importPath": "m",
-        "description": "m",
-        "peekOfCode": "wt_error = abs(dc_weight - eprim_wt) / eprim_wt * 100\nprint(f\"Weight Error: {wt_error}%\")\nfrom sklearn.cluster import KMeans\nfrom scipy.sparse.csgraph import minimum_spanning_tree\nfrom scipy.spatial.distance import pdist, squareform\nfmst_start_time = time.time()\ndef euclidean_distance(p1, p2):\n    return sum((a - b) ** 2 for a, b in zip(p1, p2)) ** 0.5\ndef detect_connecting_edge(cluster1, cluster2):\n    center1 = [sum(x) / len(cluster1) for x in zip(*cluster1)]",
-        "detail": "m",
-        "documentation": {}
-    },
-    {
-        "label": "fmst_start_time",
-        "kind": 5,
-        "importPath": "m",
-        "description": "m",
-        "peekOfCode": "fmst_start_time = time.time()\ndef euclidean_distance(p1, p2):\n    return sum((a - b) ** 2 for a, b in zip(p1, p2)) ** 0.5\ndef detect_connecting_edge(cluster1, cluster2):\n    center1 = [sum(x) / len(cluster1) for x in zip(*cluster1)]\n    center2 = [sum(x) / len(cluster2) for x in zip(*cluster2)]\n    min_dist1 = float(\"inf\")\n    min_point1 = None\n    for point in cluster1:\n        dist = euclidean_distance(point, center2)",
-        "detail": "m",
-        "documentation": {}
-    },
-    {
-        "label": "fmst_end_time",
-        "kind": 5,
-        "importPath": "m",
-        "description": "m",
-        "peekOfCode": "fmst_end_time = time.time()\nfmst_edgecount = len(mst_edges)\nfmst_elapsed_time = fmst_end_time - fmst_start_time\nprint(\"time taken by fast mst : \", fmst_elapsed_time)\nprint(\"Total weight of the MST:\", fmst_weight)\nwith open(savefile, \"r\") as f:\n    loaded_data = json.load(f)\nprint(loaded_data)\ncurrres = []\nloaded_data.append(",
-        "detail": "m",
-        "documentation": {}
-    },
-    {
-        "label": "fmst_edgecount",
-        "kind": 5,
-        "importPath": "m",
-        "description": "m",
-        "peekOfCode": "fmst_edgecount = len(mst_edges)\nfmst_elapsed_time = fmst_end_time - fmst_start_time\nprint(\"time taken by fast mst : \", fmst_elapsed_time)\nprint(\"Total weight of the MST:\", fmst_weight)\nwith open(savefile, \"r\") as f:\n    loaded_data = json.load(f)\nprint(loaded_data)\ncurrres = []\nloaded_data.append(\n    [",
-        "detail": "m",
-        "documentation": {}
-    },
-    {
-        "label": "fmst_elapsed_time",
-        "kind": 5,
-        "importPath": "m",
-        "description": "m",
-        "peekOfCode": "fmst_elapsed_time = fmst_end_time - fmst_start_time\nprint(\"time taken by fast mst : \", fmst_elapsed_time)\nprint(\"Total weight of the MST:\", fmst_weight)\nwith open(savefile, \"r\") as f:\n    loaded_data = json.load(f)\nprint(loaded_data)\ncurrres = []\nloaded_data.append(\n    [\n        points_count,",
-        "detail": "m",
-        "documentation": {}
-    },
-    {
-        "label": "currres",
-        "kind": 5,
-        "importPath": "m",
-        "description": "m",
-        "peekOfCode": "currres = []\nloaded_data.append(\n    [\n        points_count,\n        no_centres,\n        dc_weight,\n        fmst_weight,\n        eprim_wt,\n        dc_edgecount,\n        fmst_edgecount,",
-        "detail": "m",
-        "documentation": {}
-    },
-    {
-        "label": "currres",
-        "kind": 5,
-        "importPath": "m",
-        "description": "m",
-        "peekOfCode": "currres = []\nloaded_data.append(\n    [\n        points_count,\n        no_centres,\n        dc_weight,\n        fmst_weight,\n        eprim_wt,\n        len(mst_edges),\n        len(mst),",
-        "detail": "m",
-        "documentation": {}
-    },
-    {
-        "label": "headers",
-        "kind": 5,
-        "importPath": "m",
-        "description": "m",
-        "peekOfCode": "headers = [\n    \"Points\",\n    \"Centres\",\n    \"DCRAN Wt\",\n    \"FMST Wt\",\n    \"Prim's Wt\",\n    \"FMST Edges\",\n    \"Prim's Edges\",\n    \"FMST Acc(%)\",\n    \"DCRAN Acc(%)\",",
-        "detail": "m",
-        "documentation": {}
-    },
-    {
-        "label": "table_str",
-        "kind": 5,
-        "importPath": "m",
-        "description": "m",
-        "peekOfCode": "table_str = tabulate(\n    loaded_data[-15:],\n    headers,\n    tablefmt=\"pipe\",\n    floatfmt=(\n        \".0f\",\n        \".0f\",\n        \".1f\",\n        \".1f\",\n        \".1f\",",
+        "peekOfCode": "results = []\nfor points_count in points_range:\n    for no_centres in centers_range:\n        # Generate the data\n        X, _ = make_blobs(n_samples=points_count, centers=no_centres, random_state=42)\n        points = [(x, y) for x, y in X]\n        maxdis = math.ceil(math.log2(points_count))\n        dcran_start_time = time.time()\n        def build():\n            tree = KDTree()",
         "detail": "m",
         "documentation": {}
     },
