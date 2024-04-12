@@ -51,7 +51,15 @@
         "documentation": {}
     },
     {
-        "label": "load_iris",
+        "label": "make_blobs",
+        "importPath": "sklearn.datasets",
+        "description": "sklearn.datasets",
+        "isExtraImport": true,
+        "detail": "sklearn.datasets",
+        "documentation": {}
+    },
+    {
+        "label": "make_circles",
         "importPath": "sklearn.datasets",
         "description": "sklearn.datasets",
         "isExtraImport": true,
@@ -94,21 +102,21 @@
         "documentation": {}
     },
     {
-        "label": "random",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "random",
-        "description": "random",
-        "detail": "random",
-        "documentation": {}
-    },
-    {
         "label": "json",
         "kind": 6,
         "isExtraImport": true,
         "importPath": "json",
         "description": "json",
         "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
         "documentation": {}
     },
     {
@@ -129,22 +137,6 @@
         "documentation": {}
     },
     {
-        "label": "GaussianMixture",
-        "importPath": "sklearn.mixture",
-        "description": "sklearn.mixture",
-        "isExtraImport": true,
-        "detail": "sklearn.mixture",
-        "documentation": {}
-    },
-    {
-        "label": "tqdm",
-        "importPath": "tqdm",
-        "description": "tqdm",
-        "isExtraImport": true,
-        "detail": "tqdm",
-        "documentation": {}
-    },
-    {
         "label": "*",
         "importPath": "kdtree",
         "description": "kdtree",
@@ -153,11 +145,11 @@
         "documentation": {}
     },
     {
-        "label": "*",
-        "importPath": "utils",
-        "description": "utils",
+        "label": "KMeans",
+        "importPath": "sklearn.cluster",
+        "description": "sklearn.cluster",
         "isExtraImport": true,
-        "detail": "utils",
+        "detail": "sklearn.cluster",
         "documentation": {}
     },
     {
@@ -166,6 +158,22 @@
         "description": "sklearn.cluster",
         "isExtraImport": true,
         "detail": "sklearn.cluster",
+        "documentation": {}
+    },
+    {
+        "label": "GaussianMixture",
+        "importPath": "sklearn.mixture",
+        "description": "sklearn.mixture",
+        "isExtraImport": true,
+        "detail": "sklearn.mixture",
+        "documentation": {}
+    },
+    {
+        "label": "minimum_spanning_tree",
+        "importPath": "scipy.sparse.csgraph",
+        "description": "scipy.sparse.csgraph",
+        "isExtraImport": true,
+        "detail": "scipy.sparse.csgraph",
         "documentation": {}
     },
     {
@@ -190,6 +198,38 @@
         "description": "scipy.spatial.distance",
         "isExtraImport": true,
         "detail": "scipy.spatial.distance",
+        "documentation": {}
+    },
+    {
+        "label": "pdist",
+        "importPath": "scipy.spatial.distance",
+        "description": "scipy.spatial.distance",
+        "isExtraImport": true,
+        "detail": "scipy.spatial.distance",
+        "documentation": {}
+    },
+    {
+        "label": "squareform",
+        "importPath": "scipy.spatial.distance",
+        "description": "scipy.spatial.distance",
+        "isExtraImport": true,
+        "detail": "scipy.spatial.distance",
+        "documentation": {}
+    },
+    {
+        "label": "tqdm",
+        "importPath": "tqdm",
+        "description": "tqdm",
+        "isExtraImport": true,
+        "detail": "tqdm",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "utils",
+        "description": "utils",
+        "isExtraImport": true,
+        "detail": "utils",
         "documentation": {}
     },
     {
@@ -305,7 +345,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "savefile = \"data.json\"\npoints_count = 30000\nto_plot = False\nno_centres = 1\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\n# Generate the data\nX, y = make_circles(n_samples=points_count, noise=noise, factor=0.5, random_state=42)",
+        "peekOfCode": "savefile = \"data.json\"\npoints_count = 30000\nto_plot = False\nno_centres = 1\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\n# Generate the data\nX, _ = make_blobs(n_samples=points_count, centers=no_centres, random_state=42)",
         "detail": "m",
         "documentation": {}
     },
@@ -314,7 +354,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "points_count = 30000\nto_plot = False\nno_centres = 1\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\n# Generate the data\nX, y = make_circles(n_samples=points_count, noise=noise, factor=0.5, random_state=42)\n# Convert the data to a list of tuples",
+        "peekOfCode": "points_count = 30000\nto_plot = False\nno_centres = 1\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\n# Generate the data\nX, _ = make_blobs(n_samples=points_count, centers=no_centres, random_state=42)\npoints = [(x, y) for x, y in X]",
         "detail": "m",
         "documentation": {}
     },
@@ -323,7 +363,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "to_plot = False\nno_centres = 1\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\n# Generate the data\nX, y = make_circles(n_samples=points_count, noise=noise, factor=0.5, random_state=42)\n# Convert the data to a list of tuples\npoints = [(x, y) for x, y in X]",
+        "peekOfCode": "to_plot = False\nno_centres = 1\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\n# Generate the data\nX, _ = make_blobs(n_samples=points_count, centers=no_centres, random_state=42)\npoints = [(x, y) for x, y in X]\nmaxdis = math.ceil(math.log2(points_count))",
         "detail": "m",
         "documentation": {}
     },
@@ -332,7 +372,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "no_centres = 1\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\n# Generate the data\nX, y = make_circles(n_samples=points_count, noise=noise, factor=0.5, random_state=42)\n# Convert the data to a list of tuples\npoints = [(x, y) for x, y in X]\nmaxdis = math.ceil(math.log2(points_count))",
+        "peekOfCode": "no_centres = 1\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\n# Generate the data\nX, _ = make_blobs(n_samples=points_count, centers=no_centres, random_state=42)\npoints = [(x, y) for x, y in X]\nmaxdis = math.ceil(math.log2(points_count))\ndcran_start_time = time.time()",
         "detail": "m",
         "documentation": {}
     },
@@ -341,7 +381,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "noise = 0.05  # Amount of noise\n# Generate the data\nX, y = make_circles(n_samples=points_count, noise=noise, factor=0.5, random_state=42)\n# Convert the data to a list of tuples\npoints = [(x, y) for x, y in X]\nmaxdis = math.ceil(math.log2(points_count))\ndcran_start_time = time.time()\ndef build():\n    tree = KDTree()\n    tree.root = tree.build(points)",
+        "peekOfCode": "noise = 0.05  # Amount of noise\n# Generate the data\nX, _ = make_blobs(n_samples=points_count, centers=no_centres, random_state=42)\npoints = [(x, y) for x, y in X]\nmaxdis = math.ceil(math.log2(points_count))\ndcran_start_time = time.time()\ndef build():\n    tree = KDTree()\n    tree.root = tree.build(points)\n    G = nx.Graph()",
         "detail": "m",
         "documentation": {}
     },

@@ -5,15 +5,22 @@ import matplotlib.pyplot as plt
 import networkx as nx
 import numpy as np
 from sklearn.datasets import make_blobs
-import random
 import json
+import math
+import random
 import time
 from tabulate import tabulate
-from sklearn.datasets import load_iris
-from sklearn.mixture import GaussianMixture
-from tqdm import tqdm  # Import tqdm
 
+import matplotlib.pyplot as plt
+import networkx as nx
+import numpy as np
 from kdtree import *
+from sklearn.cluster import KMeans
+from sklearn.datasets import make_blobs, make_circles
+from sklearn.mixture import GaussianMixture
+from scipy.sparse.csgraph import minimum_spanning_tree
+from scipy.spatial.distance import pdist, squareform
+from tqdm import tqdm
 from utils import *
 
 savefile = "data.json"
@@ -28,9 +35,7 @@ import matplotlib.pyplot as plt
 noise = 0.05  # Amount of noise
 
 # Generate the data
-X, y = make_circles(n_samples=points_count, noise=noise, factor=0.5, random_state=42)
-
-# Convert the data to a list of tuples
+X, _ = make_blobs(n_samples=points_count, centers=no_centres, random_state=42)
 points = [(x, y) for x, y in X]
 maxdis = math.ceil(math.log2(points_count))
 
