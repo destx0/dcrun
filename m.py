@@ -33,15 +33,19 @@ import matplotlib.pyplot as plt
 
 # Initialize the parameters
 noise = 0.05  # Amount of noise
-points_range = [1000, 2000, 3000, 4000, 5000]
-centers_range = [1]
+points_range = [10, 100, 1000, 5000, 10000, 50000, 100000, 50000, 1000000]
+centers_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]
 
 results = []
 
 for dataset_type in ["circles", "blobs"]:
     for points_count in points_range:
         for no_centres in centers_range:
-            for _ in range(1):  # Run the innermost loop 10 times
+            if dataset_type == "circles" and no_centres > 1:
+                continue
+            if no_centres >= points_count:
+                continue
+            for _ in range(5):  # Run the innermost loop 10 times
                 if dataset_type == "blobs":
                     X, _ = make_blobs(
                         n_samples=points_count, centers=no_centres, random_state=42
