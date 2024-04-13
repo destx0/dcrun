@@ -33,13 +33,13 @@ import matplotlib.pyplot as plt
 
 # Initialize the parameters
 noise = 0.05  # Amount of noise
-points_range = [10, 100, 1000, 5000, 10000, 50000, 100000, 50000, 1000000]
+points_range = [10, 100, 1000, 5000, 10000, 50000, 100000, 500000, 1000000]
 centers_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]
 
 results = []
 
-for dataset_type in ["circles", "blobs"]:
-    for points_count in points_range:
+for points_count in points_range:
+    for dataset_type in ["circles", "blobs"]:
         for no_centres in centers_range:
             if dataset_type == "circles" and no_centres > 1:
                 continue
