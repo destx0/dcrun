@@ -33,13 +33,13 @@ import matplotlib.pyplot as plt
 
 # Initialize the parameters
 noise = 0.05  # Amount of noise
-points_range = [10, 100, 1000, 5000, 10000, 50000, 100000, 500000, 1000000]
+points_range = [1000]
 centers_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]
 
 results = []
 
-for points_count in points_range:
-    for dataset_type in ["circles", "blobs"]:
+for dataset_type in ["circles", "blobs"]:
+    for points_count in points_range:
         for no_centres in centers_range:
             if dataset_type == "circles" and no_centres > 1:
                 continue
@@ -228,132 +228,239 @@ for points_count in points_range:
 
                 wt_error = abs(dc_weight - eprim_wt) / eprim_wt * 100
                 print(f"Weight Error: {wt_error}%")
-
+                
+# ==================================================================================
+                                
+                import time
                 from sklearn.cluster import KMeans
-                from scipy.sparse.csgraph import minimum_spanning_tree
                 from scipy.spatial.distance import pdist, squareform
-
-                fmst_start_time = time.time()
+                from sklearn.datasets import make_blobs
+                import numpy as np
 
                 def euclidean_distance(p1, p2):
                     return sum((a - b) ** 2 for a, b in zip(p1, p2)) ** 0.5
 
-                def detect_connecting_edge(cluster1, cluster2):
-                    center1 = [sum(x) / len(cluster1) for x in zip(*cluster1)]
-                    center2 = [sum(x) / len(cluster2) for x in zip(*cluster2)]
-
-                    min_dist1 = float("inf")
-                    min_point1 = None
-                    for point in cluster1:
-                        dist = euclidean_distance(point, center2)
-                        if dist < min_dist1:
-                            min_dist1 = dist
-                            min_point1 = point
-
-                    min_dist2 = float("inf")
-                    min_point2 = None
-                    for point in cluster2:
-                        dist = euclidean_distance(point, center1)
-                        if dist < min_dist2:
-                            min_dist2 = dist
-                            min_point2 = point
-
-                    return min_point1, min_point2
+                def prims_mst(points):
+                    n = len(points)
+                    pairwise_distances = squareform(pdist(points))
+                    
+                    mst_edges = []
+                    total_weight = 0
+                    visited = [False] * n
+                    visited[0] = True
+                    
+                    for _ in range(n - 1):
+                        min_weight = float("inf")
+                        min_u, min_v = None, None
+                        
+                        for u in range(n):
+                            if visited[u]:
+                                for v in range(n):
+                                    if not visited[v] and pairwise_distances[u][v] < min_weight:
+                                        min_weight = pairwise_distances[u][v]
+                                        min_u, min_v = u, v
+                        
+                        mst_edges.append((points[min_u], points[min_v]))
+                        total_weight += min_weight
+                        visited[min_v] = True
+                    
+                    return mst_edges, total_weight
 
                 def fast_mst(points):
                     n = len(points)
                     k = int(n**0.5)
-
+                    
                     # Divide-and-conquer stage
                     kmeans = KMeans(n_clusters=k).fit(points)
                     labels = kmeans.labels_
                     centers = kmeans.cluster_centers_.tolist()
-
+                    
                     mst_edges = []
                     total_weight = 0
-
+                    
                     for i in range(k):
                         cluster_points = [points[j] for j in range(n) if labels[j] == i]
-                        pairwise_distances = squareform(pdist(cluster_points))
-                        mst = (
-                            minimum_spanning_tree(pairwise_distances).toarray().tolist()
-                        )
-                        edges = [
-                            (u, v)
-                            for u in range(len(cluster_points))
-                            for v in range(u + 1, len(cluster_points))
-                            if mst[u][v] > 0
-                        ]
-                        for u, v in edges:
-                            weight = euclidean_distance(
-                                cluster_points[u], cluster_points[v]
-                            )
-                            mst_edges.append((cluster_points[u], cluster_points[v]))
-                            total_weight += weight
-
-                    pairwise_distances_centers = squareform(pdist(centers))
-                    mst_centers = (
-                        minimum_spanning_tree(pairwise_distances_centers)
-                        .toarray()
-                        .tolist()
-                    )
-                    center_edges = [
-                        (i, j)
-                        for i in range(k)
-                        for j in range(i + 1, k)
-                        if mst_centers[i][j] > 0
-                    ]
-
-                    # Refinement stage
-                    midpoints = []
-                    for i, j in center_edges:
-                        cluster1 = [points[m] for m in range(n) if labels[m] == i]
-                        cluster2 = [points[m] for m in range(n) if labels[m] == j]
-                        u, v = detect_connecting_edge(cluster1, cluster2)
-                        mst_edges.append((u, v))
-                        midpoint = [(a + b) / 2 for a, b in zip(u, v)]
-                        midpoints.append(midpoint)
-                        weight = euclidean_distance(u, v)
-                        total_weight += weight
-
-                    if len(midpoints) > 0:
-                        kmeans_refine = KMeans(
-                            n_clusters=len(midpoints), init=midpoints, n_init=1
-                        ).fit(points)
-                        labels_refine = kmeans_refine.labels_
-
-                        for i in range(len(midpoints)):
-                            cluster_points = [
-                                points[j] for j in range(n) if labels_refine[j] == i
-                            ]
-                            pairwise_distances = squareform(pdist(cluster_points))
-                            mst = (
-                                minimum_spanning_tree(pairwise_distances)
-                                .toarray()
-                                .tolist()
-                            )
-                            edges = [
-                                (u, v)
-                                for u in range(len(cluster_points))
-                                for v in range(u + 1, len(cluster_points))
-                                if mst[u][v] > 0
-                            ]
-                            for u, v in edges:
-                                weight = euclidean_distance(
-                                    cluster_points[u], cluster_points[v]
-                                )
-                                mst_edges.append((cluster_points[u], cluster_points[v]))
-                                total_weight += weight
-
+                        cluster_mst_edges, cluster_weight = prims_mst(cluster_points)
+                        mst_edges.extend(cluster_mst_edges)
+                        total_weight += cluster_weight
+                    
+                    # Connect the clusters using Prim's algorithm
+                    centers_mst_edges, centers_weight = prims_mst(centers)
+                    for u, v in centers_mst_edges:
+                        cluster1 = [points[m] for m in range(n) if labels[m] == centers.index(u)]
+                        cluster2 = [points[m] for m in range(n) if labels[m] == centers.index(v)]
+                        min_dist = float("inf")
+                        min_point1, min_point2 = None, None
+                        for p1 in cluster1:
+                            for p2 in cluster2:
+                                dist = euclidean_distance(p1, p2)
+                                if dist < min_dist:
+                                    min_dist = dist
+                                    min_point1, min_point2 = p1, p2
+                        mst_edges.append((min_point1, min_point2))
+                        total_weight += min_dist
+                    
                     return mst_edges, total_weight
 
-                mst_edges, fmst_weight = fast_mst(points)
-                fmst_end_time = time.time()
-                fmst_edgecount = len(mst_edges)
-                fmst_elapsed_time = fmst_end_time - fmst_start_time
-                print("time taken by fast mst : ", fmst_elapsed_time)
+                # Generate blob dataset using scikit-learn
+                # n_samples = 1000
+                # n_centers = 4
+                # X, _ = make_blobs(n_samples=n_samples, centers=n_centers, random_state=42)
+                # points = X.tolist()
 
-                print("Total weight of the MST:", fmst_weight)
+                # Compute MST using FMST algorithm
+                fmst_start_time = time.time()
+                fmst_edges, fmst_weight = fast_mst(points)
+                fmst_end_time = time.time()
+                fmst_elapsed_time = fmst_end_time - fmst_start_time
+                print("Time taken by fast MST:", fmst_elapsed_time)
+                print("Total weight of the MST (FMST):", fmst_weight)
+                fmst_edgecount = len(fmst_edges)
+
+                # Compute MST using Prim's algorithm
+                # prims_start_time = time.time()
+                # prims_edges, prims_weight = prims_mst(points)
+                # prims_end_time = time.time()
+                # prims_elapsed_time = prims_end_time - prims_start_time
+                # print("Time taken by Prim's MST:", prims_elapsed_time)
+                # print("Total weight of the MST (Prim's):", prims_weight)
+                                
+                                
+                                
+                
+                
+                
+                
+                
+                
+# =======================================================================
+                # from sklearn.cluster import KMeans
+                # from scipy.sparse.csgraph import minimum_spanning_tree
+                # from scipy.spatial.distance import pdist, squareform
+
+                # fmst_start_time = time.time()
+
+                # def euclidean_distance(p1, p2):
+                #     return sum((a - b) ** 2 for a, b in zip(p1, p2)) ** 0.5
+
+                # def detect_connecting_edge(cluster1, cluster2):
+                #     center1 = [sum(x) / len(cluster1) for x in zip(*cluster1)]
+                #     center2 = [sum(x) / len(cluster2) for x in zip(*cluster2)]
+
+                #     min_dist1 = float("inf")
+                #     min_point1 = None
+                #     for point in cluster1:
+                #         dist = euclidean_distance(point, center2)
+                #         if dist < min_dist1:
+                #             min_dist1 = dist
+                #             min_point1 = point
+
+                #     min_dist2 = float("inf")
+                #     min_point2 = None
+                #     for point in cluster2:
+                #         dist = euclidean_distance(point, center1)
+                #         if dist < min_dist2:
+                #             min_dist2 = dist
+                #             min_point2 = point
+
+                #     return min_point1, min_point2
+
+                # def fast_mst(points):
+                #     n = len(points)
+                #     k = int(n**0.5)
+
+                #     # Divide-and-conquer stage
+                #     kmeans = KMeans(n_clusters=k).fit(points)
+                #     labels = kmeans.labels_
+                #     centers = kmeans.cluster_centers_.tolist()
+
+                #     mst_edges = []
+                #     total_weight = 0
+
+                #     for i in range(k):
+                #         cluster_points = [points[j] for j in range(n) if labels[j] == i]
+                #         pairwise_distances = squareform(pdist(cluster_points))
+                #         mst = (
+                #             minimum_spanning_tree(pairwise_distances).toarray().tolist()
+                #         )
+                #         edges = [
+                #             (u, v)
+                #             for u in range(len(cluster_points))
+                #             for v in range(u + 1, len(cluster_points))
+                #             if mst[u][v] > 0
+                #         ]
+                #         for u, v in edges:
+                #             weight = euclidean_distance(
+                #                 cluster_points[u], cluster_points[v]
+                #             )
+                #             mst_edges.append((cluster_points[u], cluster_points[v]))
+                #             total_weight += weight
+
+                #     pairwise_distances_centers = squareform(pdist(centers))
+                #     mst_centers = (
+                #         minimum_spanning_tree(pairwise_distances_centers)
+                #         .toarray()
+                #         .tolist()
+                #     )
+                #     center_edges = [
+                #         (i, j)
+                #         for i in range(k)
+                #         for j in range(i + 1, k)
+                #         if mst_centers[i][j] > 0
+                #     ]
+
+                #     # Refinement stage
+                #     midpoints = []
+                #     for i, j in center_edges:
+                #         cluster1 = [points[m] for m in range(n) if labels[m] == i]
+                #         cluster2 = [points[m] for m in range(n) if labels[m] == j]
+                #         u, v = detect_connecting_edge(cluster1, cluster2)
+                #         mst_edges.append((u, v))
+                #         midpoint = [(a + b) / 2 for a, b in zip(u, v)]
+                #         midpoints.append(midpoint)
+                #         weight = euclidean_distance(u, v)
+                #         total_weight += weight
+
+                #     if len(midpoints) > 0:
+                #         kmeans_refine = KMeans(
+                #             n_clusters=len(midpoints), init=midpoints, n_init=1
+                #         ).fit(points)
+                #         labels_refine = kmeans_refine.labels_
+
+                #         for i in range(len(midpoints)):
+                #             cluster_points = [
+                #                 points[j] for j in range(n) if labels_refine[j] == i
+                #             ]
+                #             pairwise_distances = squareform(pdist(cluster_points))
+                #             mst = (
+                #                 minimum_spanning_tree(pairwise_distances)
+                #                 .toarray()
+                #                 .tolist()
+                #             )
+                #             edges = [
+                #                 (u, v)
+                #                 for u in range(len(cluster_points))
+                #                 for v in range(u + 1, len(cluster_points))
+                #                 if mst[u][v] > 0
+                #             ]
+                #             for u, v in edges:
+                #                 weight = euclidean_distance(
+                #                     cluster_points[u], cluster_points[v]
+                #                 )
+                #                 mst_edges.append((cluster_points[u], cluster_points[v]))
+                #                 total_weight += weight
+
+                #     return mst_edges, total_weight
+
+                # mst_edges, fmst_weight = fast_mst(points)
+                # fmst_end_time = time.time()
+                # fmst_edgecount = len(mst_edges)
+                # fmst_elapsed_time = fmst_end_time - fmst_start_time
+                # print("time taken by fast mst : ", fmst_elapsed_time)
+
+                # print("Total weight of the MST:", fmst_weight)
+
+# ==============================================================================================
 
                 with open(savefile, "r") as f:
                     loaded_data = json.load(f)
@@ -394,7 +501,7 @@ for points_count in points_range:
                     "DCRAN Time (s)",
                     "FMST Time (s)",
                     "Prim's Time (s)",
-                    "Prim's Speedup",
+                    "fmst's Speedup",
                     "DCRAN Speedup",
                 ]
 
