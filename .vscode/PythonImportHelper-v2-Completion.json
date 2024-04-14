@@ -43,6 +43,38 @@
         "documentation": {}
     },
     {
+        "label": "make_blobs",
+        "importPath": "sklearn.datasets",
+        "description": "sklearn.datasets",
+        "isExtraImport": true,
+        "detail": "sklearn.datasets",
+        "documentation": {}
+    },
+    {
+        "label": "make_blobs",
+        "importPath": "sklearn.datasets",
+        "description": "sklearn.datasets",
+        "isExtraImport": true,
+        "detail": "sklearn.datasets",
+        "documentation": {}
+    },
+    {
+        "label": "make_circles",
+        "importPath": "sklearn.datasets",
+        "description": "sklearn.datasets",
+        "isExtraImport": true,
+        "detail": "sklearn.datasets",
+        "documentation": {}
+    },
+    {
+        "label": "make_circles",
+        "importPath": "sklearn.datasets",
+        "description": "sklearn.datasets",
+        "isExtraImport": true,
+        "detail": "sklearn.datasets",
+        "documentation": {}
+    },
+    {
         "label": "math",
         "kind": 6,
         "isExtraImport": true,
@@ -70,6 +102,105 @@
         "documentation": {}
     },
     {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "tabulate",
+        "importPath": "tabulate",
+        "description": "tabulate",
+        "isExtraImport": true,
+        "detail": "tabulate",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "kdtree",
+        "description": "kdtree",
+        "isExtraImport": true,
+        "detail": "kdtree",
+        "documentation": {}
+    },
+    {
+        "label": "KMeans",
+        "importPath": "sklearn.cluster",
+        "description": "sklearn.cluster",
+        "isExtraImport": true,
+        "detail": "sklearn.cluster",
+        "documentation": {}
+    },
+    {
+        "label": "GaussianMixture",
+        "importPath": "sklearn.mixture",
+        "description": "sklearn.mixture",
+        "isExtraImport": true,
+        "detail": "sklearn.mixture",
+        "documentation": {}
+    },
+    {
+        "label": "minimum_spanning_tree",
+        "importPath": "scipy.sparse.csgraph",
+        "description": "scipy.sparse.csgraph",
+        "isExtraImport": true,
+        "detail": "scipy.sparse.csgraph",
+        "documentation": {}
+    },
+    {
+        "label": "pdist",
+        "importPath": "scipy.spatial.distance",
+        "description": "scipy.spatial.distance",
+        "isExtraImport": true,
+        "detail": "scipy.spatial.distance",
+        "documentation": {}
+    },
+    {
+        "label": "squareform",
+        "importPath": "scipy.spatial.distance",
+        "description": "scipy.spatial.distance",
+        "isExtraImport": true,
+        "detail": "scipy.spatial.distance",
+        "documentation": {}
+    },
+    {
+        "label": "tqdm",
+        "importPath": "tqdm",
+        "description": "tqdm",
+        "isExtraImport": true,
+        "detail": "tqdm",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "utils",
+        "description": "utils",
+        "isExtraImport": true,
+        "detail": "utils",
+        "documentation": {}
+    },
+    {
         "label": "KDNode",
         "kind": 6,
         "importPath": "kdtree",
@@ -94,6 +225,78 @@
         "description": "kdtree",
         "peekOfCode": "def i_neighbors(tree, query_point, i):\n    \"\"\"Find the ith nearest neighbor of the given point using a set to track visited nodes.\"\"\"\n    if tree.root is None:\n        return None\n    i += 1\n    # Priority queue to maintain i nearest neighbors\n    neighbors = []\n    # Set to track visited nodes\n    visited = set()\n    def _search(node):",
         "detail": "kdtree",
+        "documentation": {}
+    },
+    {
+        "label": "savefile",
+        "kind": 5,
+        "importPath": "m",
+        "description": "m",
+        "peekOfCode": "savefile = \"data.json\"\npoints_count = 30000\nto_plot = False\nno_centres = 1\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\npoints_range = [10, 100, 1000, 5000, 10000, 50000, 100000, 50000, 1000000]\ncenters_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]",
+        "detail": "m",
+        "documentation": {}
+    },
+    {
+        "label": "points_count",
+        "kind": 5,
+        "importPath": "m",
+        "description": "m",
+        "peekOfCode": "points_count = 30000\nto_plot = False\nno_centres = 1\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\npoints_range = [10, 100, 1000, 5000, 10000, 50000, 100000, 50000, 1000000]\ncenters_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]\nresults = []",
+        "detail": "m",
+        "documentation": {}
+    },
+    {
+        "label": "to_plot",
+        "kind": 5,
+        "importPath": "m",
+        "description": "m",
+        "peekOfCode": "to_plot = False\nno_centres = 1\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\npoints_range = [10, 100, 1000, 5000, 10000, 50000, 100000, 50000, 1000000]\ncenters_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]\nresults = []\nfor dataset_type in [\"circles\", \"blobs\"]:",
+        "detail": "m",
+        "documentation": {}
+    },
+    {
+        "label": "no_centres",
+        "kind": 5,
+        "importPath": "m",
+        "description": "m",
+        "peekOfCode": "no_centres = 1\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\npoints_range = [10, 100, 1000, 5000, 10000, 50000, 100000, 50000, 1000000]\ncenters_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]\nresults = []\nfor dataset_type in [\"circles\", \"blobs\"]:\n    for points_count in points_range:",
+        "detail": "m",
+        "documentation": {}
+    },
+    {
+        "label": "noise",
+        "kind": 5,
+        "importPath": "m",
+        "description": "m",
+        "peekOfCode": "noise = 0.05  # Amount of noise\npoints_range = [10, 100, 1000, 5000, 10000, 50000, 100000, 50000, 1000000]\ncenters_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]\nresults = []\nfor dataset_type in [\"circles\", \"blobs\"]:\n    for points_count in points_range:\n        for no_centres in centers_range:\n            if dataset_type == \"circles\" and no_centres > 1:\n                continue\n            if no_centres >= points_count:",
+        "detail": "m",
+        "documentation": {}
+    },
+    {
+        "label": "points_range",
+        "kind": 5,
+        "importPath": "m",
+        "description": "m",
+        "peekOfCode": "points_range = [10, 100, 1000, 5000, 10000, 50000, 100000, 50000, 1000000]\ncenters_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]\nresults = []\nfor dataset_type in [\"circles\", \"blobs\"]:\n    for points_count in points_range:\n        for no_centres in centers_range:\n            if dataset_type == \"circles\" and no_centres > 1:\n                continue\n            if no_centres >= points_count:\n                continue",
+        "detail": "m",
+        "documentation": {}
+    },
+    {
+        "label": "centers_range",
+        "kind": 5,
+        "importPath": "m",
+        "description": "m",
+        "peekOfCode": "centers_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]\nresults = []\nfor dataset_type in [\"circles\", \"blobs\"]:\n    for points_count in points_range:\n        for no_centres in centers_range:\n            if dataset_type == \"circles\" and no_centres > 1:\n                continue\n            if no_centres >= points_count:\n                continue\n            for _ in range(5):  # Run the innermost loop 10 times",
+        "detail": "m",
+        "documentation": {}
+    },
+    {
+        "label": "results",
+        "kind": 5,
+        "importPath": "m",
+        "description": "m",
+        "peekOfCode": "results = []\nfor dataset_type in [\"circles\", \"blobs\"]:\n    for points_count in points_range:\n        for no_centres in centers_range:\n            if dataset_type == \"circles\" and no_centres > 1:\n                continue\n            if no_centres >= points_count:\n                continue\n            for _ in range(5):  # Run the innermost loop 10 times\n                if dataset_type == \"blobs\":",
+        "detail": "m",
         "documentation": {}
     },
     {
