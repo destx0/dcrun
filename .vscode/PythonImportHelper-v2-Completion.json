@@ -232,7 +232,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "savefile = \"data.json\"\npoints_count = 30000\nto_plot = False\nno_centres = 1\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\npoints_range = [10, 100, 1000, 5000, 10000, 50000, 100000, 50000, 1000000]\ncenters_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]",
+        "peekOfCode": "savefile = \"data.json\"\npoints_count = 30000\nto_plot = False\nno_centres = 1\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\npoints_range = [10 , 100, 1000 , 10000 , 50000 , 100000]\ncenters_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]",
         "detail": "m",
         "documentation": {}
     },
@@ -241,7 +241,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "points_count = 30000\nto_plot = False\nno_centres = 1\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\npoints_range = [10, 100, 1000, 5000, 10000, 50000, 100000, 50000, 1000000]\ncenters_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]\nresults = []",
+        "peekOfCode": "points_count = 30000\nto_plot = False\nno_centres = 1\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\npoints_range = [10 , 100, 1000 , 10000 , 50000 , 100000]\ncenters_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]\nresults = []",
         "detail": "m",
         "documentation": {}
     },
@@ -250,7 +250,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "to_plot = False\nno_centres = 1\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\npoints_range = [10, 100, 1000, 5000, 10000, 50000, 100000, 50000, 1000000]\ncenters_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]\nresults = []\nfor dataset_type in [\"circles\", \"blobs\"]:",
+        "peekOfCode": "to_plot = False\nno_centres = 1\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\npoints_range = [10 , 100, 1000 , 10000 , 50000 , 100000]\ncenters_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]\nresults = []\nfor dataset_type in [\"circles\", \"blobs\"]:",
         "detail": "m",
         "documentation": {}
     },
@@ -259,7 +259,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "no_centres = 1\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\npoints_range = [10, 100, 1000, 5000, 10000, 50000, 100000, 50000, 1000000]\ncenters_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]\nresults = []\nfor dataset_type in [\"circles\", \"blobs\"]:\n    for points_count in points_range:",
+        "peekOfCode": "no_centres = 1\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\npoints_range = [10 , 100, 1000 , 10000 , 50000 , 100000]\ncenters_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]\nresults = []\nfor dataset_type in [\"circles\", \"blobs\"]:\n    for points_count in points_range:",
         "detail": "m",
         "documentation": {}
     },
@@ -268,7 +268,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "noise = 0.05  # Amount of noise\npoints_range = [10, 100, 1000, 5000, 10000, 50000, 100000, 50000, 1000000]\ncenters_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]\nresults = []\nfor dataset_type in [\"circles\", \"blobs\"]:\n    for points_count in points_range:\n        for no_centres in centers_range:\n            if dataset_type == \"circles\" and no_centres > 1:\n                continue\n            if no_centres >= points_count:",
+        "peekOfCode": "noise = 0.05  # Amount of noise\npoints_range = [10 , 100, 1000 , 10000 , 50000 , 100000]\ncenters_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]\nresults = []\nfor dataset_type in [\"circles\", \"blobs\"]:\n    for points_count in points_range:\n        for no_centres in centers_range:\n            if dataset_type == \"circles\" and no_centres > 1:\n                continue\n            if no_centres >= points_count:",
         "detail": "m",
         "documentation": {}
     },
@@ -277,7 +277,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "points_range = [10, 100, 1000, 5000, 10000, 50000, 100000, 50000, 1000000]\ncenters_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]\nresults = []\nfor dataset_type in [\"circles\", \"blobs\"]:\n    for points_count in points_range:\n        for no_centres in centers_range:\n            if dataset_type == \"circles\" and no_centres > 1:\n                continue\n            if no_centres >= points_count:\n                continue",
+        "peekOfCode": "points_range = [10 , 100, 1000 , 10000 , 50000 , 100000]\ncenters_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]\nresults = []\nfor dataset_type in [\"circles\", \"blobs\"]:\n    for points_count in points_range:\n        for no_centres in centers_range:\n            if dataset_type == \"circles\" and no_centres > 1:\n                continue\n            if no_centres >= points_count:\n                continue",
         "detail": "m",
         "documentation": {}
     },
