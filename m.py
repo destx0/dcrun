@@ -22,6 +22,15 @@ from scipy.sparse.csgraph import minimum_spanning_tree
 from scipy.spatial.distance import pdist, squareform
 from tqdm import tqdm
 from utils import *
+from sklearn.datasets import (
+    make_blobs,
+    make_circles,
+    make_moons,
+    load_iris,
+    load_wine,
+    load_breast_cancer,
+)
+from sklearn.decomposition import PCA
 
 savefile = "data.json"
 points_count = 30000
@@ -30,33 +39,69 @@ no_centres = 1
 
 from sklearn.datasets import make_circles
 import matplotlib.pyplot as plt
+from sklearn.datasets import fetch_openml
 
 # Initialize the parameters
 noise = 0.05  # Amount of noise
-points_range = [10 , 100, 1000 , 10000 , 50000 , 100000]
+points_range = [10, 100, 1000, 10000, 50000, 100000]
 centers_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]
 
 results = []
+dataset_types = ["blobs", "circles", "moons", "iris", "wine", "breast_cancer"]
 
-for dataset_type in ["circles", "blobs"]:
-    for points_count in points_range:
-        for no_centres in centers_range:
-            if dataset_type == "circles" and no_centres > 1:
-                continue
-            if no_centres >= points_count:
-                continue
-            for _ in range(5):  # Run the innermost loop 10 times
-                if dataset_type == "blobs":
-                    X, _ = make_blobs(
-                        n_samples=points_count, centers=no_centres, random_state=42
-                    )
-                else:
-                    noise = 0.05  # Amount of noise
-                    X, _ = make_circles(
-                        n_samples=points_count, noise=noise, factor=0.5, random_state=42
-                    )
+dataset_types = [
+    "mnist",
+    "fashion_mnist",
+    "covertype",
+    "poker",
+    "emnist",
+    "blobs",
+    "circles",
+    "moons",
+]
+real_dataset_types = ["mnist", "fashion_mnist", "covertype", "poker", "emnist"]
+points_range = [10, 100, 1000, 10000, 50000, 100000]
+centers_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]
+for _ in range(1):
+    for _ in range(1):
+        for dataset_type in dataset_types:
+            if dataset_type in real_dataset_types:
+                if dataset_type == "mnist":
+                    mnist = fetch_openml("mnist_784", version=1)
+                    X = mnist.data[:10000]  # Use the entire dataset (70,000 samples)
+                    if X.shape[1] > 2:
+                        pca = PCA(n_components=2)
+                        X = pca.fit_transform(X)
+                elif dataset_type == "fashion_mnist":
+                    fashion_mnist = fetch_openml("Fashion-MNIST", version=1)
+                    X = fashion_mnist.data[
+                        :10000
+                    ]  # Use the entire dataset (70,000 samples)
+                    if X.shape[1] > 2:
+                        pca = PCA(n_components=2)
+                        X = pca.fit_transform(X)
+                elif dataset_type == "covertype":
+                    covertype = fetch_openml("covertype", version=1)
+                    X = covertype.data[:10000]  # Use a subset of 20,000 samples
+                    if X.shape[1] > 2:
+                        pca = PCA(n_components=2)
+                        X = pca.fit_transform(X)
+                elif dataset_type == "poker":
+                    poker = fetch_openml("poker", version=1)
+                    X = poker.data[:10000]  # Use a subset of 20,000 samples
+                    if X.shape[1] > 2:
+                        pca = PCA(n_components=2)
+                        X = pca.fit_transform(X)
+                elif dataset_type == "emnist":
+                    emnist = fetch_openml("emnist", version=1)
+                    X = emnist.data[:10000]  # Use a subset of 20,000 samples
+                    if X.shape[1] > 2:
+                        pca = PCA(n_components=2)
+                        X = pca.fit_transform(X)
 
                 points = [(x, y) for x, y in X]
+
+                points_count = len(points)
                 maxdis = math.ceil(math.log2(points_count))
 
                 dcran_start_time = time.time()
@@ -228,9 +273,9 @@ for dataset_type in ["circles", "blobs"]:
 
                 wt_error = abs(dc_weight - eprim_wt) / eprim_wt * 100
                 print(f"Weight Error: {wt_error}%")
-                
-# ==================================================================================
-                                
+
+                # ==================================================================================
+
                 import time
                 from sklearn.cluster import KMeans
                 from scipy.spatial.distance import pdist, squareform
@@ -243,52 +288,59 @@ for dataset_type in ["circles", "blobs"]:
                 def prims_mst(points):
                     n = len(points)
                     pairwise_distances = squareform(pdist(points))
-                    
+
                     mst_edges = []
                     total_weight = 0
                     visited = [False] * n
                     visited[0] = True
-                    
+
                     for _ in range(n - 1):
                         min_weight = float("inf")
                         min_u, min_v = None, None
-                        
+
                         for u in range(n):
                             if visited[u]:
                                 for v in range(n):
-                                    if not visited[v] and pairwise_distances[u][v] < min_weight:
+                                    if (
+                                        not visited[v]
+                                        and pairwise_distances[u][v] < min_weight
+                                    ):
                                         min_weight = pairwise_distances[u][v]
                                         min_u, min_v = u, v
-                        
+
                         mst_edges.append((points[min_u], points[min_v]))
                         total_weight += min_weight
                         visited[min_v] = True
-                    
+
                     return mst_edges, total_weight
 
                 def fast_mst(points):
                     n = len(points)
                     k = int(n**0.5)
-                    
+
                     # Divide-and-conquer stage
                     kmeans = KMeans(n_clusters=k).fit(points)
                     labels = kmeans.labels_
                     centers = kmeans.cluster_centers_.tolist()
-                    
+
                     mst_edges = []
                     total_weight = 0
-                    
+
                     for i in range(k):
                         cluster_points = [points[j] for j in range(n) if labels[j] == i]
                         cluster_mst_edges, cluster_weight = prims_mst(cluster_points)
                         mst_edges.extend(cluster_mst_edges)
                         total_weight += cluster_weight
-                    
+
                     # Connect the clusters using Prim's algorithm
                     centers_mst_edges, centers_weight = prims_mst(centers)
                     for u, v in centers_mst_edges:
-                        cluster1 = [points[m] for m in range(n) if labels[m] == centers.index(u)]
-                        cluster2 = [points[m] for m in range(n) if labels[m] == centers.index(v)]
+                        cluster1 = [
+                            points[m] for m in range(n) if labels[m] == centers.index(u)
+                        ]
+                        cluster2 = [
+                            points[m] for m in range(n) if labels[m] == centers.index(v)
+                        ]
                         min_dist = float("inf")
                         min_point1, min_point2 = None, None
                         for p1 in cluster1:
@@ -299,7 +351,7 @@ for dataset_type in ["circles", "blobs"]:
                                     min_point1, min_point2 = p1, p2
                         mst_edges.append((min_point1, min_point2))
                         total_weight += min_dist
-                    
+
                     return mst_edges, total_weight
 
                 # Generate blob dataset using scikit-learn
@@ -324,16 +376,8 @@ for dataset_type in ["circles", "blobs"]:
                 # prims_elapsed_time = prims_end_time - prims_start_time
                 # print("Time taken by Prim's MST:", prims_elapsed_time)
                 # print("Total weight of the MST (Prim's):", prims_weight)
-                                
-                                
-                                
-                
-                
-                
-                
-                
-                
-# =======================================================================
+
+                # =======================================================================
                 # from sklearn.cluster import KMeans
                 # from scipy.sparse.csgraph import minimum_spanning_tree
                 # from scipy.spatial.distance import pdist, squareform
@@ -460,7 +504,7 @@ for dataset_type in ["circles", "blobs"]:
 
                 # print("Total weight of the MST:", fmst_weight)
 
-# ==============================================================================================
+                # ==============================================================================================
 
                 with open(savefile, "r") as f:
                     loaded_data = json.load(f)
