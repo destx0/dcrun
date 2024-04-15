@@ -33,7 +33,7 @@ import matplotlib.pyplot as plt
 
 # Initialize the parameters
 noise = 0.05  # Amount of noise
-points_range = [1000]
+points_range = [10 , 100, 1000 , 10000 , 50000 , 100000]
 centers_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]
 
 results = []
