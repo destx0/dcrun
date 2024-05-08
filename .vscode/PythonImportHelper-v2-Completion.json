@@ -131,6 +131,78 @@
         "documentation": {}
     },
     {
+        "label": "make_blobs",
+        "importPath": "sklearn.datasets",
+        "description": "sklearn.datasets",
+        "isExtraImport": true,
+        "detail": "sklearn.datasets",
+        "documentation": {}
+    },
+    {
+        "label": "load_iris",
+        "importPath": "sklearn.datasets",
+        "description": "sklearn.datasets",
+        "isExtraImport": true,
+        "detail": "sklearn.datasets",
+        "documentation": {}
+    },
+    {
+        "label": "make_blobs",
+        "importPath": "sklearn.datasets",
+        "description": "sklearn.datasets",
+        "isExtraImport": true,
+        "detail": "sklearn.datasets",
+        "documentation": {}
+    },
+    {
+        "label": "make_circles",
+        "importPath": "sklearn.datasets",
+        "description": "sklearn.datasets",
+        "isExtraImport": true,
+        "detail": "sklearn.datasets",
+        "documentation": {}
+    },
+    {
+        "label": "make_blobs",
+        "importPath": "sklearn.datasets",
+        "description": "sklearn.datasets",
+        "isExtraImport": true,
+        "detail": "sklearn.datasets",
+        "documentation": {}
+    },
+    {
+        "label": "make_circles",
+        "importPath": "sklearn.datasets",
+        "description": "sklearn.datasets",
+        "isExtraImport": true,
+        "detail": "sklearn.datasets",
+        "documentation": {}
+    },
+    {
+        "label": "make_moons",
+        "importPath": "sklearn.datasets",
+        "description": "sklearn.datasets",
+        "isExtraImport": true,
+        "detail": "sklearn.datasets",
+        "documentation": {}
+    },
+    {
+        "label": "load_iris",
+        "importPath": "sklearn.datasets",
+        "description": "sklearn.datasets",
+        "isExtraImport": true,
+        "detail": "sklearn.datasets",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_openml",
+        "importPath": "sklearn.datasets",
+        "description": "sklearn.datasets",
+        "isExtraImport": true,
+        "detail": "sklearn.datasets",
+        "documentation": {}
+    },
+    {
         "label": "math",
         "kind": 6,
         "isExtraImport": true,
@@ -193,6 +265,38 @@
         "documentation": {}
     },
     {
+        "label": "tabulate",
+        "importPath": "tabulate",
+        "description": "tabulate",
+        "isExtraImport": true,
+        "detail": "tabulate",
+        "documentation": {}
+    },
+    {
+        "label": "tabulate",
+        "importPath": "tabulate",
+        "description": "tabulate",
+        "isExtraImport": true,
+        "detail": "tabulate",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "kdtree",
+        "description": "kdtree",
+        "isExtraImport": true,
+        "detail": "kdtree",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "kdtree",
+        "description": "kdtree",
+        "isExtraImport": true,
+        "detail": "kdtree",
+        "documentation": {}
+    },
+    {
         "label": "*",
         "importPath": "kdtree",
         "description": "kdtree",
@@ -206,6 +310,22 @@
         "description": "sklearn.cluster",
         "isExtraImport": true,
         "detail": "sklearn.cluster",
+        "documentation": {}
+    },
+    {
+        "label": "GaussianMixture",
+        "importPath": "sklearn.mixture",
+        "description": "sklearn.mixture",
+        "isExtraImport": true,
+        "detail": "sklearn.mixture",
+        "documentation": {}
+    },
+    {
+        "label": "GaussianMixture",
+        "importPath": "sklearn.mixture",
+        "description": "sklearn.mixture",
+        "isExtraImport": true,
+        "detail": "sklearn.mixture",
         "documentation": {}
     },
     {
@@ -257,6 +377,30 @@
         "documentation": {}
     },
     {
+        "label": "*",
+        "importPath": "utils",
+        "description": "utils",
+        "isExtraImport": true,
+        "detail": "utils",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "utils",
+        "description": "utils",
+        "isExtraImport": true,
+        "detail": "utils",
+        "documentation": {}
+    },
+    {
+        "label": "PCA",
+        "importPath": "sklearn.decomposition",
+        "description": "sklearn.decomposition",
+        "isExtraImport": true,
+        "detail": "sklearn.decomposition",
+        "documentation": {}
+    },
+    {
         "label": "PCA",
         "importPath": "sklearn.decomposition",
         "description": "sklearn.decomposition",
@@ -294,9 +438,126 @@
     {
         "label": "savefile",
         "kind": 5,
+        "importPath": "m copy",
+        "description": "m copy",
+        "peekOfCode": "savefile = \"data.json\"\npoints_count = 30000\nto_plot = False\nno_centres = 1\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\nfrom sklearn.datasets import fetch_openml\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\npoints_range = [10, 100, 1000, 10000, 50000, 100000]",
+        "detail": "m copy",
+        "documentation": {}
+    },
+    {
+        "label": "points_count",
+        "kind": 5,
+        "importPath": "m copy",
+        "description": "m copy",
+        "peekOfCode": "points_count = 30000\nto_plot = False\nno_centres = 1\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\nfrom sklearn.datasets import fetch_openml\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\npoints_range = [10, 100, 1000, 10000, 50000, 100000]\ncenters_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]",
+        "detail": "m copy",
+        "documentation": {}
+    },
+    {
+        "label": "to_plot",
+        "kind": 5,
+        "importPath": "m copy",
+        "description": "m copy",
+        "peekOfCode": "to_plot = False\nno_centres = 1\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\nfrom sklearn.datasets import fetch_openml\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\npoints_range = [10, 100, 1000, 10000, 50000, 100000]\ncenters_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]\nresults = []",
+        "detail": "m copy",
+        "documentation": {}
+    },
+    {
+        "label": "no_centres",
+        "kind": 5,
+        "importPath": "m copy",
+        "description": "m copy",
+        "peekOfCode": "no_centres = 1\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\nfrom sklearn.datasets import fetch_openml\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\npoints_range = [10, 100, 1000, 10000, 50000, 100000]\ncenters_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]\nresults = []\ndataset_types = [\"blobs\", \"circles\", \"moons\", \"iris\", \"wine\", \"breast_cancer\"]",
+        "detail": "m copy",
+        "documentation": {}
+    },
+    {
+        "label": "noise",
+        "kind": 5,
+        "importPath": "m copy",
+        "description": "m copy",
+        "peekOfCode": "noise = 0.05  # Amount of noise\npoints_range = [10, 100, 1000, 10000, 50000, 100000]\ncenters_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]\nresults = []\ndataset_types = [\"blobs\", \"circles\", \"moons\", \"iris\", \"wine\", \"breast_cancer\"]\ndataset_types = [\n    \"mnist\",\n    \"fashion_mnist\",\n    \"covertype\",\n    \"poker\",",
+        "detail": "m copy",
+        "documentation": {}
+    },
+    {
+        "label": "points_range",
+        "kind": 5,
+        "importPath": "m copy",
+        "description": "m copy",
+        "peekOfCode": "points_range = [10, 100, 1000, 10000, 50000, 100000]\ncenters_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]\nresults = []\ndataset_types = [\"blobs\", \"circles\", \"moons\", \"iris\", \"wine\", \"breast_cancer\"]\ndataset_types = [\n    \"mnist\",\n    \"fashion_mnist\",\n    \"covertype\",\n    \"poker\",\n    \"emnist\",",
+        "detail": "m copy",
+        "documentation": {}
+    },
+    {
+        "label": "centers_range",
+        "kind": 5,
+        "importPath": "m copy",
+        "description": "m copy",
+        "peekOfCode": "centers_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]\nresults = []\ndataset_types = [\"blobs\", \"circles\", \"moons\", \"iris\", \"wine\", \"breast_cancer\"]\ndataset_types = [\n    \"mnist\",\n    \"fashion_mnist\",\n    \"covertype\",\n    \"poker\",\n    \"emnist\",\n    \"blobs\",",
+        "detail": "m copy",
+        "documentation": {}
+    },
+    {
+        "label": "results",
+        "kind": 5,
+        "importPath": "m copy",
+        "description": "m copy",
+        "peekOfCode": "results = []\ndataset_types = [\"blobs\", \"circles\", \"moons\", \"iris\", \"wine\", \"breast_cancer\"]\ndataset_types = [\n    \"mnist\",\n    \"fashion_mnist\",\n    \"covertype\",\n    \"poker\",\n    \"emnist\",\n    \"blobs\",\n    \"circles\",",
+        "detail": "m copy",
+        "documentation": {}
+    },
+    {
+        "label": "dataset_types",
+        "kind": 5,
+        "importPath": "m copy",
+        "description": "m copy",
+        "peekOfCode": "dataset_types = [\"blobs\", \"circles\", \"moons\", \"iris\", \"wine\", \"breast_cancer\"]\ndataset_types = [\n    \"mnist\",\n    \"fashion_mnist\",\n    \"covertype\",\n    \"poker\",\n    \"emnist\",\n    \"blobs\",\n    \"circles\",\n    \"moons\",",
+        "detail": "m copy",
+        "documentation": {}
+    },
+    {
+        "label": "dataset_types",
+        "kind": 5,
+        "importPath": "m copy",
+        "description": "m copy",
+        "peekOfCode": "dataset_types = [\n    \"mnist\",\n    \"fashion_mnist\",\n    \"covertype\",\n    \"poker\",\n    \"emnist\",\n    \"blobs\",\n    \"circles\",\n    \"moons\",\n]",
+        "detail": "m copy",
+        "documentation": {}
+    },
+    {
+        "label": "real_dataset_types",
+        "kind": 5,
+        "importPath": "m copy",
+        "description": "m copy",
+        "peekOfCode": "real_dataset_types = [\"mnist\", \"fashion_mnist\", \"covertype\", \"poker\", \"emnist\"]\npoints_range = [10, 100, 1000, 10000, 50000, 100000]\ncenters_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]\nfor _ in range(1):\n    for _ in range(1):\n        for dataset_type in dataset_types:\n            if dataset_type in real_dataset_types:\n                if dataset_type == \"mnist\":\n                    mnist = fetch_openml(\"mnist_784\", version=1)\n                    X = mnist.data[:10000]  # Use the entire dataset (70,000 samples)",
+        "detail": "m copy",
+        "documentation": {}
+    },
+    {
+        "label": "points_range",
+        "kind": 5,
+        "importPath": "m copy",
+        "description": "m copy",
+        "peekOfCode": "points_range = [10, 100, 1000, 10000, 50000, 100000]\ncenters_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]\nfor _ in range(1):\n    for _ in range(1):\n        for dataset_type in dataset_types:\n            if dataset_type in real_dataset_types:\n                if dataset_type == \"mnist\":\n                    mnist = fetch_openml(\"mnist_784\", version=1)\n                    X = mnist.data[:10000]  # Use the entire dataset (70,000 samples)\n                    if X.shape[1] > 2:",
+        "detail": "m copy",
+        "documentation": {}
+    },
+    {
+        "label": "centers_range",
+        "kind": 5,
+        "importPath": "m copy",
+        "description": "m copy",
+        "peekOfCode": "centers_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]\nfor _ in range(1):\n    for _ in range(1):\n        for dataset_type in dataset_types:\n            if dataset_type in real_dataset_types:\n                if dataset_type == \"mnist\":\n                    mnist = fetch_openml(\"mnist_784\", version=1)\n                    X = mnist.data[:10000]  # Use the entire dataset (70,000 samples)\n                    if X.shape[1] > 2:\n                        pca = PCA(n_components=2)",
+        "detail": "m copy",
+        "documentation": {}
+    },
+    {
+        "label": "savefile",
+        "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "savefile = \"data.json\"\npoints_count = 30000\nto_plot = False\nno_centres = 1\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\nfrom sklearn.datasets import fetch_openml\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\npoints_range = [10, 100, 1000, 10000, 50000, 100000]",
+        "peekOfCode": "savefile = \"data.json\"\npoints_count = 3000\nto_plot = False\nno_centres = 1\n# In[88]:\nfrom sklearn.datasets import make_blobs\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt",
         "detail": "m",
         "documentation": {}
     },
@@ -305,7 +566,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "points_count = 30000\nto_plot = False\nno_centres = 1\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\nfrom sklearn.datasets import fetch_openml\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\npoints_range = [10, 100, 1000, 10000, 50000, 100000]\ncenters_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]",
+        "peekOfCode": "points_count = 3000\nto_plot = False\nno_centres = 1\n# In[88]:\nfrom sklearn.datasets import make_blobs\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\n# Initialize the parameters",
         "detail": "m",
         "documentation": {}
     },
@@ -314,7 +575,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "to_plot = False\nno_centres = 1\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\nfrom sklearn.datasets import fetch_openml\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\npoints_range = [10, 100, 1000, 10000, 50000, 100000]\ncenters_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]\nresults = []",
+        "peekOfCode": "to_plot = False\nno_centres = 1\n# In[88]:\nfrom sklearn.datasets import make_blobs\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nnoise = 0.05  # Amount of noise",
         "detail": "m",
         "documentation": {}
     },
@@ -323,7 +584,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "no_centres = 1\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\nfrom sklearn.datasets import fetch_openml\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\npoints_range = [10, 100, 1000, 10000, 50000, 100000]\ncenters_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]\nresults = []\ndataset_types = [\"blobs\", \"circles\", \"moons\", \"iris\", \"wine\", \"breast_cancer\"]",
+        "peekOfCode": "no_centres = 1\n# In[88]:\nfrom sklearn.datasets import make_blobs\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nfrom sklearn.datasets import make_circles\nimport matplotlib.pyplot as plt\n# Initialize the parameters\nnoise = 0.05  # Amount of noise\n# Generate the data",
         "detail": "m",
         "documentation": {}
     },
@@ -332,43 +593,52 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "noise = 0.05  # Amount of noise\npoints_range = [10, 100, 1000, 10000, 50000, 100000]\ncenters_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]\nresults = []\ndataset_types = [\"blobs\", \"circles\", \"moons\", \"iris\", \"wine\", \"breast_cancer\"]\ndataset_types = [\n    \"mnist\",\n    \"fashion_mnist\",\n    \"covertype\",\n    \"poker\",",
+        "peekOfCode": "noise = 0.05  # Amount of noise\n# Generate the data\nX, y = make_circles(n_samples=points_count, noise=noise, factor=0.5, random_state=42)\n# Convert the data to a list of tuples\npoints = [(x, y) for x, y in X]\n# points = [(round(x , 1), round(y , 1)) for x, y in X]\nmaxdis = math.ceil(math.log2(points_count))\n# In[89]:\nX, Y = make_blobs(n_samples=points_count, centers=no_centres, random_state=42)\npoints = [(x, y) for x, y in X]",
         "detail": "m",
         "documentation": {}
     },
     {
-        "label": "points_range",
+        "label": "points",
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "points_range = [10, 100, 1000, 10000, 50000, 100000]\ncenters_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]\nresults = []\ndataset_types = [\"blobs\", \"circles\", \"moons\", \"iris\", \"wine\", \"breast_cancer\"]\ndataset_types = [\n    \"mnist\",\n    \"fashion_mnist\",\n    \"covertype\",\n    \"poker\",\n    \"emnist\",",
+        "peekOfCode": "points = [(x, y) for x, y in X]\n# points = [(round(x , 1), round(y , 1)) for x, y in X]\nmaxdis = math.ceil(math.log2(points_count))\n# In[89]:\nX, Y = make_blobs(n_samples=points_count, centers=no_centres, random_state=42)\npoints = [(x, y) for x, y in X]\nimport matplotlib.pyplot as plt\nimport networkx as nx\nimport numpy as np\nfrom sklearn.datasets import make_blobs, make_circles, make_moons",
         "detail": "m",
         "documentation": {}
     },
     {
-        "label": "centers_range",
+        "label": "maxdis",
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "centers_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]\nresults = []\ndataset_types = [\"blobs\", \"circles\", \"moons\", \"iris\", \"wine\", \"breast_cancer\"]\ndataset_types = [\n    \"mnist\",\n    \"fashion_mnist\",\n    \"covertype\",\n    \"poker\",\n    \"emnist\",\n    \"blobs\",",
+        "peekOfCode": "maxdis = math.ceil(math.log2(points_count))\n# In[89]:\nX, Y = make_blobs(n_samples=points_count, centers=no_centres, random_state=42)\npoints = [(x, y) for x, y in X]\nimport matplotlib.pyplot as plt\nimport networkx as nx\nimport numpy as np\nfrom sklearn.datasets import make_blobs, make_circles, make_moons\nimport random\nimport json",
         "detail": "m",
         "documentation": {}
     },
     {
-        "label": "results",
+        "label": "points",
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "results = []\ndataset_types = [\"blobs\", \"circles\", \"moons\", \"iris\", \"wine\", \"breast_cancer\"]\ndataset_types = [\n    \"mnist\",\n    \"fashion_mnist\",\n    \"covertype\",\n    \"poker\",\n    \"emnist\",\n    \"blobs\",\n    \"circles\",",
+        "peekOfCode": "points = [(x, y) for x, y in X]\nimport matplotlib.pyplot as plt\nimport networkx as nx\nimport numpy as np\nfrom sklearn.datasets import make_blobs, make_circles, make_moons\nimport random\nimport json\nimport time\nfrom tabulate import tabulate\nfrom sklearn.datasets import load_iris, fetch_openml",
         "detail": "m",
         "documentation": {}
     },
     {
-        "label": "dataset_types",
+        "label": "savefile",
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "dataset_types = [\"blobs\", \"circles\", \"moons\", \"iris\", \"wine\", \"breast_cancer\"]\ndataset_types = [\n    \"mnist\",\n    \"fashion_mnist\",\n    \"covertype\",\n    \"poker\",\n    \"emnist\",\n    \"blobs\",\n    \"circles\",\n    \"moons\",",
+        "peekOfCode": "savefile = \"data.json\"\nto_plot = False\ndataset_types = [\n    \"mnist\",\n    \"fashion_mnist\",\n    \"covertype\",\n    \"poker\",\n    \"emnist\",\n    \"blobs\",\n    \"circles\",",
+        "detail": "m",
+        "documentation": {}
+    },
+    {
+        "label": "to_plot",
+        "kind": 5,
+        "importPath": "m",
+        "description": "m",
+        "peekOfCode": "to_plot = False\ndataset_types = [\n    \"mnist\",\n    \"fashion_mnist\",\n    \"covertype\",\n    \"poker\",\n    \"emnist\",\n    \"blobs\",\n    \"circles\",\n    \"moons\",",
         "detail": "m",
         "documentation": {}
     },
@@ -386,7 +656,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "real_dataset_types = [\"mnist\", \"fashion_mnist\", \"covertype\", \"poker\", \"emnist\"]\npoints_range = [10, 100, 1000, 10000, 50000, 100000]\ncenters_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]\nfor _ in range(1):\n    for _ in range(1):\n        for dataset_type in dataset_types:\n            if dataset_type in real_dataset_types:\n                if dataset_type == \"mnist\":\n                    mnist = fetch_openml(\"mnist_784\", version=1)\n                    X = mnist.data[:10000]  # Use the entire dataset (70,000 samples)",
+        "peekOfCode": "real_dataset_types = [\"mnist\", \"fashion_mnist\", \"covertype\", \"poker\", \"emnist\"]\npoints_range = [10, 100, 1000, 10000, 50000, 100000]\ncenters_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]\nfor _ in range(1):\n    for dataset_type in dataset_types:\n        if dataset_type in real_dataset_types:\n            if dataset_type == \"mnist\":\n                mnist = fetch_openml(\"mnist_784\", version=1)\n                X = mnist.data[:10000]  # Use the entire dataset (70,000 samples)\n                if X.shape[1] > 2:",
         "detail": "m",
         "documentation": {}
     },
@@ -395,7 +665,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "points_range = [10, 100, 1000, 10000, 50000, 100000]\ncenters_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]\nfor _ in range(1):\n    for _ in range(1):\n        for dataset_type in dataset_types:\n            if dataset_type in real_dataset_types:\n                if dataset_type == \"mnist\":\n                    mnist = fetch_openml(\"mnist_784\", version=1)\n                    X = mnist.data[:10000]  # Use the entire dataset (70,000 samples)\n                    if X.shape[1] > 2:",
+        "peekOfCode": "points_range = [10, 100, 1000, 10000, 50000, 100000]\ncenters_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]\nfor _ in range(1):\n    for dataset_type in dataset_types:\n        if dataset_type in real_dataset_types:\n            if dataset_type == \"mnist\":\n                mnist = fetch_openml(\"mnist_784\", version=1)\n                X = mnist.data[:10000]  # Use the entire dataset (70,000 samples)\n                if X.shape[1] > 2:\n                    pca = PCA(n_components=2)",
         "detail": "m",
         "documentation": {}
     },
@@ -404,7 +674,7 @@
         "kind": 5,
         "importPath": "m",
         "description": "m",
-        "peekOfCode": "centers_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]\nfor _ in range(1):\n    for _ in range(1):\n        for dataset_type in dataset_types:\n            if dataset_type in real_dataset_types:\n                if dataset_type == \"mnist\":\n                    mnist = fetch_openml(\"mnist_784\", version=1)\n                    X = mnist.data[:10000]  # Use the entire dataset (70,000 samples)\n                    if X.shape[1] > 2:\n                        pca = PCA(n_components=2)",
+        "peekOfCode": "centers_range = [1, 10, 100, 1000, 5000, 10000, 50000, 100000]\nfor _ in range(1):\n    for dataset_type in dataset_types:\n        if dataset_type in real_dataset_types:\n            if dataset_type == \"mnist\":\n                mnist = fetch_openml(\"mnist_784\", version=1)\n                X = mnist.data[:10000]  # Use the entire dataset (70,000 samples)\n                if X.shape[1] > 2:\n                    pca = PCA(n_components=2)\n                    X = pca.fit_transform(X)",
         "detail": "m",
         "documentation": {}
     },
