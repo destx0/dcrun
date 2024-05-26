@@ -2,6 +2,7 @@ import math
 import networkx as nx
 import numpy as np
 import matplotlib.pyplot as plt
+import itertools
 
 
 def euclidean_distance(coord1, coord2):
@@ -44,27 +45,41 @@ def graphify(graph, to_plot, bottom_text=""):
         return
 
     pos = nx.get_node_attributes(graph, "pos")
-    # nx.draw(
-    #     graph,
-    #     pos,
-    #     # with_labels=True,
-    #     alpha=0.5,
-    #     with_labels=False,
-    #     font_weight="bold",
-    #     node_color="lightgreen",
-    #     font_size=10,
-    #     node_size=10,
-    # )
-    nx.draw_networkx_edges(graph, pos)
+
+    # Find all connected components
+    connected_components = list(nx.connected_components(graph))
+
+    # Define a color cycle
+    colors = itertools.cycle(plt.cm.tab20.colors)
+
+    # Create a color map for each node
+    color_map = {}
+    for component in connected_components:
+        color = next(colors)
+        for node in component:
+            color_map[node] = color
+
+    # Plot with edges
+    plt.figure()
     nx.draw_networkx_nodes(
         graph,
         pos,
-        node_size=10,
-        node_color="lightgreen",
-        alpha=0.5,
+        node_size=100,
+        node_color=[color_map[node] for node in graph.nodes()],
+        alpha=1,
     )
-    # If there's bottom text, add it to the plot
-    plt.title(bottom_text)
-    plt.grid(True)
+    nx.draw_networkx_edges(graph, pos, width=3.5, edge_color="gray", alpha=1)
+    plt.title(f"")
+    plt.show()
 
+    # Plot without edges
+    plt.figure()
+    nx.draw_networkx_nodes(
+        graph,
+        pos,
+        node_size=100,
+        node_color=[color_map[node] for node in graph.nodes()],
+        alpha=1,
+    )
+    plt.title(f"")
     plt.show()

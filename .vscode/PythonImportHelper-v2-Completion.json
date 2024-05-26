@@ -409,6 +409,15 @@
         "documentation": {}
     },
     {
+        "label": "itertools",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "itertools",
+        "description": "itertools",
+        "detail": "itertools",
+        "documentation": {}
+    },
+    {
         "label": "KDNode",
         "kind": 6,
         "importPath": "kdtree",
@@ -710,7 +719,7 @@
         "kind": 2,
         "importPath": "utils",
         "description": "utils",
-        "peekOfCode": "def graphify(graph, to_plot, bottom_text=\"\"):\n    if not to_plot:\n        return\n    pos = nx.get_node_attributes(graph, \"pos\")\n    # nx.draw(\n    #     graph,\n    #     pos,\n    #     # with_labels=True,\n    #     alpha=0.5,\n    #     with_labels=False,",
+        "peekOfCode": "def graphify(graph, to_plot, bottom_text=\"\"):\n    if not to_plot:\n        return\n    pos = nx.get_node_attributes(graph, \"pos\")\n    # Find all connected components\n    connected_components = list(nx.connected_components(graph))\n    # Define a color cycle\n    colors = itertools.cycle(plt.cm.tab20.colors)\n    # Create a color map for each node\n    color_map = {}",
         "detail": "utils",
         "documentation": {}
     }
