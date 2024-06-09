@@ -1,37 +1,67 @@
 [
     {
-        "label": "matplotlib.pyplot",
+        "label": "json",
         "kind": 6,
         "isExtraImport": true,
-        "importPath": "matplotlib.pyplot",
-        "description": "matplotlib.pyplot",
-        "detail": "matplotlib.pyplot",
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
         "documentation": {}
     },
     {
-        "label": "networkx",
-        "kind": 6,
+        "label": "make_blobs",
+        "importPath": "sklearn.datasets",
+        "description": "sklearn.datasets",
         "isExtraImport": true,
-        "importPath": "networkx",
-        "description": "networkx",
-        "detail": "networkx",
+        "detail": "sklearn.datasets",
         "documentation": {}
     },
     {
-        "label": "graphviz_layout",
-        "importPath": "networkx.drawing.nx_agraph",
-        "description": "networkx.drawing.nx_agraph",
+        "label": "make_moons",
+        "importPath": "sklearn.datasets",
+        "description": "sklearn.datasets",
         "isExtraImport": true,
-        "detail": "networkx.drawing.nx_agraph",
+        "detail": "sklearn.datasets",
         "documentation": {}
     },
     {
-        "label": "heapq",
-        "kind": 6,
+        "label": "make_circles",
+        "importPath": "sklearn.datasets",
+        "description": "sklearn.datasets",
         "isExtraImport": true,
-        "importPath": "heapq",
-        "description": "heapq",
-        "detail": "heapq",
+        "detail": "sklearn.datasets",
+        "documentation": {}
+    },
+    {
+        "label": "make_blobs",
+        "importPath": "sklearn.datasets",
+        "description": "sklearn.datasets",
+        "isExtraImport": true,
+        "detail": "sklearn.datasets",
+        "documentation": {}
+    },
+    {
+        "label": "make_moons",
+        "importPath": "sklearn.datasets",
+        "description": "sklearn.datasets",
+        "isExtraImport": true,
+        "detail": "sklearn.datasets",
+        "documentation": {}
+    },
+    {
+        "label": "load_iris",
+        "importPath": "sklearn.datasets",
+        "description": "sklearn.datasets",
+        "isExtraImport": true,
+        "detail": "sklearn.datasets",
+        "documentation": {}
+    },
+    {
+        "label": "make_circles",
+        "importPath": "sklearn.datasets",
+        "description": "sklearn.datasets",
+        "isExtraImport": true,
+        "detail": "sklearn.datasets",
         "documentation": {}
     },
     {
@@ -203,24 +233,6 @@
         "documentation": {}
     },
     {
-        "label": "math",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "math",
-        "description": "math",
-        "detail": "math",
-        "documentation": {}
-    },
-    {
-        "label": "copy",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "copy",
-        "description": "copy",
-        "detail": "copy",
-        "documentation": {}
-    },
-    {
         "label": "numpy",
         "kind": 6,
         "isExtraImport": true,
@@ -230,12 +242,12 @@
         "documentation": {}
     },
     {
-        "label": "json",
+        "label": "matplotlib.pyplot",
         "kind": 6,
         "isExtraImport": true,
-        "importPath": "json",
-        "description": "json",
-        "detail": "json",
+        "importPath": "matplotlib.pyplot",
+        "description": "matplotlib.pyplot",
+        "detail": "matplotlib.pyplot",
         "documentation": {}
     },
     {
@@ -257,6 +269,23 @@
         "documentation": {}
     },
     {
+        "label": "itertools",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "itertools",
+        "description": "itertools",
+        "detail": "itertools",
+        "documentation": {}
+    },
+    {
+        "label": "tabulate",
+        "importPath": "tabulate",
+        "description": "tabulate",
+        "isExtraImport": true,
+        "detail": "tabulate",
+        "documentation": {}
+    },
+    {
         "label": "tabulate",
         "importPath": "tabulate",
         "description": "tabulate",
@@ -278,6 +307,47 @@
         "description": "tabulate",
         "isExtraImport": true,
         "detail": "tabulate",
+        "documentation": {}
+    },
+    {
+        "label": "GaussianMixture",
+        "importPath": "sklearn.mixture",
+        "description": "sklearn.mixture",
+        "isExtraImport": true,
+        "detail": "sklearn.mixture",
+        "documentation": {}
+    },
+    {
+        "label": "GaussianMixture",
+        "importPath": "sklearn.mixture",
+        "description": "sklearn.mixture",
+        "isExtraImport": true,
+        "detail": "sklearn.mixture",
+        "documentation": {}
+    },
+    {
+        "label": "GaussianMixture",
+        "importPath": "sklearn.mixture",
+        "description": "sklearn.mixture",
+        "isExtraImport": true,
+        "detail": "sklearn.mixture",
+        "documentation": {}
+    },
+    {
+        "label": "GaussianMixture",
+        "importPath": "sklearn.mixture",
+        "description": "sklearn.mixture",
+        "isExtraImport": true,
+        "detail": "sklearn.mixture",
+        "documentation": {}
+    },
+    {
+        "label": "networkx",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "networkx",
+        "description": "networkx",
+        "detail": "networkx",
         "documentation": {}
     },
     {
@@ -302,6 +372,113 @@
         "description": "kdtree",
         "isExtraImport": true,
         "detail": "kdtree",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "kdtree",
+        "description": "kdtree",
+        "isExtraImport": true,
+        "detail": "kdtree",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "kdtree",
+        "description": "kdtree",
+        "isExtraImport": true,
+        "detail": "kdtree",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "utils",
+        "description": "utils",
+        "isExtraImport": true,
+        "detail": "utils",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "utils",
+        "description": "utils",
+        "isExtraImport": true,
+        "detail": "utils",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "utils",
+        "description": "utils",
+        "isExtraImport": true,
+        "detail": "utils",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "utils",
+        "description": "utils",
+        "isExtraImport": true,
+        "detail": "utils",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "utils",
+        "description": "utils",
+        "isExtraImport": true,
+        "detail": "utils",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "datasets",
+        "description": "datasets",
+        "isExtraImport": true,
+        "detail": "datasets",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "kmist",
+        "description": "kmist",
+        "isExtraImport": true,
+        "detail": "kmist",
+        "documentation": {}
+    },
+    {
+        "label": "graphviz_layout",
+        "importPath": "networkx.drawing.nx_agraph",
+        "description": "networkx.drawing.nx_agraph",
+        "isExtraImport": true,
+        "detail": "networkx.drawing.nx_agraph",
+        "documentation": {}
+    },
+    {
+        "label": "heapq",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "heapq",
+        "description": "heapq",
+        "detail": "heapq",
+        "documentation": {}
+    },
+    {
+        "label": "math",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "math",
+        "description": "math",
+        "detail": "math",
+        "documentation": {}
+    },
+    {
+        "label": "copy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "copy",
+        "description": "copy",
+        "detail": "copy",
         "documentation": {}
     },
     {
@@ -310,30 +487,6 @@
         "description": "sklearn.cluster",
         "isExtraImport": true,
         "detail": "sklearn.cluster",
-        "documentation": {}
-    },
-    {
-        "label": "GaussianMixture",
-        "importPath": "sklearn.mixture",
-        "description": "sklearn.mixture",
-        "isExtraImport": true,
-        "detail": "sklearn.mixture",
-        "documentation": {}
-    },
-    {
-        "label": "GaussianMixture",
-        "importPath": "sklearn.mixture",
-        "description": "sklearn.mixture",
-        "isExtraImport": true,
-        "detail": "sklearn.mixture",
-        "documentation": {}
-    },
-    {
-        "label": "GaussianMixture",
-        "importPath": "sklearn.mixture",
-        "description": "sklearn.mixture",
-        "isExtraImport": true,
-        "detail": "sklearn.mixture",
         "documentation": {}
     },
     {
@@ -369,30 +522,6 @@
         "documentation": {}
     },
     {
-        "label": "*",
-        "importPath": "utils",
-        "description": "utils",
-        "isExtraImport": true,
-        "detail": "utils",
-        "documentation": {}
-    },
-    {
-        "label": "*",
-        "importPath": "utils",
-        "description": "utils",
-        "isExtraImport": true,
-        "detail": "utils",
-        "documentation": {}
-    },
-    {
-        "label": "*",
-        "importPath": "utils",
-        "description": "utils",
-        "isExtraImport": true,
-        "detail": "utils",
-        "documentation": {}
-    },
-    {
         "label": "PCA",
         "importPath": "sklearn.decomposition",
         "description": "sklearn.decomposition",
@@ -409,12 +538,12 @@
         "documentation": {}
     },
     {
-        "label": "itertools",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "itertools",
-        "description": "itertools",
-        "detail": "itertools",
+        "label": "generate_dataset",
+        "kind": 2,
+        "importPath": "datasets",
+        "description": "datasets",
+        "peekOfCode": "def generate_dataset(\n    dataset_type=\"circles\",\n    savefile=\"data.json\",\n    points_count=100,\n    noise=0.1,\n    no_centres=3,\n    to_plot=True,\n):\n    if dataset_type == \"circles\":\n        X, y = make_circles(",
+        "detail": "datasets",
         "documentation": {}
     },
     {
@@ -442,6 +571,24 @@
         "description": "kdtree",
         "peekOfCode": "def i_neighbors(tree, query_point, i):\n    \"\"\"Find the ith nearest neighbor of the given point using a set to track visited nodes.\"\"\"\n    if tree.root is None:\n        return None\n    i += 1\n    # Priority queue to maintain i nearest neighbors\n    neighbors = []\n    # Set to track visited nodes\n    visited = set()\n    def _search(node):",
         "detail": "kdtree",
+        "documentation": {}
+    },
+    {
+        "label": "build",
+        "kind": 2,
+        "importPath": "kmist",
+        "description": "kmist",
+        "peekOfCode": "def build(points, points_count):\n    tree = KDTree()\n    tree.root = tree.build(points)\n    G = nx.Graph()\n    for point in points:\n        G.add_node(point, pos=point)\n    neighbours = {}\n    maxdis = math.ceil(math.log2(points_count))\n    for point in points:\n        neighbours[point] = i_neighbors(tree, point, maxdis)",
+        "detail": "kmist",
+        "documentation": {}
+    },
+    {
+        "label": "kmistree",
+        "kind": 2,
+        "importPath": "kmist",
+        "description": "kmist",
+        "peekOfCode": "def kmistree(points, to_plot=True):\n    points_count = len(points)\n    G, neighbours = build(points, points_count)\n    if to_plot:\n        print(f\"Nodes: {len(G.nodes())}, Edges: {len(G.edges())}\")\n    k = 0\n    prev_connected_components = np.inf\n    prev_G = G.copy()\n    if to_plot:\n        graphify(G, to_plot, bottom_text=\"\")",
+        "detail": "kmist",
         "documentation": {}
     },
     {
