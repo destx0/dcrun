@@ -1,30 +1,19 @@
 import math
-import networkx as nx
 import numpy as np
+import networkx as nx
 from kdtree import *
 from utils import *
 import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+from scipy.spatial.distance import pdist, squareform
 
 
 class MST:
     def __init__(self, points):
-        """
-        Initialize the MST with a set of points.
-
-        Parameters:
-        points (list): List of points to build the KD-Tree and graph.
-        """
         self.points = points
         self.points_count = len(points)
 
     def build(self):
-        """
-        Build the KD-Tree and graph from the points.
-
-        Returns:
-        G (networkx.Graph): Graph with points as nodes.
-        neighbours (dict): Dictionary of neighbors for each point.
-        """
         tree = KDTree()
         tree.root = tree.build(self.points)
 
@@ -41,17 +30,6 @@ class MST:
         return G, neighbours
 
     def kmistree(self, to_plot=True):
-        """
-        Create a minimum spanning tree using the k-nearest neighbors approach.
-
-        Parameters:
-        to_plot (bool): Whether to plot the graph and MST.
-
-        Returns:
-        mst_weight (float): Total weight of the minimum spanning tree.
-        edge_count (int): Number of edges in the final graph.
-        G (networkx.Graph): The final graph.
-        """
         G, neighbours = self.build()
 
         if to_plot:
@@ -122,18 +100,6 @@ class MST:
         return mst_weight, len(G.edges()), G
 
     def kmist(self, to_plot=True):
-        """
-        Create a minimum spanning tree using a custom approach where nodes are connected
-        based on the k-th and k^k-th nodes.
-
-        Parameters:
-        to_plot (bool): Whether to plot the graph and MST.
-
-        Returns:
-        mst_weight (float): Total weight of the minimum spanning tree.
-        edge_count (int): Number of edges in the final graph.
-        G (networkx.Graph): The final graph.
-        """
         G, neighbours = self.build()
 
         if to_plot:
@@ -216,15 +182,6 @@ class MST:
         return mst_weight, len(G.edges()), G
 
     def prim_mst(self, to_plot=True):
-        """
-        Compute the minimum spanning tree using Prim's algorithm.
-
-        Parameters:
-        to_plot (bool): Whether to plot the graph and MST.
-
-        Returns:
-        total_weight (float): Total weight of the minimum spanning tree.
-        """
         n = len(self.points)
         visited = [False] * n
         min_cost = [float("inf")] * n
@@ -261,7 +218,7 @@ class MST:
             G.add_edge(parent[i], i, weight=min_cost[i])
             total_weight += min_cost[i]
 
-        total_weight = round(total_weight, 2)  # Rounding to 2 decimal places
+        total_weight = round(total_weight, 2)
 
         if to_plot:
             print(
@@ -275,27 +232,152 @@ class MST:
 
         return total_weight
 
+    def fmst(self, to_plot=True):
+        n = len(self.points)
+        k = int(n**0.5)
+
+        kmeans = KMeans(n_clusters=k).fit(self.points)
+        labels = kmeans.labels_
+        centers = kmeans.cluster_centers_.tolist()
+
+        clusters = [[] for _ in range(k)]
+        for point, label in zip(self.points, labels):
+            clusters[label].append(tuple(point))
+
+        centroids = []
+        for cluster in clusters:
+            cluster_points = np.array(cluster)
+            centroid = tuple(cluster_points.mean(axis=0))
+            centroids.append(centroid)
+
+        if to_plot:
+            plt.figure(figsize=(10, 8))
+
+        G = nx.Graph()
+
+        colors = plt.cm.rainbow(np.linspace(0, 1, k))
+        for cluster_index, (cluster, color) in enumerate(zip(clusters, colors)):
+            if len(cluster) > 1:
+                cluster_points = np.array(cluster)
+                distances = pdist(cluster_points)
+                dist_matrix = squareform(distances)
+
+                cluster_graph = nx.Graph()
+                for i in range(len(cluster_points)):
+                    for j in range(i + 1, len(cluster_points)):
+                        cluster_graph.add_edge(
+                            tuple(cluster_points[i]),
+                            tuple(cluster_points[j]),
+                            weight=dist_matrix[i, j],
+                        )
+
+                mst = nx.minimum_spanning_tree(cluster_graph)
+                G.add_edges_from(mst.edges(data=True))
+
+                if to_plot:
+                    pos = {tuple(i): (i[0], i[1]) for i in cluster_points}
+                    nx.draw(
+                        mst,
+                        pos,
+                        with_labels=False,
+                        node_color=color,
+                        edge_color=color,
+                        alpha=0.5,
+                    )
+
+            print(
+                f"After processing cluster {cluster_index}, number of edges: {G.number_of_edges()}"
+            )
+
+        if to_plot:
+            for cluster_index, (cluster, color) in enumerate(zip(clusters, colors)):
+                cluster_points = np.array(cluster)
+                plt.scatter(
+                    cluster_points[:, 0],
+                    cluster_points[:, 1],
+                    color=color,
+                    label=f"Cluster {cluster_index}",
+                    s=50,
+                )
+                centroid = centroids[cluster_index]
+                plt.scatter(
+                    centroid[0],
+                    centroid[1],
+                    color="black",
+                    marker="x",
+                    s=100,
+                    label=f"Centroid {cluster_index}",
+                )
+
+        print(
+            f"After adding cluster points and centroids, number of edges: {G.number_of_edges()}"
+        )
+
+        centroid_points = np.array(centroids)
+        centroid_distances = pdist(centroid_points)
+        centroid_dist_matrix = squareform(centroid_distances)
+
+        centroid_graph = nx.Graph()
+        for i in range(len(centroid_points)):
+            for j in range(i + 1, len(centroid_points)):
+                centroid_graph.add_edge(
+                    tuple(centroid_points[i]),
+                    tuple(centroid_points[j]),
+                    weight=centroid_dist_matrix[i, j],
+                )
+
+        centroid_mst = nx.minimum_spanning_tree(centroid_graph)
+
+        print(
+            f"After creating MST of centroids, number of edges: {centroid_mst.number_of_edges()}"
+        )
+
+        core_points_map = {}
+        for component in nx.connected_components(G):
+            centroid = tuple(np.mean([node for node in component], axis=0))
+            closest_point = min(
+                component, key=lambda node: self.euclidean_distance(node, centroid)
+            )
+            core_points_map[closest_point] = component
+
+        for centroid in centroids:
+            if centroid not in core_points_map:
+                closest_point = min(
+                    G.nodes, key=lambda node: self.euclidean_distance(node, centroid)
+                )
+                core_points_map[centroid] = core_points_map[closest_point]
+
+        for edge in centroid_mst.edges:
+            self.merge_comps(edge[0], edge[1], core_points_map, G)
+            print(
+                f"After merging {edge[0]} and {edge[1]}, number of edges: {G.number_of_edges()}"
+            )
+
+        if to_plot:
+            plt.figure(figsize=(10, 8))
+            pos = {i: (i[0], i[1]) for i in G.nodes}
+            nx.draw(
+                G,
+                pos,
+                with_labels=False,
+                node_color="lightblue",
+                edge_color="gray",
+                alpha=0.5,
+            )
+            plt.title("K-Means Clustering with MSTs and Merged Centroid MST Overlay")
+            plt.xlabel("X-coordinate")
+            plt.ylabel("Y-coordinate")
+            plt.legend()
+            plt.show()
+
+        mst_weight = round(sum(data["weight"] for u, v, data in G.edges(data=True)), 2)
+        return mst_weight, len(G.edges()), G
+
     @staticmethod
     def euclidean_distance(point1, point2):
-        """
-        Calculate the Euclidean distance between two points.
-
-        Parameters:
-        point1 (tuple): The first point.
-        point2 (tuple): The second point.
-
-        Returns:
-        float: The Euclidean distance between the two points.
-        """
         return np.linalg.norm(np.array(point1) - np.array(point2))
 
     def merge_phase(self, G):
-        """
-        Merge disconnected components of the graph.
-
-        Parameters:
-        G (networkx.Graph): The graph to merge components in.
-        """
         core_points_map = {}
         for component in nx.connected_components(G):
             centroid = np.mean([node for node in component], axis=0)
@@ -322,15 +404,6 @@ class MST:
             self.merge_comps(core1, core2, core_points_map, G)
 
     def merge_comps(self, core1, core2, core_points_map, G):
-        """
-        Merge two components in the graph.
-
-        Parameters:
-        core1 (tuple): The first core point.
-        core2 (tuple): The second core point.
-        core_points_map (dict): Map of core points to their components.
-        G (networkx.Graph): The graph to merge components in.
-        """
         pivot2 = min(
             core_points_map[core2],
             key=lambda node: self.euclidean_distance(node, core1),
@@ -343,44 +416,15 @@ class MST:
         print(f"Merging {core1} and {core2} with pivot {pivot1} and {pivot2}")
 
     def apply_mst(self, algorithm="kmistree", to_plot=True):
-        """
-        Apply the specified MST algorithm.
-
-        Parameters:
-        algorithm (str): The MST algorithm to apply ("kmistree", "kmist", or "prim").
-        to_plot (bool): Whether to plot the graph and MST.
-
-        Returns:
-        result (varies): The result of the specified MST algorithm.
-        """
         if algorithm == "kmistree":
             return self.kmistree(to_plot=to_plot)
         elif algorithm == "kmist":
             return self.kmist(to_plot=to_plot)
         elif algorithm == "prim":
             return self.prim_mst(to_plot=to_plot)
+        elif algorithm == "fmst":
+            return self.fmst(to_plot=to_plot)
         else:
             raise ValueError(
-                f"Unsupported algorithm: {algorithm}. Choose 'kmistree', 'kmist', or 'prim'."
+                f"Unsupported algorithm: {algorithm}. Choose 'kmistree', 'kmist', 'prim', or 'fmst'."
             )
-
-
-# # Example usage:
-# points = generate_dataset(
-#     dataset_type="circles", points_count=100, noise=0.1, no_centres=3, to_plot=False
-# )
-# mst_builder = MST(points)
-# mst_weight, edge_count, final_graph = mst_builder.apply_mst(
-#     algorithm="kmistree", to_plot=True
-# )
-# print(f"K-MSTree: Total Weight: {mst_weight}, Edge Count: {edge_count}")
-
-# mst_weight, edge_count, final_graph = mst_builder.apply_mst(
-#     algorithm="kmist", to_plot=True
-# )
-# print(f"K-MST: Total Weight: {mst_weight}, Edge Count: {edge_count}")
-
-# prim_weight = mst_builder.apply_mst(algorithm="prim", to_plot=True)
-# print(
-#     f"Prim's MST: {len(points)} nodes, {len(points) - 1} edges, Total Weight: {prim_weight}"
-# )

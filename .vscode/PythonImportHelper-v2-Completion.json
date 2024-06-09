@@ -490,11 +490,11 @@
         "documentation": {}
     },
     {
-        "label": "minimum_spanning_tree",
-        "importPath": "scipy.sparse.csgraph",
-        "description": "scipy.sparse.csgraph",
+        "label": "KMeans",
+        "importPath": "sklearn.cluster",
+        "description": "sklearn.cluster",
         "isExtraImport": true,
-        "detail": "scipy.sparse.csgraph",
+        "detail": "sklearn.cluster",
         "documentation": {}
     },
     {
@@ -511,6 +511,30 @@
         "description": "scipy.spatial.distance",
         "isExtraImport": true,
         "detail": "scipy.spatial.distance",
+        "documentation": {}
+    },
+    {
+        "label": "pdist",
+        "importPath": "scipy.spatial.distance",
+        "description": "scipy.spatial.distance",
+        "isExtraImport": true,
+        "detail": "scipy.spatial.distance",
+        "documentation": {}
+    },
+    {
+        "label": "squareform",
+        "importPath": "scipy.spatial.distance",
+        "description": "scipy.spatial.distance",
+        "isExtraImport": true,
+        "detail": "scipy.spatial.distance",
+        "documentation": {}
+    },
+    {
+        "label": "minimum_spanning_tree",
+        "importPath": "scipy.sparse.csgraph",
+        "description": "scipy.sparse.csgraph",
+        "isExtraImport": true,
+        "detail": "scipy.sparse.csgraph",
         "documentation": {}
     },
     {
@@ -578,7 +602,7 @@
         "kind": 6,
         "importPath": "kmist",
         "description": "kmist",
-        "peekOfCode": "class MST:\n    def __init__(self, points):\n        \"\"\"\n        Initialize the MST with a set of points.\n        Parameters:\n        points (list): List of points to build the KD-Tree and graph.\n        \"\"\"\n        self.points = points\n        self.points_count = len(points)\n    def build(self):",
+        "peekOfCode": "class MST:\n    def __init__(self, points):\n        self.points = points\n        self.points_count = len(points)\n    def build(self):\n        tree = KDTree()\n        tree.root = tree.build(self.points)\n        G = nx.Graph()\n        for point in self.points:\n            G.add_node(point, pos=point)",
         "detail": "kmist",
         "documentation": {}
     },
