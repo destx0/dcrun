@@ -6,80 +6,206 @@ from utils import *
 import matplotlib.pyplot as plt
 
 
-def build(points, points_count):
-    tree = KDTree()
-    tree.root = tree.build(points)
+class MST:
+    def __init__(self, points):
+        """
+        Initialize the MST with a set of points.
 
-    G = nx.Graph()
+        Parameters:
+        points (list): List of points to build the KD-Tree and graph.
+        """
+        self.points = points
+        self.points_count = len(points)
 
-    for point in points:
-        G.add_node(point, pos=point)
+    def build(self):
+        """
+        Build the KD-Tree and graph from the points.
 
-    neighbours = {}
-    maxdis = math.ceil(math.log2(points_count))
-    for point in points:
-        neighbours[point] = i_neighbors(tree, point, maxdis)
+        Returns:
+        G (networkx.Graph): Graph with points as nodes.
+        neighbours (dict): Dictionary of neighbors for each point.
+        """
+        tree = KDTree()
+        tree.root = tree.build(self.points)
 
-    return G, neighbours
+        G = nx.Graph()
 
+        for point in self.points:
+            G.add_node(point, pos=point)
 
-def kmistree(points, to_plot=True):
-    points_count = len(points)
-    G, neighbours = build(points, points_count)
+        neighbours = {}
+        maxdis = math.ceil(math.log2(self.points_count))
+        for point in self.points:
+            neighbours[point] = i_neighbors(tree, point, maxdis)
 
-    if to_plot:
-        print(f"Nodes: {len(G.nodes())}, Edges: {len(G.edges())}")
+        return G, neighbours
 
-    k = 0
-    prev_connected_components = np.inf
-    prev_G = G.copy()
+    def kmistree(self, to_plot=True):
+        """
+        Create a minimum spanning tree using the k-nearest neighbors approach.
 
-    if to_plot:
-        graphify(G, to_plot, bottom_text="")
+        Parameters:
+        to_plot (bool): Whether to plot the graph and MST.
 
-    maxdis = math.ceil(math.log2(points_count))
+        Returns:
+        mst_weight (float): Total weight of the minimum spanning tree.
+        edge_count (int): Number of edges in the final graph.
+        G (networkx.Graph): The final graph.
+        """
+        G, neighbours = self.build()
 
-    while k < maxdis:
+        if to_plot:
+            print(f"Initial Graph: {len(G.nodes())} nodes, {len(G.edges())} edges")
+
+        k = 0
+        prev_connected_components = np.inf
+
+        if to_plot:
+            graphify(G, to_plot, bottom_text="Initial Graph")
+
+        maxdis = math.ceil(math.log2(self.points_count))
+
+        while k < maxdis:
+            connected_components = list(nx.connected_components(G))
+            current_connected_components = len(connected_components)
+
+            if to_plot:
+                print(
+                    f"Iteration {k}: {current_connected_components} connected components"
+                )
+                print(f"Graph: {len(G.nodes())} nodes, {len(G.edges())} edges")
+
+            if current_connected_components == 1:
+                break
+
+            for component in connected_components:
+                for node in component:
+                    wt, pos = neighbours[node][k]
+                    G.add_edge(node, pos, weight=wt)
+
+            if to_plot:
+                graphify(G, to_plot, bottom_text=f"Iteration {k}")
+
+            k += 1
+
+        if to_plot:
+            print(f"Final Graph: {len(G.nodes())} nodes, {len(G.edges())} edges")
+
         connected_components = list(nx.connected_components(G))
         current_connected_components = len(connected_components)
 
         if to_plot:
-            print(f"Connected Components: {current_connected_components}")
-            print(f"The graph has {len(G.nodes())} nodes and {len(G.edges())} edges.")
+            print(f"Final Connected Components: {current_connected_components}")
 
-        if current_connected_components == 1:
-            break
-
-        for component in connected_components:
-            for node in component:
-                wt, pos = neighbours[node][k]
-                G.add_edge(node, pos, weight=wt)
+        mst = nx.minimum_spanning_tree(G)
+        mst_weight = round(
+            sum(data["weight"] for u, v, data in mst.edges(data=True)), 2
+        )
 
         if to_plot:
-            graphify(G, to_plot, bottom_text="")
+            print(
+                f"Minimum Spanning Tree: {len(mst.nodes())} nodes, {len(mst.edges())} edges, Total Weight: {mst_weight}"
+            )
+            graphify(
+                mst,
+                to_plot,
+                bottom_text=f"Minimum Spanning Tree: {len(G.nodes())} nodes, \nTotal Weight: {mst_weight}",
+            )
 
-        k += 1
+        return mst_weight, len(G.edges()), G
 
-    if to_plot:
-        print(f"Minimum Spanning Tree: {len(G.nodes())} nodes, {len(G.edges())} edges")
+    def prim_mst(self, to_plot=True):
+        """
+        Compute the minimum spanning tree using Prim's algorithm.
 
-    connected_components = list(nx.connected_components(G))
-    current_connected_components = len(connected_components)
+        Parameters:
+        to_plot (bool): Whether to plot the graph and MST.
 
-    if to_plot:
-        print(f"Connected Components: {current_connected_components}")
+        Returns:
+        total_weight (float): Total weight of the minimum spanning tree.
+        """
+        n = len(self.points)
+        visited = [False] * n
+        min_cost = [float("inf")] * n
+        parent = [None] * n
 
-    mst = nx.minimum_spanning_tree(G)
-    mst_weight = round(sum(data["weight"] for u, v, data in mst.edges(data=True)), 2)
+        min_cost[0] = 0
+        parent[0] = -1
 
-    if to_plot:
-        print(
-            f"Minimum Spanning Tree: {len(mst.nodes())} nodes, {len(mst.edges())} edges, Total Weight: {mst_weight}"
-        )
-        graphify(
-            mst,
-            to_plot,
-            bottom_text=f"Minimum Spanning Tree: {len(G.nodes())} nodes, \nTotal Weight: {mst_weight}",
-        )
+        G = nx.Graph()
+        for i in range(n):
+            G.add_node(i, pos=self.points[i])
 
-    return mst_weight, len(G.edges()), G
+        for _ in range(n):
+            min_index = -1
+            for i in range(n):
+                if not visited[i] and (
+                    min_index == -1 or min_cost[i] < min_cost[min_index]
+                ):
+                    min_index = i
+
+            visited[min_index] = True
+
+            for i in range(n):
+                if not visited[i]:
+                    distance = self.calculate_distance(
+                        self.points[min_index], self.points[i]
+                    )
+                    if distance < min_cost[i]:
+                        min_cost[i] = distance
+                        parent[i] = min_index
+
+        total_weight = 0
+        for i in range(1, n):
+            G.add_edge(parent[i], i, weight=min_cost[i])
+            total_weight += min_cost[i]
+
+        total_weight = round(total_weight, 2)  # Rounding to 2 decimal places
+
+        if to_plot:
+            print(
+                f"Prim's MST: {len(G.nodes())} nodes, {len(G.edges())} edges, Total Weight: {total_weight}"
+            )
+            graphify(
+                G,
+                to_plot,
+                bottom_text=f"Prim's MST: {len(G.nodes())} nodes, \nTotal Weight: {total_weight}",
+            )
+
+        return total_weight
+
+    @staticmethod
+    def calculate_distance(point1, point2):
+        """
+        Calculate the Euclidean distance between two points.
+
+        Parameters:
+        point1 (tuple): The first point.
+        point2 (tuple): The second point.
+
+        Returns:
+        float: The Euclidean distance between the two points.
+        """
+        return math.sqrt(sum((a - b) ** 2 for a, b in zip(point1, point2)))
+
+    def apply_mst(self, algorithm="kmistree", to_plot=True):
+        """
+        Apply the specified MST algorithm.
+
+        Parameters:
+        algorithm (str): The MST algorithm to apply ("kmistree" or "prim").
+        to_plot (bool): Whether to plot the graph and MST.
+
+        Returns:
+        result (varies): The result of the specified MST algorithm.
+        """
+        if algorithm == "kmistree":
+            return self.kmistree(to_plot=to_plot)
+        elif algorithm == "prim":
+            return self.prim_mst(to_plot=to_plot)
+        else:
+            raise ValueError(
+                f"Unsupported algorithm: {algorithm}. Choose 'kmistree' or 'prim'."
+            )
+
+

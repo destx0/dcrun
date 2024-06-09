@@ -574,20 +574,11 @@
         "documentation": {}
     },
     {
-        "label": "build",
-        "kind": 2,
+        "label": "MST",
+        "kind": 6,
         "importPath": "kmist",
         "description": "kmist",
-        "peekOfCode": "def build(points, points_count):\n    tree = KDTree()\n    tree.root = tree.build(points)\n    G = nx.Graph()\n    for point in points:\n        G.add_node(point, pos=point)\n    neighbours = {}\n    maxdis = math.ceil(math.log2(points_count))\n    for point in points:\n        neighbours[point] = i_neighbors(tree, point, maxdis)",
-        "detail": "kmist",
-        "documentation": {}
-    },
-    {
-        "label": "kmistree",
-        "kind": 2,
-        "importPath": "kmist",
-        "description": "kmist",
-        "peekOfCode": "def kmistree(points, to_plot=True):\n    points_count = len(points)\n    G, neighbours = build(points, points_count)\n    if to_plot:\n        print(f\"Nodes: {len(G.nodes())}, Edges: {len(G.edges())}\")\n    k = 0\n    prev_connected_components = np.inf\n    prev_G = G.copy()\n    if to_plot:\n        graphify(G, to_plot, bottom_text=\"\")",
+        "peekOfCode": "class MST:\n    def __init__(self, points):\n        \"\"\"\n        Initialize the MST with a set of points.\n        Parameters:\n        points (list): List of points to build the KD-Tree and graph.\n        \"\"\"\n        self.points = points\n        self.points_count = len(points)\n    def build(self):",
         "detail": "kmist",
         "documentation": {}
     },
