@@ -114,6 +114,91 @@ class MST:
 
         return mst_weight, len(G.edges()), G
 
+    def kmist(self, to_plot=True):
+        """
+        Create a minimum spanning tree using a custom approach where nodes are connected
+        based on the k-th and k^k-th nodes.
+
+        Parameters:
+        to_plot (bool): Whether to plot the graph and MST.
+
+        Returns:
+        mst_weight (float): Total weight of the minimum spanning tree.
+        edge_count (int): Number of edges in the final graph.
+        G (networkx.Graph): The final graph.
+        """
+        G, neighbours = self.build()
+
+        if to_plot:
+            print(f"Initial Graph: {len(G.nodes())} nodes, {len(G.edges())} edges")
+
+        k = 0
+        prev_connected_components = np.inf
+
+        if to_plot:
+            graphify(G, to_plot, bottom_text="Initial Graph")
+
+        maxdis = math.ceil(math.log2(self.points_count))
+
+        while k**k < maxdis:
+            connected_components = list(nx.connected_components(G))
+            current_connected_components = len(connected_components)
+
+            if to_plot:
+                print(
+                    f"Iteration {k}: {current_connected_components} connected components"
+                )
+                print(f"Graph: {len(G.nodes())} nodes, {len(G.edges())} edges")
+
+            if current_connected_components == 1:
+                break
+
+            for node in G.nodes():
+                k_th_node = (
+                    neighbours[node][k][1] if k < len(neighbours[node]) else None
+                )
+                k_k_th_node = (
+                    neighbours[node][k**k][1]
+                    if k**k < len(neighbours[node])
+                    else None
+                )
+
+                if k_th_node:
+                    G.add_edge(node, k_th_node)
+                if k_k_th_node:
+                    G.add_edge(node, k_k_th_node)
+
+            if to_plot:
+                graphify(G, to_plot, bottom_text=f"Iteration {k}")
+
+            k += 1
+
+        if to_plot:
+            print(f"Final Graph: {len(G.nodes())} nodes, {len(G.edges())} edges")
+
+        connected_components = list(nx.connected_components(G))
+        current_connected_components = len(connected_components)
+
+        if to_plot:
+            print(f"Final Connected Components: {current_connected_components}")
+
+        mst = nx.minimum_spanning_tree(G)
+        mst_weight = round(
+            sum(data["weight"] for u, v, data in mst.edges(data=True)), 2
+        )
+
+        if to_plot:
+            print(
+                f"Minimum Spanning Tree: {len(mst.nodes())} nodes, {len(mst.edges())} edges, Total Weight: {mst_weight}"
+            )
+            graphify(
+                mst,
+                to_plot,
+                bottom_text=f"Minimum Spanning Tree: {len(G.nodes())} nodes, \nTotal Weight: {mst_weight}",
+            )
+
+        return mst_weight, len(G.edges()), G
+
     def prim_mst(self, to_plot=True):
         """
         Compute the minimum spanning tree using Prim's algorithm.
@@ -193,7 +278,7 @@ class MST:
         Apply the specified MST algorithm.
 
         Parameters:
-        algorithm (str): The MST algorithm to apply ("kmistree" or "prim").
+        algorithm (str): The MST algorithm to apply ("kmistree", "kmist", or "prim").
         to_plot (bool): Whether to plot the graph and MST.
 
         Returns:
@@ -201,11 +286,32 @@ class MST:
         """
         if algorithm == "kmistree":
             return self.kmistree(to_plot=to_plot)
+        elif algorithm == "kmist":
+            return self.kmist(to_plot=to_plot)
         elif algorithm == "prim":
             return self.prim_mst(to_plot=to_plot)
         else:
             raise ValueError(
-                f"Unsupported algorithm: {algorithm}. Choose 'kmistree' or 'prim'."
+                f"Unsupported algorithm: {algorithm}. Choose 'kmistree', 'kmist', or 'prim'."
             )
 
 
+# Example usage:
+points = generate_dataset(
+    dataset_type="circles", points_count=100, noise=0.1, no_centres=3, to_plot=False
+)
+mst_builder = MST(points)
+mst_weight, edge_count, final_graph = mst_builder.apply_mst(
+    algorithm="kmistree", to_plot=True
+)
+print(f"K-MSTree: Total Weight: {mst_weight}, Edge Count: {edge_count}")
+
+mst_weight, edge_count, final_graph = mst_builder.apply_mst(
+    algorithm="kmist", to_plot=True
+)
+print(f"K-MST: Total Weight: {mst_weight}, Edge Count: {edge_count}")
+
+prim_weight = mst_builder.apply_mst(algorithm="prim", to_plot=True)
+print(
+    f"Prim's MST: {len(points)} nodes, {len(points) - 1} edges, Total Weight: {prim_weight}"
+)

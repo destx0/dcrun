@@ -583,6 +583,33 @@
         "documentation": {}
     },
     {
+        "label": "points",
+        "kind": 5,
+        "importPath": "kmist",
+        "description": "kmist",
+        "peekOfCode": "points = generate_dataset(\n    dataset_type=\"circles\", points_count=100, noise=0.1, no_centres=3, to_plot=False\n)\nmst_builder = MST(points)\nmst_weight, edge_count, final_graph = mst_builder.apply_mst(\n    algorithm=\"kmistree\", to_plot=True\n)\nprint(f\"K-MSTree: Total Weight: {mst_weight}, Edge Count: {edge_count}\")\nmst_weight, edge_count, final_graph = mst_builder.apply_mst(\n    algorithm=\"kmist\", to_plot=True",
+        "detail": "kmist",
+        "documentation": {}
+    },
+    {
+        "label": "mst_builder",
+        "kind": 5,
+        "importPath": "kmist",
+        "description": "kmist",
+        "peekOfCode": "mst_builder = MST(points)\nmst_weight, edge_count, final_graph = mst_builder.apply_mst(\n    algorithm=\"kmistree\", to_plot=True\n)\nprint(f\"K-MSTree: Total Weight: {mst_weight}, Edge Count: {edge_count}\")\nmst_weight, edge_count, final_graph = mst_builder.apply_mst(\n    algorithm=\"kmist\", to_plot=True\n)\nprint(f\"K-MST: Total Weight: {mst_weight}, Edge Count: {edge_count}\")\nprim_weight = mst_builder.apply_mst(algorithm=\"prim\", to_plot=True)",
+        "detail": "kmist",
+        "documentation": {}
+    },
+    {
+        "label": "prim_weight",
+        "kind": 5,
+        "importPath": "kmist",
+        "description": "kmist",
+        "peekOfCode": "prim_weight = mst_builder.apply_mst(algorithm=\"prim\", to_plot=True)\nprint(\n    f\"Prim's MST: {len(points)} nodes, {len(points) - 1} edges, Total Weight: {prim_weight}\"\n)",
+        "detail": "kmist",
+        "documentation": {}
+    },
+    {
         "label": "savefile",
         "kind": 5,
         "importPath": "m copy",
