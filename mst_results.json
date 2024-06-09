@@ -5,65 +5,31 @@
     "kmistree": {
         "weight": 41.5,
         "edge_count": 2518,
-        "runtime": 0.1439342498779297,
+        "runtime": 0.12899184226989746,
         "weight_error": 0.0799999999999983,
         "edge_count_error": 397.1405877680699,
-        "runtime_error": 13.186657699799902
+        "runtime_error": 14.63324652376666
     },
     "kmist": {
         "weight": 41.52,
         "edge_count": 2661,
-        "runtime": 0.09333348274230957,
+        "runtime": 0.09117269515991211,
         "weight_error": 0.10000000000000142,
         "edge_count_error": 375.7985719654265,
-        "runtime_error": 20.335806922131766
+        "runtime_error": 20.70323164385496
     },
     "prim": {
         "weight": 41.42,
         "edge_count": 1000000,
-        "runtime": 1.8980116844177246
+        "runtime": 1.8875694274902344
     },
     "fmst": {
-        "weight": 42.79543540031504,
-        "edge_count": 17920,
-        "runtime": 0.2665519714355469,
-        "weight_error": 1.375435400315041,
-        "edge_count_error": 55.80357142857143,
-        "runtime_error": 7.1206064400715565
-    }
-}
-{
-    "dataset_type": "circles",
-    "points_count": 1000,
-    "run": 2,
-    "kmistree": {
-        "weight": 41.5,
-        "edge_count": 2518,
-        "runtime": 0.07252931594848633,
-        "weight_error": 0.0799999999999983,
-        "edge_count_error": 397.1405877680699,
-        "runtime_error": 25.984050491436836
-    },
-    "kmist": {
-        "weight": 41.52,
-        "edge_count": 2661,
-        "runtime": 0.09379792213439941,
-        "weight_error": 0.10000000000000142,
-        "edge_count_error": 375.7985719654265,
-        "runtime_error": 20.092187170356137
-    },
-    "prim": {
-        "weight": 41.42,
-        "edge_count": 1000000,
-        "runtime": 1.8846054077148438
-    },
-    "fmst": {
-        "weight": 42.51861026101996,
-        "edge_count": 17218,
-        "runtime": 0.2577788829803467,
-        "weight_error": 1.0986102610199566,
-        "edge_count_error": 58.07875479149727,
-        "runtime_error": 7.310937908977315
+        "weight": 42.5159437100069,
+        "edge_count": 17498,
+        "runtime": 0.35268664360046387,
+        "weight_error": 1.0959437100068996,
+        "edge_count_error": 57.14938850154304,
+        "runtime_error": 5.351973094928259
     }
 }
 {
@@ -73,200 +39,166 @@
     "kmistree": {
         "weight": 35.52,
         "edge_count": 2520,
-        "runtime": 0.07442641258239746,
+        "runtime": 0.07158207893371582,
         "weight_error": 0.07000000000000028,
         "edge_count_error": 396.8253968253968,
-        "runtime_error": 26.282060563736717
+        "runtime_error": 27.37319184510903
     },
     "kmist": {
         "weight": 35.51,
         "edge_count": 2658,
-        "runtime": 0.09867358207702637,
+        "runtime": 0.09386396408081055,
         "weight_error": 0.05999999999999517,
         "edge_count_error": 376.2227238525207,
-        "runtime_error": 19.823740477013146
+        "runtime_error": 20.87521018862365
     },
     "prim": {
         "weight": 35.45,
         "edge_count": 1000000,
-        "runtime": 1.9560794830322266
+        "runtime": 1.9594299793243408
     },
     "fmst": {
-        "weight": 36.49396974465484,
-        "edge_count": 16809,
-        "runtime": 0.27573251724243164,
-        "weight_error": 1.043969744654838,
-        "edge_count_error": 59.49193884228687,
-        "runtime_error": 7.094119701929778
+        "weight": 36.286076688116104,
+        "edge_count": 17167,
+        "runtime": 0.2608764171600342,
+        "weight_error": 0.8360766881161013,
+        "edge_count_error": 58.251296091338034,
+        "runtime_error": 7.510950973089805
+    }
+}
+{
+    "dataset_type": "blobs",
+    "points_count": 1000,
+    "run": 1,
+    "kmistree": {
+        "weight": 98.03,
+        "edge_count": 2485,
+        "runtime": 0.07331490516662598,
+        "weight_error": 0.15000000000000568,
+        "edge_count_error": 402.4144869215292,
+        "runtime_error": 25.79668298076454
+    },
+    "kmist": {
+        "weight": 98.02,
+        "edge_count": 2625,
+        "runtime": 0.09444499015808105,
+        "weight_error": 0.14000000000000057,
+        "edge_count_error": 380.95238095238096,
+        "runtime_error": 20.025216405683977
+    },
+    "prim": {
+        "weight": 97.88,
+        "edge_count": 1000000,
+        "runtime": 1.8912813663482666
+    },
+    "fmst": {
+        "weight": 102.92887503417815,
+        "edge_count": 20742,
+        "runtime": 0.2964153289794922,
+        "weight_error": 5.0488750341781525,
+        "edge_count_error": 48.21135859608524,
+        "runtime_error": 6.380511334753261
+    }
+}
+{
+    "dataset_type": "circles",
+    "points_count": 3000,
+    "run": 1,
+    "kmistree": {
+        "weight": 70.83,
+        "edge_count": 9167,
+        "runtime": 0.3454704284667969,
+        "weight_error": 0.030000000000001137,
+        "edge_count_error": 981.7824806370677,
+        "runtime_error": 46.150532640261474
+    },
+    "kmist": {
+        "weight": 70.96,
+        "edge_count": 7887,
+        "runtime": 0.3133106231689453,
+        "weight_error": 0.1599999999999966,
+        "edge_count_error": 1141.1182959300113,
+        "runtime_error": 50.887659422274986
+    },
+    "prim": {
+        "weight": 70.8,
+        "edge_count": 9000000,
+        "runtime": 15.943644285202026
+    },
+    "fmst": {
+        "weight": 73.05117530836539,
+        "edge_count": 93018,
+        "runtime": 1.1613178253173828,
+        "weight_error": 2.25117530836539,
+        "edge_count_error": 96.75546668386764,
+        "runtime_error": 13.72892410468659
     }
 }
 {
     "dataset_type": "moons",
-    "points_count": 1000,
-    "run": 2,
+    "points_count": 3000,
+    "run": 1,
     "kmistree": {
-        "weight": 35.52,
-        "edge_count": 2520,
-        "runtime": 0.12795114517211914,
+        "weight": 61.61,
+        "edge_count": 7453,
+        "runtime": 0.32372498512268066,
         "weight_error": 0.07000000000000028,
-        "edge_count_error": 396.8253968253968,
-        "runtime_error": 15.348004159011378
+        "edge_count_error": 1207.5674225144237,
+        "runtime_error": 52.88254096145164
     },
     "kmist": {
-        "weight": 35.51,
-        "edge_count": 2658,
-        "runtime": 0.3786180019378662,
-        "weight_error": 0.05999999999999517,
-        "edge_count_error": 376.2227238525207,
-        "runtime_error": 5.1867441542682515
+        "weight": 61.62,
+        "edge_count": 7898,
+        "runtime": 0.31770896911621094,
+        "weight_error": 0.0799999999999983,
+        "edge_count_error": 1139.5289946821981,
+        "runtime_error": 53.883904611246855
     },
     "prim": {
-        "weight": 35.45,
-        "edge_count": 1000000,
-        "runtime": 1.9637947082519531
+        "weight": 61.54,
+        "edge_count": 9000000,
+        "runtime": 17.119399785995483
     },
     "fmst": {
-        "weight": 36.61420115305154,
-        "edge_count": 17023,
-        "runtime": 0.2998850345611572,
-        "weight_error": 1.1642011530515362,
-        "edge_count_error": 58.74405216471832,
-        "runtime_error": 6.54849186164195
+        "weight": 63.853605111937114,
+        "edge_count": 88697,
+        "runtime": 1.1264979839324951,
+        "weight_error": 2.3136051119371146,
+        "edge_count_error": 101.46904630370813,
+        "runtime_error": 15.197008809756872
     }
 }
 {
     "dataset_type": "blobs",
-    "points_count": 1000,
-    "run": 1,
-    "kmistree": {
-        "weight": 98.03,
-        "edge_count": 2485,
-        "runtime": 0.0768578052520752,
-        "weight_error": 0.15000000000000568,
-        "edge_count_error": 402.4144869215292,
-        "runtime_error": 24.382200300901154
-    },
-    "kmist": {
-        "weight": 98.02,
-        "edge_count": 2625,
-        "runtime": 0.09709453582763672,
-        "weight_error": 0.14000000000000057,
-        "edge_count_error": 380.95238095238096,
-        "runtime_error": 19.300389938218856
-    },
-    "prim": {
-        "weight": 97.88,
-        "edge_count": 1000000,
-        "runtime": 1.87396240234375
-    },
-    "fmst": {
-        "weight": 101.9076829802821,
-        "edge_count": 18170,
-        "runtime": 0.27886438369750977,
-        "weight_error": 4.027682980282108,
-        "edge_count_error": 55.0357732526142,
-        "runtime_error": 6.719977565785086
-    }
-}
-{
-    "dataset_type": "blobs",
-    "points_count": 1000,
-    "run": 2,
-    "kmistree": {
-        "weight": 98.03,
-        "edge_count": 2485,
-        "runtime": 0.07380247116088867,
-        "weight_error": 0.15000000000000568,
-        "edge_count_error": 402.4144869215292,
-        "runtime_error": 25.364781133904053
-    },
-    "kmist": {
-        "weight": 98.02,
-        "edge_count": 2625,
-        "runtime": 0.09786272048950195,
-        "weight_error": 0.14000000000000057,
-        "edge_count_error": 380.95238095238096,
-        "runtime_error": 19.128668391535474
-    },
-    "prim": {
-        "weight": 97.88,
-        "edge_count": 1000000,
-        "runtime": 1.871983528137207
-    },
-    "fmst": {
-        "weight": 101.89340779064919,
-        "edge_count": 19155,
-        "runtime": 0.27608656883239746,
-        "weight_error": 4.013407790649197,
-        "edge_count_error": 52.205690420255806,
-        "runtime_error": 6.78042230034603
-    }
-}
-{
-    "dataset_type": "circles",
     "points_count": 3000,
     "run": 1,
     "kmistree": {
-        "weight": 70.83,
-        "edge_count": 9167,
-        "runtime": 0.27521228790283203,
-        "weight_error": 0.030000000000001137,
-        "edge_count_error": 981.7824806370677,
-        "runtime_error": 57.49119831173917
+        "weight": 168.81,
+        "edge_count": 7355,
+        "runtime": 0.34568142890930176,
+        "weight_error": 0.09999999999999432,
+        "edge_count_error": 1223.6573759347382,
+        "runtime_error": 46.652452974116024
     },
     "kmist": {
-        "weight": 70.96,
-        "edge_count": 7887,
-        "runtime": 0.42303991317749023,
-        "weight_error": 0.1599999999999966,
-        "edge_count_error": 1141.1182959300113,
-        "runtime_error": 37.40139813949609
+        "weight": 169.04,
+        "edge_count": 7824,
+        "runtime": 0.31963419914245605,
+        "weight_error": 0.3299999999999841,
+        "edge_count_error": 1150.3067484662577,
+        "runtime_error": 50.45419623270326
     },
     "prim": {
-        "weight": 70.8,
+        "weight": 168.71,
         "edge_count": 9000000,
-        "runtime": 15.82228422164917
+        "runtime": 16.12688660621643
     },
     "fmst": {
-        "weight": 73.17144238208174,
-        "edge_count": 91602,
-        "runtime": 1.0867726802825928,
-        "weight_error": 2.3714423820817387,
-        "edge_count_error": 98.25112988799371,
-        "runtime_error": 14.558963901756265
-    }
-}
-{
-    "dataset_type": "circles",
-    "points_count": 3000,
-    "run": 2,
-    "kmistree": {
-        "weight": 70.83,
-        "edge_count": 9167,
-        "runtime": 0.3706784248352051,
-        "weight_error": 0.030000000000001137,
-        "edge_count_error": 981.7824806370677,
-        "runtime_error": 42.46567010004258
-    },
-    "kmist": {
-        "weight": 70.96,
-        "edge_count": 7887,
-        "runtime": 0.30478739738464355,
-        "weight_error": 0.1599999999999966,
-        "edge_count_error": 1141.1182959300113,
-        "runtime_error": 51.646189564688186
-    },
-    "prim": {
-        "weight": 70.8,
-        "edge_count": 9000000,
-        "runtime": 15.741107702255249
-    },
-    "fmst": {
-        "weight": 73.11574539412774,
-        "edge_count": 88378,
-        "runtime": 1.2477107048034668,
-        "weight_error": 2.3157453941277453,
-        "edge_count_error": 101.83529837742425,
-        "runtime_error": 12.615991544878755
+        "weight": 175.7956060223599,
+        "edge_count": 105465,
+        "runtime": 1.2550292015075684,
+        "weight_error": 7.085606022359883,
+        "edge_count_error": 85.33636751528944,
+        "runtime_error": 12.849809858483344
     }
 }

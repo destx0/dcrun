@@ -299,7 +299,7 @@ class MST:
                 print(
                     f"After processing cluster {cluster_index}, number of edges: {total_edges}"
                 )
-                print(f"Total weight of edges: {self.calculate_total_weight(G)}")
+                print(f"Total weight of edges: {self.calculate_total_weight_fmst(G)}")
 
         if to_plot:
             for cluster_index, (cluster, color) in enumerate(zip(clusters, colors)):
@@ -325,7 +325,7 @@ class MST:
             print(
                 f"After adding cluster points and centroids, number of edges: {total_edges}"
             )
-            print(f"Total weight of edges: {self.calculate_total_weight(G)}")
+            print(f"Total weight of edges: {self.calculate_total_weight_fmst(G)}")
 
         centroid_points = np.array(centroids)
         centroid_edges = self.prim_mst_cluster(centroid_points)
@@ -358,7 +358,7 @@ class MST:
         centroid_points = [tuple(point) for point in centroid_points]
 
         for edge in centroid_edges:
-            self.merge_comps(
+            self.merge_comps_fmst(
                 centroid_points[edge[0]],
                 centroid_points[edge[1]],
                 core_points_map,
@@ -370,15 +370,15 @@ class MST:
                 print(
                     f"After merging {centroid_points[edge[0]]} and {centroid_points[edge[1]]}, number of edges: {total_edges}"
                 )
-                print(f"Total weight of edges: {self.calculate_total_weight(G)}")
+                print(f"Total weight of edges: {self.calculate_total_weight_fmst(G)}")
 
         if to_plot:
             plt.figure(figsize=(10, 8))
+            pos = {node: node for node in G.keys()}
             nx_graph = nx.Graph()
             for node, edges in G.items():
                 for neighbor, weight in edges:
                     nx_graph.add_edge(node, neighbor, weight=weight)
-            pos = {node: node for node in nx_graph.nodes()}
             nx.draw(
                 nx_graph,
                 pos,
@@ -392,7 +392,7 @@ class MST:
             plt.ylabel("Y-coordinate")
             plt.show()
 
-        mst_weight = self.calculate_total_weight(G)
+        mst_weight = self.calculate_total_weight_fmst(G)
         return mst_weight, total_edges, G
 
     def prim_mst_cluster(self, points):
@@ -429,6 +429,19 @@ class MST:
         return mst_edges
 
     def merge_comps(self, core1, core2, core_points_map, G, to_plot):
+        pivot1 = min(
+            core_points_map[core1],
+            key=lambda node: self.euclidean_distance(node, core2),
+        )
+        pivot2 = min(
+            core_points_map[core2],
+            key=lambda node: self.euclidean_distance(node, pivot1),
+        )
+        G.add_edge(pivot1, pivot2, weight=self.euclidean_distance(pivot1, pivot2))
+        if to_plot:
+            print(f"Merging {core1} and {core2} with pivot {pivot1} and {pivot2}")
+
+    def merge_comps_fmst(self, core1, core2, core_points_map, G, to_plot):
         pivot1 = min(
             core_points_map[core1],
             key=lambda node: self.euclidean_distance(node, core2),
@@ -474,6 +487,11 @@ class MST:
 
     @staticmethod
     def calculate_total_weight(G):
+        total_weight = sum(data["weight"] for u, v, data in G.edges(data=True))
+        return total_weight
+
+    @staticmethod
+    def calculate_total_weight_fmst(G):
         total_weight = sum(weight for edges in G.values() for _, weight in edges) / 2
         return total_weight
 
