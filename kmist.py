@@ -55,7 +55,9 @@ class MST:
         G, neighbours = self.build()
 
         if to_plot:
-            print(f"Initial Graph: {len(G.nodes())} nodes, {len(G.edges())} edges")
+            print(
+                f"K-MSTree Initial Graph: {len(G.nodes())} nodes, {len(G.edges())} edges"
+            )
 
         k = 0
         prev_connected_components = np.inf
@@ -71,9 +73,9 @@ class MST:
 
             if to_plot:
                 print(
-                    f"Iteration {k}: {current_connected_components} connected components"
+                    f"K-MSTree Iteration {k}: {current_connected_components} connected components"
                 )
-                print(f"Graph: {len(G.nodes())} nodes, {len(G.edges())} edges")
+                print(f"K-MSTree Graph: {len(G.nodes())} nodes, {len(G.edges())} edges")
 
             if current_connected_components == 1:
                 break
@@ -88,14 +90,19 @@ class MST:
 
             k += 1
 
-        if to_plot:
-            print(f"Final Graph: {len(G.nodes())} nodes, {len(G.edges())} edges")
-
         connected_components = list(nx.connected_components(G))
         current_connected_components = len(connected_components)
 
+        if current_connected_components > 1:
+            self.merge_phase(G)
+
         if to_plot:
-            print(f"Final Connected Components: {current_connected_components}")
+            print(
+                f"K-MSTree Final Graph: {len(G.nodes())} nodes, {len(G.edges())} edges"
+            )
+            print(
+                f"K-MSTree Final Connected Components: {current_connected_components}"
+            )
 
         mst = nx.minimum_spanning_tree(G)
         mst_weight = round(
@@ -104,7 +111,7 @@ class MST:
 
         if to_plot:
             print(
-                f"Minimum Spanning Tree: {len(mst.nodes())} nodes, {len(mst.edges())} edges, Total Weight: {mst_weight}"
+                f"K-MSTree Minimum Spanning Tree: {len(mst.nodes())} nodes, {len(mst.edges())} edges, Total Weight: {mst_weight}"
             )
             graphify(
                 mst,
@@ -130,7 +137,9 @@ class MST:
         G, neighbours = self.build()
 
         if to_plot:
-            print(f"Initial Graph: {len(G.nodes())} nodes, {len(G.edges())} edges")
+            print(
+                f"K-MST Initial Graph: {len(G.nodes())} nodes, {len(G.edges())} edges"
+            )
 
         k = 0
         prev_connected_components = np.inf
@@ -146,9 +155,9 @@ class MST:
 
             if to_plot:
                 print(
-                    f"Iteration {k}: {current_connected_components} connected components"
+                    f"K-MST Iteration {k}: {current_connected_components} connected components"
                 )
-                print(f"Graph: {len(G.nodes())} nodes, {len(G.edges())} edges")
+                print(f"K-MST Graph: {len(G.nodes())} nodes, {len(G.edges())} edges")
 
             if current_connected_components == 1:
                 break
@@ -164,23 +173,30 @@ class MST:
                 )
 
                 if k_th_node:
-                    G.add_edge(node, k_th_node)
+                    G.add_edge(
+                        node, k_th_node, weight=self.euclidean_distance(node, k_th_node)
+                    )
                 if k_k_th_node:
-                    G.add_edge(node, k_k_th_node)
+                    G.add_edge(
+                        node,
+                        k_k_th_node,
+                        weight=self.euclidean_distance(node, k_k_th_node),
+                    )
 
             if to_plot:
                 graphify(G, to_plot, bottom_text=f"Iteration {k}")
 
             k += 1
 
-        if to_plot:
-            print(f"Final Graph: {len(G.nodes())} nodes, {len(G.edges())} edges")
-
         connected_components = list(nx.connected_components(G))
         current_connected_components = len(connected_components)
 
+        if current_connected_components > 1:
+            self.merge_phase(G)
+
         if to_plot:
-            print(f"Final Connected Components: {current_connected_components}")
+            print(f"K-MST Final Graph: {len(G.nodes())} nodes, {len(G.edges())} edges")
+            print(f"K-MST Final Connected Components: {current_connected_components}")
 
         mst = nx.minimum_spanning_tree(G)
         mst_weight = round(
@@ -189,7 +205,7 @@ class MST:
 
         if to_plot:
             print(
-                f"Minimum Spanning Tree: {len(mst.nodes())} nodes, {len(mst.edges())} edges, Total Weight: {mst_weight}"
+                f"K-MST Minimum Spanning Tree: {len(mst.nodes())} nodes, {len(mst.edges())} edges, Total Weight: {mst_weight}"
             )
             graphify(
                 mst,
@@ -233,7 +249,7 @@ class MST:
 
             for i in range(n):
                 if not visited[i]:
-                    distance = self.calculate_distance(
+                    distance = self.euclidean_distance(
                         self.points[min_index], self.points[i]
                     )
                     if distance < min_cost[i]:
@@ -260,7 +276,7 @@ class MST:
         return total_weight
 
     @staticmethod
-    def calculate_distance(point1, point2):
+    def euclidean_distance(point1, point2):
         """
         Calculate the Euclidean distance between two points.
 
@@ -271,7 +287,60 @@ class MST:
         Returns:
         float: The Euclidean distance between the two points.
         """
-        return math.sqrt(sum((a - b) ** 2 for a, b in zip(point1, point2)))
+        return np.linalg.norm(np.array(point1) - np.array(point2))
+
+    def merge_phase(self, G):
+        """
+        Merge disconnected components of the graph.
+
+        Parameters:
+        G (networkx.Graph): The graph to merge components in.
+        """
+        core_points_map = {}
+        for component in nx.connected_components(G):
+            centroid = np.mean([node for node in component], axis=0)
+            closest_point = min(
+                component, key=lambda node: self.euclidean_distance(node, centroid)
+            )
+            core_points_map[closest_point] = component
+
+        core_points = list(core_points_map.keys())
+
+        minc = [float("inf")] * len(core_points[0])
+        maxc = [float("-inf")] * len(core_points[0])
+
+        for point in core_points:
+            for i in range(len(point)):
+                minc[i] = min(minc[i], point[i])
+                maxc[i] = max(maxc[i], point[i])
+
+        diff = [maxc[i] - minc[i] for i in range(len(minc))]
+        min_diff_axis = diff.index(max(diff))
+
+        sorted_core_points = sorted(core_points, key=lambda point: point[min_diff_axis])
+        for core1, core2 in zip(sorted_core_points, sorted_core_points[1:]):
+            self.merge_comps(core1, core2, core_points_map, G)
+
+    def merge_comps(self, core1, core2, core_points_map, G):
+        """
+        Merge two components in the graph.
+
+        Parameters:
+        core1 (tuple): The first core point.
+        core2 (tuple): The second core point.
+        core_points_map (dict): Map of core points to their components.
+        G (networkx.Graph): The graph to merge components in.
+        """
+        pivot2 = min(
+            core_points_map[core2],
+            key=lambda node: self.euclidean_distance(node, core1),
+        )
+        pivot1 = min(
+            core_points_map[core1],
+            key=lambda node: self.euclidean_distance(node, pivot2),
+        )
+        G.add_edge(pivot1, pivot2, weight=self.euclidean_distance(pivot1, pivot2))
+        print(f"Merging {core1} and {core2} with pivot {pivot1} and {pivot2}")
 
     def apply_mst(self, algorithm="kmistree", to_plot=True):
         """
@@ -296,22 +365,22 @@ class MST:
             )
 
 
-# Example usage:
-points = generate_dataset(
-    dataset_type="circles", points_count=100, noise=0.1, no_centres=3, to_plot=False
-)
-mst_builder = MST(points)
-mst_weight, edge_count, final_graph = mst_builder.apply_mst(
-    algorithm="kmistree", to_plot=True
-)
-print(f"K-MSTree: Total Weight: {mst_weight}, Edge Count: {edge_count}")
+# # Example usage:
+# points = generate_dataset(
+#     dataset_type="circles", points_count=100, noise=0.1, no_centres=3, to_plot=False
+# )
+# mst_builder = MST(points)
+# mst_weight, edge_count, final_graph = mst_builder.apply_mst(
+#     algorithm="kmistree", to_plot=True
+# )
+# print(f"K-MSTree: Total Weight: {mst_weight}, Edge Count: {edge_count}")
 
-mst_weight, edge_count, final_graph = mst_builder.apply_mst(
-    algorithm="kmist", to_plot=True
-)
-print(f"K-MST: Total Weight: {mst_weight}, Edge Count: {edge_count}")
+# mst_weight, edge_count, final_graph = mst_builder.apply_mst(
+#     algorithm="kmist", to_plot=True
+# )
+# print(f"K-MST: Total Weight: {mst_weight}, Edge Count: {edge_count}")
 
-prim_weight = mst_builder.apply_mst(algorithm="prim", to_plot=True)
-print(
-    f"Prim's MST: {len(points)} nodes, {len(points) - 1} edges, Total Weight: {prim_weight}"
-)
+# prim_weight = mst_builder.apply_mst(algorithm="prim", to_plot=True)
+# print(
+#     f"Prim's MST: {len(points)} nodes, {len(points) - 1} edges, Total Weight: {prim_weight}"
+# )
