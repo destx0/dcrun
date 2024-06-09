@@ -38,7 +38,6 @@ class MST:
             )
 
         k = 0
-        prev_connected_components = np.inf
 
         if to_plot:
             graphify(G, to_plot, bottom_text="Initial Graph")
@@ -108,7 +107,6 @@ class MST:
             )
 
         k = 0
-        prev_connected_components = np.inf
 
         if to_plot:
             graphify(G, to_plot, bottom_text="Initial Graph")
@@ -443,6 +441,32 @@ class MST:
         G[pivot2].append((pivot1, self.euclidean_distance(pivot1, pivot2)))
         if to_plot:
             print(f"Merging {core1} and {core2} with pivot {pivot1} and {pivot2}")
+
+    def merge_phase(self, G, to_plot):
+        core_points_map = {}
+        for component in nx.connected_components(G):
+            centroid = np.mean([node for node in component], axis=0)
+            closest_point = min(
+                component, key=lambda node: self.euclidean_distance(node, centroid)
+            )
+            core_points_map[closest_point] = component
+
+        core_points = list(core_points_map.keys())
+
+        minc = [float("inf")] * len(core_points[0])
+        maxc = [float("-inf")] * len(core_points[0])
+
+        for point in core_points:
+            for i in range(len(point)):
+                minc[i] = min(minc[i], point[i])
+                maxc[i] = max(maxc[i], point[i])
+
+        diff = [maxc[i] - minc[i] for i in range(len(minc))]
+        min_diff_axis = diff.index(max(diff))
+
+        sorted_core_points = sorted(core_points, key=lambda point: point[min_diff_axis])
+        for core1, core2 in zip(sorted_core_points, sorted_core_points[1:]):
+            self.merge_comps(core1, core2, core_points_map, G, to_plot)
 
     @staticmethod
     def euclidean_distance(point1, point2):
