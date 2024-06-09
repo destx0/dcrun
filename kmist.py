@@ -72,7 +72,7 @@ class MST:
         current_connected_components = len(connected_components)
 
         if current_connected_components > 1:
-            self.merge_phase(G)
+            self.merge_phase(G, to_plot)
 
         if to_plot:
             print(
@@ -97,7 +97,7 @@ class MST:
                 bottom_text=f"Minimum Spanning Tree: {len(G.nodes())} nodes, \nTotal Weight: {mst_weight}",
             )
 
-        return mst_weight, len(G.edges()), G
+        return mst_weight, len(G.edges()), mst
 
     def kmist(self, to_plot=True):
         G, neighbours = self.build()
@@ -158,7 +158,7 @@ class MST:
         current_connected_components = len(connected_components)
 
         if current_connected_components > 1:
-            self.merge_phase(G)
+            self.merge_phase(G, to_plot)
 
         if to_plot:
             print(f"K-MST Final Graph: {len(G.nodes())} nodes, {len(G.edges())} edges")
@@ -179,50 +179,60 @@ class MST:
                 bottom_text=f"Minimum Spanning Tree: {len(G.nodes())} nodes, \nTotal Weight: {mst_weight}",
             )
 
-        return mst_weight, len(G.edges()), G
+        return mst_weight, len(G.edges()), mst
 
     def prim_mst(self, to_plot=True):
         n = len(self.points)
-        visited = [False] * n
-        min_cost = [float("inf")] * n
-        parent = [None] * n
+        if n == 0:
+            return 0, 0, nx.Graph()
 
-        min_cost[0] = 0
-        parent[0] = -1
+        in_mst = [False] * n
+        min_edge = [float("inf")] * n
+        parent = [-1] * n
+        min_edge[0] = 0
 
-        G = nx.Graph()
-        for i in range(n):
-            G.add_node(i, pos=self.points[i])
+        mst_edges = []
+        total_weight = 0
+        edge_count = 0
 
         for _ in range(n):
-            min_index = -1
+            u = -1
             for i in range(n):
-                if not visited[i] and (
-                    min_index == -1 or min_cost[i] < min_cost[min_index]
+                if not in_mst[i] and (u == -1 or min_edge[i] < min_edge[u]):
+                    u = i
+
+            in_mst[u] = True
+
+            if parent[u] != -1:
+                mst_edges.append((u, parent[u]))
+                total_weight += self.euclidean_distance(
+                    self.points[u], self.points[parent[u]]
+                )
+
+            for v in range(n):
+                if (
+                    not in_mst[v]
+                    and self.euclidean_distance(self.points[u], self.points[v])
+                    < min_edge[v]
                 ):
-                    min_index = i
-
-            visited[min_index] = True
-
-            for i in range(n):
-                if not visited[i]:
-                    distance = self.euclidean_distance(
-                        self.points[min_index], self.points[i]
+                    min_edge[v] = self.euclidean_distance(
+                        self.points[u], self.points[v]
                     )
-                    if distance < min_cost[i]:
-                        min_cost[i] = distance
-                        parent[i] = min_index
+                    parent[v] = u
+                edge_count += 1
 
-        total_weight = 0
-        for i in range(1, n):
-            G.add_edge(parent[i], i, weight=min_cost[i])
-            total_weight += min_cost[i]
+        G = nx.Graph()
+        for u, v in mst_edges:
+            G.add_edge(
+                tuple(self.points[u]),
+                tuple(self.points[v]),
+                weight=self.euclidean_distance(self.points[u], self.points[v]),
+            )
 
         total_weight = round(total_weight, 2)
-
         if to_plot:
             print(
-                f"Prim's MST: {len(G.nodes())} nodes, {len(G.edges())} edges, Total Weight: {total_weight}"
+                f"Prim's MST: {len(G.nodes())} nodes, {edge_count} edges, Total Weight: {total_weight}"
             )
             graphify(
                 G,
@@ -230,7 +240,7 @@ class MST:
                 bottom_text=f"Prim's MST: {len(G.nodes())} nodes, \nTotal Weight: {total_weight}",
             )
 
-        return total_weight
+        return total_weight, edge_count, G
 
     def fmst(self, to_plot=True):
         n = len(self.points)
@@ -253,31 +263,33 @@ class MST:
         if to_plot:
             plt.figure(figsize=(10, 8))
 
-        G = nx.Graph()
+        G = {point: [] for cluster in clusters for point in cluster}
+        total_edges = 0
 
         colors = plt.cm.rainbow(np.linspace(0, 1, k))
         for cluster_index, (cluster, color) in enumerate(zip(clusters, colors)):
             if len(cluster) > 1:
-                cluster_points = np.array(cluster)
-                distances = pdist(cluster_points)
-                dist_matrix = squareform(distances)
+                mst_edges = self.prim_mst_cluster(cluster)
+                total_edges += (
+                    len(cluster) * (len(cluster) - 1) // 2
+                )  # Count all edges in Prim's MST
 
-                cluster_graph = nx.Graph()
-                for i in range(len(cluster_points)):
-                    for j in range(i + 1, len(cluster_points)):
-                        cluster_graph.add_edge(
-                            tuple(cluster_points[i]),
-                            tuple(cluster_points[j]),
-                            weight=dist_matrix[i, j],
-                        )
-
-                mst = nx.minimum_spanning_tree(cluster_graph)
-                G.add_edges_from(mst.edges(data=True))
+                for u, v in mst_edges:
+                    G[cluster[u]].append(
+                        (cluster[v], self.euclidean_distance(cluster[u], cluster[v]))
+                    )
+                    G[cluster[v]].append(
+                        (cluster[u], self.euclidean_distance(cluster[u], cluster[v]))
+                    )
 
                 if to_plot:
+                    cluster_points = np.array(cluster)
                     pos = {tuple(i): (i[0], i[1]) for i in cluster_points}
+                    nx_graph = nx.Graph()
+                    for u, v in mst_edges:
+                        nx_graph.add_edge(cluster[u], cluster[v])
                     nx.draw(
-                        mst,
+                        nx_graph,
                         pos,
                         with_labels=False,
                         node_color=color,
@@ -285,9 +297,11 @@ class MST:
                         alpha=0.5,
                     )
 
-            print(
-                f"After processing cluster {cluster_index}, number of edges: {G.number_of_edges()}"
-            )
+            if to_plot:
+                print(
+                    f"After processing cluster {cluster_index}, number of edges: {total_edges}"
+                )
+                print(f"Total weight of edges: {self.calculate_total_weight(G)}")
 
         if to_plot:
             for cluster_index, (cluster, color) in enumerate(zip(clusters, colors)):
@@ -309,55 +323,66 @@ class MST:
                     label=f"Centroid {cluster_index}",
                 )
 
-        print(
-            f"After adding cluster points and centroids, number of edges: {G.number_of_edges()}"
-        )
+        if to_plot:
+            print(
+                f"After adding cluster points and centroids, number of edges: {total_edges}"
+            )
+            print(f"Total weight of edges: {self.calculate_total_weight(G)}")
 
         centroid_points = np.array(centroids)
-        centroid_distances = pdist(centroid_points)
-        centroid_dist_matrix = squareform(centroid_distances)
+        centroid_edges = self.prim_mst_cluster(centroid_points)
+        total_edges += (
+            len(centroid_points) * (len(centroid_points) - 1) // 2
+        )  # Count all edges in Prim's MST
 
-        centroid_graph = nx.Graph()
-        for i in range(len(centroid_points)):
-            for j in range(i + 1, len(centroid_points)):
-                centroid_graph.add_edge(
-                    tuple(centroid_points[i]),
-                    tuple(centroid_points[j]),
-                    weight=centroid_dist_matrix[i, j],
-                )
-
-        centroid_mst = nx.minimum_spanning_tree(centroid_graph)
-
-        print(
-            f"After creating MST of centroids, number of edges: {centroid_mst.number_of_edges()}"
-        )
+        if to_plot:
+            print(f"After creating MST of centroids, number of edges: {total_edges}")
+            print(
+                f"Total weight of edges in centroid MST: {sum(self.euclidean_distance(centroid_points[u], centroid_points[v]) for u, v in centroid_edges)}"
+            )
 
         core_points_map = {}
-        for component in nx.connected_components(G):
-            centroid = tuple(np.mean([node for node in component], axis=0))
-            closest_point = min(
-                component, key=lambda node: self.euclidean_distance(node, centroid)
-            )
-            core_points_map[closest_point] = component
+        for component in clusters:
+            if len(component) > 0:
+                centroid = tuple(np.mean([node for node in component], axis=0))
+                closest_point = min(
+                    component, key=lambda node: self.euclidean_distance(node, centroid)
+                )
+                core_points_map[closest_point] = component
 
         for centroid in centroids:
             if centroid not in core_points_map:
                 closest_point = min(
-                    G.nodes, key=lambda node: self.euclidean_distance(node, centroid)
+                    G.keys(), key=lambda node: self.euclidean_distance(node, centroid)
                 )
                 core_points_map[centroid] = core_points_map[closest_point]
 
-        for edge in centroid_mst.edges:
-            self.merge_comps(edge[0], edge[1], core_points_map, G)
-            print(
-                f"After merging {edge[0]} and {edge[1]}, number of edges: {G.number_of_edges()}"
+        centroid_points = [tuple(point) for point in centroid_points]
+
+        for edge in centroid_edges:
+            self.merge_comps(
+                centroid_points[edge[0]],
+                centroid_points[edge[1]],
+                core_points_map,
+                G,
+                to_plot,
             )
+            total_edges += 1
+            if to_plot:
+                print(
+                    f"After merging {centroid_points[edge[0]]} and {centroid_points[edge[1]]}, number of edges: {total_edges}"
+                )
+                print(f"Total weight of edges: {self.calculate_total_weight(G)}")
 
         if to_plot:
             plt.figure(figsize=(10, 8))
-            pos = {i: (i[0], i[1]) for i in G.nodes}
+            nx_graph = nx.Graph()
+            for node, edges in G.items():
+                for neighbor, weight in edges:
+                    nx_graph.add_edge(node, neighbor, weight=weight)
+            pos = {node: node for node in nx_graph.nodes()}
             nx.draw(
-                G,
+                nx_graph,
                 pos,
                 with_labels=False,
                 node_color="lightblue",
@@ -367,53 +392,66 @@ class MST:
             plt.title("K-Means Clustering with MSTs and Merged Centroid MST Overlay")
             plt.xlabel("X-coordinate")
             plt.ylabel("Y-coordinate")
-            plt.legend()
             plt.show()
 
-        mst_weight = round(sum(data["weight"] for u, v, data in G.edges(data=True)), 2)
-        return mst_weight, len(G.edges()), G
+        mst_weight = self.calculate_total_weight(G)
+        return mst_weight, total_edges, G
+
+    def prim_mst_cluster(self, points):
+        n = len(points)
+        if n == 0:
+            return []
+
+        in_mst = [False] * n
+        min_edge = [float("inf")] * n
+        parent = [-1] * n
+        min_edge[0] = 0
+
+        mst_edges = []
+
+        for _ in range(n):
+            u = -1
+            for i in range(n):
+                if not in_mst[i] and (u == -1 or min_edge[i] < min_edge[u]):
+                    u = i
+
+            in_mst[u] = True
+
+            if parent[u] != -1:
+                mst_edges.append((u, parent[u]))
+
+            for v in range(n):
+                if (
+                    not in_mst[v]
+                    and self.euclidean_distance(points[u], points[v]) < min_edge[v]
+                ):
+                    min_edge[v] = self.euclidean_distance(points[u], points[v])
+                    parent[v] = u
+
+        return mst_edges
+
+    def merge_comps(self, core1, core2, core_points_map, G, to_plot):
+        pivot1 = min(
+            core_points_map[core1],
+            key=lambda node: self.euclidean_distance(node, core2),
+        )
+        pivot2 = min(
+            core_points_map[core2],
+            key=lambda node: self.euclidean_distance(node, pivot1),
+        )
+        G[pivot1].append((pivot2, self.euclidean_distance(pivot1, pivot2)))
+        G[pivot2].append((pivot1, self.euclidean_distance(pivot1, pivot2)))
+        if to_plot:
+            print(f"Merging {core1} and {core2} with pivot {pivot1} and {pivot2}")
 
     @staticmethod
     def euclidean_distance(point1, point2):
         return np.linalg.norm(np.array(point1) - np.array(point2))
 
-    def merge_phase(self, G):
-        core_points_map = {}
-        for component in nx.connected_components(G):
-            centroid = np.mean([node for node in component], axis=0)
-            closest_point = min(
-                component, key=lambda node: self.euclidean_distance(node, centroid)
-            )
-            core_points_map[closest_point] = component
-
-        core_points = list(core_points_map.keys())
-
-        minc = [float("inf")] * len(core_points[0])
-        maxc = [float("-inf")] * len(core_points[0])
-
-        for point in core_points:
-            for i in range(len(point)):
-                minc[i] = min(minc[i], point[i])
-                maxc[i] = max(maxc[i], point[i])
-
-        diff = [maxc[i] - minc[i] for i in range(len(minc))]
-        min_diff_axis = diff.index(max(diff))
-
-        sorted_core_points = sorted(core_points, key=lambda point: point[min_diff_axis])
-        for core1, core2 in zip(sorted_core_points, sorted_core_points[1:]):
-            self.merge_comps(core1, core2, core_points_map, G)
-
-    def merge_comps(self, core1, core2, core_points_map, G):
-        pivot2 = min(
-            core_points_map[core2],
-            key=lambda node: self.euclidean_distance(node, core1),
-        )
-        pivot1 = min(
-            core_points_map[core1],
-            key=lambda node: self.euclidean_distance(node, pivot2),
-        )
-        G.add_edge(pivot1, pivot2, weight=self.euclidean_distance(pivot1, pivot2))
-        print(f"Merging {core1} and {core2} with pivot {pivot1} and {pivot2}")
+    @staticmethod
+    def calculate_total_weight(G):
+        total_weight = sum(weight for edges in G.values() for _, weight in edges) / 2
+        return total_weight
 
     def apply_mst(self, algorithm="kmistree", to_plot=True):
         if algorithm == "kmistree":
