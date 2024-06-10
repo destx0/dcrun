@@ -916,3 +916,1329 @@
         "runtime_error": 35.948949534228674
     }
 }
+{
+    "dataset_type": "circles",
+    "points_count": 100,
+    "run": 1,
+    "kmistree": {
+        "weight": 13.91,
+        "edge_count": 238,
+        "runtime": 0.003986835479736328,
+        "weight_error": 0.019999999999999574,
+        "edge_count_error": 42.016806722689076,
+        "runtime_error": 4.267790934098792
+    },
+    "kmist": {
+        "weight": 13.93,
+        "edge_count": 260,
+        "runtime": 0.005780935287475586,
+        "weight_error": 0.03999999999999915,
+        "edge_count_error": 38.46153846153846,
+        "runtime_error": 2.9432919536437496
+    },
+    "prim": {
+        "weight": 13.89,
+        "edge_count": 10000,
+        "runtime": 0.01701498031616211
+    },
+    "fmst": {
+        "weight": 14.93179137932636,
+        "edge_count": 549,
+        "runtime": 0.009513616561889648,
+        "weight_error": 1.0417913793263587,
+        "edge_count_error": 18.214936247723134,
+        "runtime_error": 1.7884870811718416
+    }
+}
+{
+    "dataset_type": "moons",
+    "points_count": 100,
+    "run": 1,
+    "kmistree": {
+        "weight": 11.74,
+        "edge_count": 293,
+        "runtime": 0.004036664962768555,
+        "weight_error": 0.120000000000001,
+        "edge_count_error": 34.129692832764505,
+        "runtime_error": 5.389817494536649
+    },
+    "kmist": {
+        "weight": 11.75,
+        "edge_count": 263,
+        "runtime": 0.006027936935424805,
+        "weight_error": 0.13000000000000078,
+        "edge_count_error": 38.02281368821293,
+        "runtime_error": 3.6093422457777953
+    },
+    "prim": {
+        "weight": 11.62,
+        "edge_count": 10000,
+        "runtime": 0.021756887435913086
+    },
+    "fmst": {
+        "weight": 11.958537636650982,
+        "edge_count": 530,
+        "runtime": 0.014513015747070312,
+        "weight_error": 0.33853763665098313,
+        "edge_count_error": 18.867924528301888,
+        "runtime_error": 1.499129320541464
+    }
+}
+{
+    "dataset_type": "blobs",
+    "points_count": 100,
+    "run": 1,
+    "kmistree": {
+        "weight": 28.08,
+        "edge_count": 191,
+        "runtime": 0.004579782485961914,
+        "weight_error": 0.0799999999999983,
+        "edge_count_error": 52.35602094240838,
+        "runtime_error": 4.0732469155083555
+    },
+    "kmist": {
+        "weight": 28.03,
+        "edge_count": 266,
+        "runtime": 0.0067653656005859375,
+        "weight_error": 0.030000000000001137,
+        "edge_count_error": 37.59398496240601,
+        "runtime_error": 2.757365379193685
+    },
+    "prim": {
+        "weight": 28.0,
+        "edge_count": 10000,
+        "runtime": 0.018654584884643555
+    },
+    "fmst": {
+        "weight": 29.000674073273217,
+        "edge_count": 578,
+        "runtime": 0.009861946105957031,
+        "weight_error": 1.000674073273217,
+        "edge_count_error": 17.301038062283737,
+        "runtime_error": 1.891572381781259
+    }
+}
+{
+    "dataset_type": "circles",
+    "points_count": 500,
+    "run": 1,
+    "kmistree": {
+        "weight": 29.0,
+        "edge_count": 1553,
+        "runtime": 0.025386333465576172,
+        "weight_error": 0.0,
+        "edge_count_error": 160.97875080489376,
+        "runtime_error": 15.345799132215106
+    },
+    "kmist": {
+        "weight": 29.05,
+        "edge_count": 1330,
+        "runtime": 0.032988548278808594,
+        "weight_error": 0.05000000000000071,
+        "edge_count_error": 187.9699248120301,
+        "runtime_error": 11.809357925471943
+    },
+    "prim": {
+        "weight": 29.0,
+        "edge_count": 250000,
+        "runtime": 0.3895735740661621
+    },
+    "fmst": {
+        "weight": 30.545401394292355,
+        "edge_count": 6065,
+        "runtime": 0.0645906925201416,
+        "weight_error": 1.5454013942923552,
+        "edge_count_error": 41.22011541632317,
+        "runtime_error": 6.0314196808569545
+    }
+}
+{
+    "dataset_type": "moons",
+    "points_count": 500,
+    "run": 1,
+    "kmistree": {
+        "weight": 24.79,
+        "edge_count": 1277,
+        "runtime": 0.024049758911132812,
+        "weight_error": 0.0,
+        "edge_count_error": 195.77133907595928,
+        "runtime_error": 17.31064120866048
+    },
+    "kmist": {
+        "weight": 24.86,
+        "edge_count": 1340,
+        "runtime": 0.03298759460449219,
+        "weight_error": 0.07000000000000028,
+        "edge_count_error": 186.56716417910448,
+        "runtime_error": 12.620403295750217
+    },
+    "prim": {
+        "weight": 24.79,
+        "edge_count": 250000,
+        "runtime": 0.4163167476654053
+    },
+    "fmst": {
+        "weight": 25.414906679480165,
+        "edge_count": 5865,
+        "runtime": 0.06355690956115723,
+        "weight_error": 0.6249066794801656,
+        "edge_count_error": 42.62574595055413,
+        "runtime_error": 6.550298787967454
+    }
+}
+{
+    "dataset_type": "blobs",
+    "points_count": 500,
+    "run": 1,
+    "kmistree": {
+        "weight": 67.46,
+        "edge_count": 1252,
+        "runtime": 0.02550816535949707,
+        "weight_error": 0.0899999999999892,
+        "edge_count_error": 199.68051118210863,
+        "runtime_error": 15.324014618325249
+    },
+    "kmist": {
+        "weight": 67.53,
+        "edge_count": 1318,
+        "runtime": 0.03341174125671387,
+        "weight_error": 0.1599999999999966,
+        "edge_count_error": 189.6813353566009,
+        "runtime_error": 11.699105887725757
+    },
+    "prim": {
+        "weight": 67.37,
+        "edge_count": 250000,
+        "runtime": 0.3908874988555908
+    },
+    "fmst": {
+        "weight": 71.30350334774292,
+        "edge_count": 7255,
+        "runtime": 0.06840181350708008,
+        "weight_error": 3.9335033477429135,
+        "edge_count_error": 34.45899379738112,
+        "runtime_error": 5.7145780033321945
+    }
+}
+{
+    "dataset_type": "circles",
+    "points_count": 1000,
+    "run": 1,
+    "kmistree": {
+        "weight": 41.5,
+        "edge_count": 2518,
+        "runtime": 0.05277895927429199,
+        "weight_error": 0.0799999999999983,
+        "edge_count_error": 397.1405877680699,
+        "runtime_error": 28.07692064452887
+    },
+    "kmist": {
+        "weight": 41.52,
+        "edge_count": 2661,
+        "runtime": 0.06931066513061523,
+        "weight_error": 0.10000000000000142,
+        "edge_count_error": 375.7985719654265,
+        "runtime_error": 21.380124522720237
+    },
+    "prim": {
+        "weight": 41.42,
+        "edge_count": 1000000,
+        "runtime": 1.4818706512451172
+    },
+    "fmst": {
+        "weight": 42.62950862640561,
+        "edge_count": 17436,
+        "runtime": 0.16508030891418457,
+        "weight_error": 1.2095086264056079,
+        "edge_count_error": 57.35260380821289,
+        "runtime_error": 8.976665121310463
+    }
+}
+{
+    "dataset_type": "moons",
+    "points_count": 1000,
+    "run": 1,
+    "kmistree": {
+        "weight": 35.52,
+        "edge_count": 2520,
+        "runtime": 0.05569338798522949,
+        "weight_error": 0.07000000000000028,
+        "edge_count_error": 396.8253968253968,
+        "runtime_error": 28.339489287013848
+    },
+    "kmist": {
+        "weight": 35.51,
+        "edge_count": 2658,
+        "runtime": 0.0713968276977539,
+        "weight_error": 0.05999999999999517,
+        "edge_count_error": 376.2227238525207,
+        "runtime_error": 22.106334735857878
+    },
+    "prim": {
+        "weight": 35.45,
+        "edge_count": 1000000,
+        "runtime": 1.578322172164917
+    },
+    "fmst": {
+        "weight": 36.45481231728972,
+        "edge_count": 17344,
+        "runtime": 0.22423791885375977,
+        "weight_error": 1.0048123172897192,
+        "edge_count_error": 57.656826568265686,
+        "runtime_error": 7.038605157561439
+    }
+}
+{
+    "dataset_type": "blobs",
+    "points_count": 1000,
+    "run": 1,
+    "kmistree": {
+        "weight": 98.03,
+        "edge_count": 2485,
+        "runtime": 0.054761648178100586,
+        "weight_error": 0.15000000000000568,
+        "edge_count_error": 402.4144869215292,
+        "runtime_error": 26.973011097711233
+    },
+    "kmist": {
+        "weight": 98.02,
+        "edge_count": 2625,
+        "runtime": 0.1451270580291748,
+        "weight_error": 0.14000000000000057,
+        "edge_count_error": 380.95238095238096,
+        "runtime_error": 10.177885255139172
+    },
+    "prim": {
+        "weight": 97.88,
+        "edge_count": 1000000,
+        "runtime": 1.4770865440368652
+    },
+    "fmst": {
+        "weight": 101.76669602073608,
+        "edge_count": 20585,
+        "runtime": 0.23467254638671875,
+        "weight_error": 3.886696020736082,
+        "edge_count_error": 48.57906242409521,
+        "runtime_error": 6.294245180272441
+    }
+}
+{
+    "dataset_type": "circles",
+    "points_count": 100,
+    "run": 1,
+    "kmistree": {
+        "weight": 13.91,
+        "edge_count": 238,
+        "runtime": 0.003999471664428711,
+        "weight_error": 0.019999999999999574,
+        "edge_count_error": 42.016806722689076,
+        "runtime_error": 4.2831594634873325
+    },
+    "kmist": {
+        "weight": 13.93,
+        "edge_count": 260,
+        "runtime": 0.005689382553100586,
+        "weight_error": 0.03999999999999915,
+        "edge_count_error": 38.46153846153846,
+        "runtime_error": 3.0109374345220634
+    },
+    "prim": {
+        "weight": 13.89,
+        "edge_count": 10000,
+        "runtime": 0.017130374908447266
+    },
+    "fmst": {
+        "weight": 14.255147503283284,
+        "edge_count": 580,
+        "runtime": 0.013354301452636719,
+        "weight_error": 0.3651475032832838,
+        "edge_count_error": 17.24137931034483,
+        "runtime_error": 1.2827608369635077
+    }
+}
+{
+    "dataset_type": "moons",
+    "points_count": 100,
+    "run": 1,
+    "kmistree": {
+        "weight": 11.74,
+        "edge_count": 293,
+        "runtime": 0.00527191162109375,
+        "weight_error": 0.120000000000001,
+        "edge_count_error": 34.129692832764505,
+        "runtime_error": 5.017049565846599
+    },
+    "kmist": {
+        "weight": 11.75,
+        "edge_count": 263,
+        "runtime": 0.008758306503295898,
+        "weight_error": 0.13000000000000078,
+        "edge_count_error": 38.02281368821293,
+        "runtime_error": 3.019926500612495
+    },
+    "prim": {
+        "weight": 11.62,
+        "edge_count": 10000,
+        "runtime": 0.02644944190979004
+    },
+    "fmst": {
+        "weight": 12.22294296314853,
+        "edge_count": 538,
+        "runtime": 0.009794473648071289,
+        "weight_error": 0.6029429631485304,
+        "edge_count_error": 18.587360594795538,
+        "runtime_error": 2.700445461405516
+    }
+}
+{
+    "dataset_type": "blobs",
+    "points_count": 100,
+    "run": 1,
+    "kmistree": {
+        "weight": 28.08,
+        "edge_count": 191,
+        "runtime": 0.0037016868591308594,
+        "weight_error": 0.0799999999999983,
+        "edge_count_error": 52.35602094240838,
+        "runtime_error": 4.6082699987118385
+    },
+    "kmist": {
+        "weight": 28.03,
+        "edge_count": 266,
+        "runtime": 0.0056231021881103516,
+        "weight_error": 0.030000000000001137,
+        "edge_count_error": 37.59398496240601,
+        "runtime_error": 3.033623065507738
+    },
+    "prim": {
+        "weight": 28.0,
+        "edge_count": 10000,
+        "runtime": 0.017058372497558594
+    },
+    "fmst": {
+        "weight": 29.286439970622766,
+        "edge_count": 647,
+        "runtime": 0.009423971176147461,
+        "weight_error": 1.2864399706227658,
+        "edge_count_error": 15.45595054095827,
+        "runtime_error": 1.8101044855415285
+    }
+}
+{
+    "dataset_type": "circles",
+    "points_count": 500,
+    "run": 1,
+    "kmistree": {
+        "weight": 29.0,
+        "edge_count": 1553,
+        "runtime": 0.02472376823425293,
+        "weight_error": 0.0,
+        "edge_count_error": 160.97875080489376,
+        "runtime_error": 15.629755349617643
+    },
+    "kmist": {
+        "weight": 29.05,
+        "edge_count": 1330,
+        "runtime": 0.03223991394042969,
+        "weight_error": 0.05000000000000071,
+        "edge_count_error": 187.9699248120301,
+        "runtime_error": 11.985964030053836
+    },
+    "prim": {
+        "weight": 29.0,
+        "edge_count": 250000,
+        "runtime": 0.3864264488220215
+    },
+    "fmst": {
+        "weight": 30.32583826768632,
+        "edge_count": 6402,
+        "runtime": 0.06508231163024902,
+        "weight_error": 1.3258382676863185,
+        "edge_count_error": 39.05029678225554,
+        "runtime_error": 5.937503434380438
+    }
+}
+{
+    "dataset_type": "moons",
+    "points_count": 500,
+    "run": 1,
+    "kmistree": {
+        "weight": 24.79,
+        "edge_count": 1277,
+        "runtime": 0.02361893653869629,
+        "weight_error": 0.0,
+        "edge_count_error": 195.77133907595928,
+        "runtime_error": 17.691333972644223
+    },
+    "kmist": {
+        "weight": 24.86,
+        "edge_count": 1340,
+        "runtime": 0.03218698501586914,
+        "weight_error": 0.07000000000000028,
+        "edge_count_error": 186.56716417910448,
+        "runtime_error": 12.981970637472038
+    },
+    "prim": {
+        "weight": 24.79,
+        "edge_count": 250000,
+        "runtime": 0.4178504943847656
+    },
+    "fmst": {
+        "weight": 25.253222253530307,
+        "edge_count": 6092,
+        "runtime": 0.06293320655822754,
+        "weight_error": 0.4632222535303079,
+        "edge_count_error": 41.03742613263296,
+        "runtime_error": 6.639586908672115
+    }
+}
+{
+    "dataset_type": "blobs",
+    "points_count": 500,
+    "run": 1,
+    "kmistree": {
+        "weight": 67.46,
+        "edge_count": 1252,
+        "runtime": 0.02476644515991211,
+        "weight_error": 0.0899999999999892,
+        "edge_count_error": 199.68051118210863,
+        "runtime_error": 15.451414158917192
+    },
+    "kmist": {
+        "weight": 67.53,
+        "edge_count": 1318,
+        "runtime": 0.03325057029724121,
+        "weight_error": 0.1599999999999966,
+        "edge_count_error": 189.6813353566009,
+        "runtime_error": 11.508873321239324
+    },
+    "prim": {
+        "weight": 67.37,
+        "edge_count": 250000,
+        "runtime": 0.3826766014099121
+    },
+    "fmst": {
+        "weight": 71.1584732489071,
+        "edge_count": 6738,
+        "runtime": 0.06575608253479004,
+        "weight_error": 3.7884732489070956,
+        "edge_count_error": 37.10299792223211,
+        "runtime_error": 5.819638072378273
+    }
+}
+{
+    "dataset_type": "circles",
+    "points_count": 1000,
+    "run": 1,
+    "kmistree": {
+        "weight": 41.5,
+        "edge_count": 2518,
+        "runtime": 0.05157971382141113,
+        "weight_error": 0.0799999999999983,
+        "edge_count_error": 397.1405877680699,
+        "runtime_error": 29.13317863927781
+    },
+    "kmist": {
+        "weight": 41.52,
+        "edge_count": 2661,
+        "runtime": 0.06873893737792969,
+        "weight_error": 0.10000000000000142,
+        "edge_count_error": 375.7985719654265,
+        "runtime_error": 21.860696051499765
+    },
+    "prim": {
+        "weight": 41.42,
+        "edge_count": 1000000,
+        "runtime": 1.502681016921997
+    },
+    "fmst": {
+        "weight": 42.759857018148224,
+        "edge_count": 17600,
+        "runtime": 0.16406822204589844,
+        "weight_error": 1.3398570181482228,
+        "edge_count_error": 56.81818181818182,
+        "runtime_error": 9.15887914298004
+    }
+}
+{
+    "dataset_type": "moons",
+    "points_count": 1000,
+    "run": 1,
+    "kmistree": {
+        "weight": 35.52,
+        "edge_count": 2520,
+        "runtime": 0.052794456481933594,
+        "weight_error": 0.07000000000000028,
+        "edge_count_error": 396.8253968253968,
+        "runtime_error": 31.052864032948573
+    },
+    "kmist": {
+        "weight": 35.51,
+        "edge_count": 2658,
+        "runtime": 0.06950497627258301,
+        "weight_error": 0.05999999999999517,
+        "edge_count_error": 376.2227238525207,
+        "runtime_error": 23.587074864934397
+    },
+    "prim": {
+        "weight": 35.45,
+        "edge_count": 1000000,
+        "runtime": 1.6394190788269043
+    },
+    "fmst": {
+        "weight": 36.5388730412901,
+        "edge_count": 17196,
+        "runtime": 0.16573357582092285,
+        "weight_error": 1.0888730412900998,
+        "edge_count_error": 58.153058850895555,
+        "runtime_error": 9.891894691262298
+    }
+}
+{
+    "dataset_type": "blobs",
+    "points_count": 1000,
+    "run": 1,
+    "kmistree": {
+        "weight": 98.03,
+        "edge_count": 2485,
+        "runtime": 0.05336308479309082,
+        "weight_error": 0.15000000000000568,
+        "edge_count_error": 402.4144869215292,
+        "runtime_error": 27.981753276055418
+    },
+    "kmist": {
+        "weight": 98.02,
+        "edge_count": 2625,
+        "runtime": 0.0704498291015625,
+        "weight_error": 0.14000000000000057,
+        "edge_count_error": 380.95238095238096,
+        "runtime_error": 21.195121290881524
+    },
+    "prim": {
+        "weight": 97.88,
+        "edge_count": 1000000,
+        "runtime": 1.4931926727294922
+    },
+    "fmst": {
+        "weight": 102.87705127053289,
+        "edge_count": 20218,
+        "runtime": 0.1726827621459961,
+        "weight_error": 4.997051270532893,
+        "edge_count_error": 49.46087644673064,
+        "runtime_error": 8.647027961407403
+    }
+}
+{
+    "dataset_type": "circles",
+    "points_count": 3000,
+    "run": 1,
+    "kmistree": {
+        "weight": 70.83,
+        "edge_count": 9167,
+        "runtime": 0.1933610439300537,
+        "weight_error": 0.030000000000001137,
+        "edge_count_error": 981.7824806370677,
+        "runtime_error": 66.45010634821797
+    },
+    "kmist": {
+        "weight": 70.96,
+        "edge_count": 7887,
+        "runtime": 0.23327350616455078,
+        "weight_error": 0.1599999999999966,
+        "edge_count_error": 1141.1182959300113,
+        "runtime_error": 55.08067394370516
+    },
+    "prim": {
+        "weight": 70.8,
+        "edge_count": 9000000,
+        "runtime": 12.848861932754517
+    },
+    "fmst": {
+        "weight": 73.36433766926896,
+        "edge_count": 90252,
+        "runtime": 0.8179893493652344,
+        "weight_error": 2.5643376692689657,
+        "edge_count_error": 99.7207818109294,
+        "runtime_error": 15.707859696126027
+    }
+}
+{
+    "dataset_type": "moons",
+    "points_count": 3000,
+    "run": 1,
+    "kmistree": {
+        "weight": 61.61,
+        "edge_count": 7453,
+        "runtime": 0.26961541175842285,
+        "weight_error": 0.07000000000000028,
+        "edge_count_error": 1207.5674225144237,
+        "runtime_error": 50.46728785187059
+    },
+    "kmist": {
+        "weight": 61.62,
+        "edge_count": 7898,
+        "runtime": 0.23570942878723145,
+        "weight_error": 0.0799999999999983,
+        "edge_count_error": 1139.5289946821981,
+        "runtime_error": 57.726831991924236
+    },
+    "prim": {
+        "weight": 61.54,
+        "edge_count": 9000000,
+        "runtime": 13.60675859451294
+    },
+    "fmst": {
+        "weight": 63.974037163306505,
+        "edge_count": 88656,
+        "runtime": 0.7796776294708252,
+        "weight_error": 2.434037163306506,
+        "edge_count_error": 101.51597184623714,
+        "runtime_error": 17.45177504162583
+    }
+}
+{
+    "dataset_type": "blobs",
+    "points_count": 3000,
+    "run": 1,
+    "kmistree": {
+        "weight": 168.81,
+        "edge_count": 7355,
+        "runtime": 0.1893765926361084,
+        "weight_error": 0.09999999999999432,
+        "edge_count_error": 1223.6573759347382,
+        "runtime_error": 67.97548542558697
+    },
+    "kmist": {
+        "weight": 169.04,
+        "edge_count": 7824,
+        "runtime": 0.3154332637786865,
+        "weight_error": 0.3299999999999841,
+        "edge_count_error": 1150.3067484662577,
+        "runtime_error": 40.81042582026163
+    },
+    "prim": {
+        "weight": 168.71,
+        "edge_count": 9000000,
+        "runtime": 12.872965812683105
+    },
+    "fmst": {
+        "weight": 176.50236837426212,
+        "edge_count": 109732,
+        "runtime": 0.8573405742645264,
+        "weight_error": 7.792368374262111,
+        "edge_count_error": 82.01800750920424,
+        "runtime_error": 15.014996605901032
+    }
+}
+{
+    "dataset_type": "circles",
+    "points_count": 5000,
+    "run": 1,
+    "kmistree": {
+        "weight": 91.12,
+        "edge_count": 12332,
+        "runtime": 0.33027052879333496,
+        "weight_error": 0.09000000000000341,
+        "edge_count_error": 2027.2461887771651,
+        "runtime_error": 106.07047727674689
+    },
+    "kmist": {
+        "weight": 91.16,
+        "edge_count": 13094,
+        "runtime": 0.49211621284484863,
+        "weight_error": 0.12999999999999545,
+        "edge_count_error": 1909.2714220253552,
+        "runtime_error": 71.18634116327574
+    },
+    "prim": {
+        "weight": 91.03,
+        "edge_count": 25000000,
+        "runtime": 35.03195261955261
+    },
+    "fmst": {
+        "weight": 94.40640760478423,
+        "edge_count": 192062,
+        "runtime": 1.647179126739502,
+        "weight_error": 3.3764076047842337,
+        "edge_count_error": 130.16630046547468,
+        "runtime_error": 21.267846374969785
+    }
+}
+{
+    "dataset_type": "moons",
+    "points_count": 5000,
+    "run": 1,
+    "kmistree": {
+        "weight": 80.41,
+        "edge_count": 12373,
+        "runtime": 0.4083852767944336,
+        "weight_error": 0.12999999999999545,
+        "edge_count_error": 2020.5285702739836,
+        "runtime_error": 88.79572267253278
+    },
+    "kmist": {
+        "weight": 80.42,
+        "edge_count": 13109,
+        "runtime": 0.41625452041625977,
+        "weight_error": 0.14000000000000057,
+        "edge_count_error": 1907.0867343046762,
+        "runtime_error": 87.1170497932869
+    },
+    "prim": {
+        "weight": 80.28,
+        "edge_count": 25000000,
+        "runtime": 36.26286578178406
+    },
+    "fmst": {
+        "weight": 82.81904546887307,
+        "edge_count": 191182,
+        "runtime": 1.7495448589324951,
+        "weight_error": 2.53904546887307,
+        "edge_count_error": 130.76544863010116,
+        "runtime_error": 20.727028287751512
+    }
+}
+{
+    "dataset_type": "blobs",
+    "points_count": 5000,
+    "run": 1,
+    "kmistree": {
+        "weight": 217.49,
+        "edge_count": 15008,
+        "runtime": 0.34446048736572266,
+        "weight_error": 0.010000000000019327,
+        "edge_count_error": 1665.778251599147,
+        "runtime_error": 103.124855686572
+    },
+    "kmist": {
+        "weight": 217.76,
+        "edge_count": 12981,
+        "runtime": 0.49592089653015137,
+        "weight_error": 0.28000000000000114,
+        "edge_count_error": 1925.8916878514751,
+        "runtime_error": 71.62924228008748
+    },
+    "prim": {
+        "weight": 217.48,
+        "edge_count": 25000000,
+        "runtime": 35.522438049316406
+    },
+    "fmst": {
+        "weight": 226.06760481202176,
+        "edge_count": 227552,
+        "runtime": 1.751387596130371,
+        "weight_error": 8.587604812021766,
+        "edge_count_error": 109.86499789059204,
+        "runtime_error": 20.28245382564201
+    }
+}
+{
+    "dataset_type": "circles",
+    "points_count": 10000,
+    "run": 1,
+    "kmistree": {
+        "weight": 131.46,
+        "edge_count": 30269,
+        "runtime": 0.844773530960083,
+        "weight_error": 0.010000000000019327,
+        "edge_count_error": 3303.7100664045724,
+        "runtime_error": 165.42550187864938
+    },
+    "kmist": {
+        "weight": 131.64,
+        "edge_count": 26020,
+        "runtime": 0.9792208671569824,
+        "weight_error": 0.18999999999999773,
+        "edge_count_error": 3843.1975403535744,
+        "runtime_error": 142.7125279086471
+    },
+    "prim": {
+        "weight": 131.45,
+        "edge_count": 100000000,
+        "runtime": 139.74708533287048
+    },
+    "fmst": {
+        "weight": 136.1772018673192,
+        "edge_count": 539979,
+        "runtime": 4.465478897094727,
+        "weight_error": 4.7272018673192235,
+        "edge_count_error": 185.19238711135063,
+        "runtime_error": 31.294982812211018
+    }
+}
+{
+    "dataset_type": "moons",
+    "points_count": 10000,
+    "run": 1,
+    "kmistree": {
+        "weight": 114.64,
+        "edge_count": 30325,
+        "runtime": 0.92034912109375,
+        "weight_error": 0.04000000000000625,
+        "edge_count_error": 3297.609233305853,
+        "runtime_error": 155.42497248864314
+    },
+    "kmist": {
+        "weight": 114.75,
+        "edge_count": 26160,
+        "runtime": 1.0633978843688965,
+        "weight_error": 0.15000000000000568,
+        "edge_count_error": 3822.62996941896,
+        "runtime_error": 134.5171350522643
+    },
+    "prim": {
+        "weight": 114.6,
+        "edge_count": 100000000,
+        "runtime": 143.045236825943
+    },
+    "fmst": {
+        "weight": 118.2402758995728,
+        "edge_count": 538920,
+        "runtime": 4.468121290206909,
+        "weight_error": 3.6402758995727993,
+        "edge_count_error": 185.5562977807467,
+        "runtime_error": 32.01462707367975
+    }
+}
+{
+    "dataset_type": "blobs",
+    "points_count": 10000,
+    "run": 1,
+    "kmistree": {
+        "weight": 313.54,
+        "edge_count": 29938,
+        "runtime": 0.872323751449585,
+        "weight_error": 0.020000000000038654,
+        "edge_count_error": 3340.2364887434032,
+        "runtime_error": 159.38292785786342
+    },
+    "kmist": {
+        "weight": 314.12,
+        "edge_count": 25935,
+        "runtime": 1.0013093948364258,
+        "weight_error": 0.6000000000000227,
+        "edge_count_error": 3855.79332947754,
+        "runtime_error": 138.85170184456578
+    },
+    "prim": {
+        "weight": 313.52,
+        "edge_count": 100000000,
+        "runtime": 139.03351354599
+    },
+    "fmst": {
+        "weight": 325.5541306921084,
+        "edge_count": 628661,
+        "runtime": 4.767870903015137,
+        "weight_error": 12.03413069210842,
+        "edge_count_error": 159.06824186644312,
+        "runtime_error": 29.160502952810045
+    }
+}
+{
+    "dataset_type": "circles",
+    "points_count": 15000,
+    "run": 1,
+    "kmistree": {
+        "weight": 159.25,
+        "edge_count": 45192,
+        "runtime": 1.3262815475463867,
+        "weight_error": 0.020000000000010232,
+        "edge_count_error": 4978.757302177377,
+        "runtime_error": 236.5885788667203
+    },
+    "kmist": {
+        "weight": 159.46,
+        "edge_count": 39059,
+        "runtime": 1.546037197113037,
+        "weight_error": 0.2300000000000182,
+        "edge_count_error": 5760.516142246345,
+        "runtime_error": 202.95958408833303
+    },
+    "prim": {
+        "weight": 159.23,
+        "edge_count": 225000000,
+        "runtime": 313.7830665111542
+    },
+    "fmst": {
+        "weight": 164.53329884218556,
+        "edge_count": 985713,
+        "runtime": 8.143046617507935,
+        "weight_error": 5.303298842185569,
+        "edge_count_error": 228.26116729717472,
+        "runtime_error": 38.53386591653617
+    }
+}
+{
+    "dataset_type": "moons",
+    "points_count": 15000,
+    "run": 1,
+    "kmistree": {
+        "weight": 141.07,
+        "edge_count": 45260,
+        "runtime": 1.3472819328308105,
+        "weight_error": 0.0,
+        "edge_count_error": 4971.277065841803,
+        "runtime_error": 236.53061471515207
+    },
+    "kmist": {
+        "weight": 141.29,
+        "edge_count": 39084,
+        "runtime": 1.6361753940582275,
+        "weight_error": 0.21999999999999886,
+        "edge_count_error": 5756.831439975437,
+        "runtime_error": 194.76727551603128
+    },
+    "prim": {
+        "weight": 141.07,
+        "edge_count": 225000000,
+        "runtime": 318.67342376708984
+    },
+    "fmst": {
+        "weight": 145.58702806034228,
+        "edge_count": 1004548,
+        "runtime": 8.13993525505066,
+        "weight_error": 4.517028060342284,
+        "edge_count_error": 223.98133289798,
+        "runtime_error": 39.149380650092965
+    }
+}
+{
+    "dataset_type": "blobs",
+    "points_count": 15000,
+    "run": 1,
+    "kmistree": {
+        "weight": 385.85,
+        "edge_count": 36567,
+        "runtime": 1.312288522720337,
+        "weight_error": 0.5900000000000318,
+        "edge_count_error": 6153.088850603002,
+        "runtime_error": 239.10556586800075
+    },
+    "kmist": {
+        "weight": 385.8,
+        "edge_count": 38913,
+        "runtime": 1.5627048015594482,
+        "weight_error": 0.5400000000000205,
+        "edge_count_error": 5782.129365507671,
+        "runtime_error": 200.78999532989678
+    },
+    "prim": {
+        "weight": 385.26,
+        "edge_count": 225000000,
+        "runtime": 313.7754898071289
+    },
+    "fmst": {
+        "weight": 399.3143581850327,
+        "edge_count": 1215040,
+        "runtime": 8.750953435897827,
+        "weight_error": 14.054358185032697,
+        "edge_count_error": 185.1790887542797,
+        "runtime_error": 35.856148944864806
+    }
+}
+{
+    "dataset_type": "circles",
+    "points_count": 20000,
+    "run": 1,
+    "kmistree": {
+        "weight": 185.4,
+        "edge_count": 60001,
+        "runtime": 1.9582266807556152,
+        "weight_error": 0.020000000000010232,
+        "edge_count_error": 6666.555557407377,
+        "runtime_error": 283.99728358469906
+    },
+    "kmist": {
+        "weight": 185.67,
+        "edge_count": 52033,
+        "runtime": 2.1720094680786133,
+        "weight_error": 0.28999999999999204,
+        "edge_count_error": 7687.429131512694,
+        "runtime_error": 256.0444906668095
+    },
+    "prim": {
+        "weight": 185.38,
+        "edge_count": 400000000,
+        "runtime": 556.1310579776764
+    },
+    "fmst": {
+        "weight": 191.01972248437886,
+        "edge_count": 1533691,
+        "runtime": 12.45165228843689,
+        "weight_error": 5.639722484378865,
+        "edge_count_error": 260.8087287465337,
+        "runtime_error": 44.66323385002666
+    }
+}
+{
+    "dataset_type": "moons",
+    "points_count": 20000,
+    "run": 1,
+    "kmistree": {
+        "weight": 163.13,
+        "edge_count": 60320,
+        "runtime": 1.8575634956359863,
+        "weight_error": 0.01999999999998181,
+        "edge_count_error": 6631.29973474801,
+        "runtime_error": 304.24288368933816
+    },
+    "kmist": {
+        "weight": 163.33,
+        "edge_count": 52112,
+        "runtime": 2.258714199066162,
+        "weight_error": 0.21999999999999886,
+        "edge_count_error": 7675.775253300583,
+        "runtime_error": 250.2089351463742
+    },
+    "prim": {
+        "weight": 163.11,
+        "edge_count": 400000000,
+        "runtime": 565.1504745483398
+    },
+    "fmst": {
+        "weight": 168.29299417699858,
+        "edge_count": 1543286,
+        "runtime": 12.597217321395874,
+        "weight_error": 5.182994176998562,
+        "edge_count_error": 259.1872148130677,
+        "runtime_error": 44.86312017404464
+    }
+}
+{
+    "dataset_type": "blobs",
+    "points_count": 20000,
+    "run": 1,
+    "kmistree": {
+        "weight": 445.97,
+        "edge_count": 59781,
+        "runtime": 1.8826260566711426,
+        "weight_error": 0.05000000000001137,
+        "edge_count_error": 6691.0891420350945,
+        "runtime_error": 294.70805905951465
+    },
+    "kmist": {
+        "weight": 446.62,
+        "edge_count": 51778,
+        "runtime": 2.1999497413635254,
+        "weight_error": 0.6999999999999886,
+        "edge_count_error": 7725.288732666383,
+        "runtime_error": 252.19897557866054
+    },
+    "prim": {
+        "weight": 445.92,
+        "edge_count": 400000000,
+        "runtime": 554.8250710964203
+    },
+    "fmst": {
+        "weight": 460.7950558753651,
+        "edge_count": 1882290,
+        "runtime": 13.321000099182129,
+        "weight_error": 14.875055875365092,
+        "edge_count_error": 212.50710570634706,
+        "runtime_error": 41.65040664855824
+    }
+}
+{
+    "dataset_type": "circles",
+    "points_count": 30000,
+    "run": 1,
+    "kmistree": {
+        "weight": 227.31,
+        "edge_count": 90093,
+        "runtime": 2.9022305011749268,
+        "weight_error": 0.030000000000001137,
+        "edge_count_error": 9989.67733342213,
+        "runtime_error": 429.75082185032136
+    },
+    "kmist": {
+        "weight": 227.61,
+        "edge_count": 77951,
+        "runtime": 3.3369994163513184,
+        "weight_error": 0.3300000000000125,
+        "edge_count_error": 11545.714615591845,
+        "runtime_error": 373.75971268305614
+    },
+    "prim": {
+        "weight": 227.28,
+        "edge_count": 900000000,
+        "runtime": 1247.2359430789948
+    },
+    "fmst": {
+        "weight": 234.24920039627565,
+        "edge_count": 2850827,
+        "runtime": 22.73702073097229,
+        "weight_error": 6.969200396275653,
+        "edge_count_error": 315.6978659175039,
+        "runtime_error": 54.854853581587065
+    }
+}
+{
+    "dataset_type": "moons",
+    "points_count": 30000,
+    "run": 1,
+    "kmistree": {
+        "weight": 201.38,
+        "edge_count": 90120,
+        "runtime": 2.8829689025878906,
+        "weight_error": 0.01999999999998181,
+        "edge_count_error": 9986.684420772304,
+        "runtime_error": 440.1124423257334
+    },
+    "kmist": {
+        "weight": 201.66,
+        "edge_count": 77915,
+        "runtime": 3.382340669631958,
+        "weight_error": 0.29999999999998295,
+        "edge_count_error": 11551.049220304178,
+        "runtime_error": 375.13385220453296
+    },
+    "prim": {
+        "weight": 201.36,
+        "edge_count": 900000000,
+        "runtime": 1268.830484867096
+    },
+    "fmst": {
+        "weight": 207.23598974534804,
+        "edge_count": 2852226,
+        "runtime": 22.752205848693848,
+        "weight_error": 5.875989745348022,
+        "edge_count_error": 315.54301797964115,
+        "runtime_error": 55.767361340919685
+    }
+}
+{
+    "dataset_type": "blobs",
+    "points_count": 30000,
+    "run": 1,
+    "kmistree": {
+        "weight": 550.17,
+        "edge_count": 89581,
+        "runtime": 2.9752137660980225,
+        "weight_error": 0.01999999999998181,
+        "edge_count_error": 10046.773311304853,
+        "runtime_error": 419.033154790014
+    },
+    "kmist": {
+        "weight": 550.98,
+        "edge_count": 77609,
+        "runtime": 3.3619768619537354,
+        "weight_error": 0.8300000000000409,
+        "edge_count_error": 11596.59317862619,
+        "runtime_error": 370.82742141724157
+    },
+    "prim": {
+        "weight": 550.15,
+        "edge_count": 900000000,
+        "runtime": 1246.7132105827332
+    },
+    "fmst": {
+        "weight": 568.0841891862817,
+        "edge_count": 3325339,
+        "runtime": 23.820058584213257,
+        "weight_error": 17.934189186281742,
+        "edge_count_error": 270.6490977310885,
+        "runtime_error": 52.338796992253926
+    }
+}
+{
+    "dataset_type": "circles",
+    "points_count": 50000,
+    "run": 1,
+    "kmistree": {
+        "weight": 294.98,
+        "edge_count": 149477,
+        "runtime": 5.344899654388428,
+        "weight_error": 0.020000000000038654,
+        "edge_count_error": 16724.981100771358,
+        "runtime_error": 649.5214343887855
+    },
+    "kmist": {
+        "weight": 295.4,
+        "edge_count": 129485,
+        "runtime": 6.240736246109009,
+        "weight_error": 0.4399999999999977,
+        "edge_count_error": 19307.25566667954,
+        "runtime_error": 556.2848281477998
+    },
+    "prim": {
+        "weight": 294.96,
+        "edge_count": 2500000000,
+        "runtime": 3471.626890182495
+    },
+    "fmst": {
+        "weight": 303.2462365473909,
+        "edge_count": 6299965,
+        "runtime": 48.46223831176758,
+        "weight_error": 8.2862365473909,
+        "edge_count_error": 396.8276014231825,
+        "runtime_error": 71.63571083631761
+    }
+}
+{
+    "dataset_type": "moons",
+    "points_count": 50000,
+    "run": 1,
+    "kmistree": {
+        "weight": 260.31,
+        "edge_count": 149855,
+        "runtime": 5.205312013626099,
+        "weight_error": 0.03000000000002956,
+        "edge_count_error": 16682.793366921356,
+        "runtime_error": 673.7219936681104
+    },
+    "kmist": {
+        "weight": 260.66,
+        "edge_count": 129771,
+        "runtime": 6.269679069519043,
+        "weight_error": 0.3800000000000523,
+        "edge_count_error": 19264.704749135013,
+        "runtime_error": 559.3481179179022
+    },
+    "prim": {
+        "weight": 260.28,
+        "edge_count": 2500000000,
+        "runtime": 3506.933187484741
+    },
+    "fmst": {
+        "weight": 267.29931163042494,
+        "edge_count": 6240802,
+        "runtime": 48.35983180999756,
+        "weight_error": 7.019311630424966,
+        "edge_count_error": 400.58953961365864,
+        "runtime_error": 72.51748106286307
+    }
+}
+{
+    "dataset_type": "blobs",
+    "points_count": 50000,
+    "run": 1,
+    "kmistree": {
+        "weight": 716.17,
+        "edge_count": 176707,
+        "runtime": 5.648993015289307,
+        "weight_error": 0.0,
+        "edge_count_error": 14147.713446552769,
+        "runtime_error": 614.3155291257207
+    },
+    "kmist": {
+        "weight": 717.16,
+        "edge_count": 129351,
+        "runtime": 6.483590602874756,
+        "weight_error": 0.9900000000000091,
+        "edge_count_error": 19327.256843781648,
+        "runtime_error": 535.238010197046
+    },
+    "prim": {
+        "weight": 716.17,
+        "edge_count": 2500000000,
+        "runtime": 3470.2641332149506
+    },
+    "fmst": {
+        "weight": 737.555860647162,
+        "edge_count": 7340344,
+        "runtime": 51.47762417793274,
+        "weight_error": 21.385860647162076,
+        "edge_count_error": 340.5834930896972,
+        "runtime_error": 67.41305933661508
+    }
+}
