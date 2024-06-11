@@ -38,7 +38,6 @@ class MST:
             )
 
         k = 0
-        prev_connected_components = np.inf
 
         if to_plot:
             graphify(G, to_plot, bottom_text="Initial Graph")
@@ -108,7 +107,6 @@ class MST:
             )
 
         k = 0
-        prev_connected_components = np.inf
 
         if to_plot:
             graphify(G, to_plot, bottom_text="Initial Graph")
@@ -303,7 +301,7 @@ class MST:
                 print(
                     f"After processing cluster {cluster_index}, number of edges: {total_edges}"
                 )
-                print(f"Total weight of edges: {self.calculate_total_weight(G)}")
+                print(f"Total weight of edges: {self.calculate_total_weight_fmst(G)}")
 
         if to_plot:
             for cluster_index, (cluster, color) in enumerate(zip(clusters, colors)):
@@ -329,7 +327,7 @@ class MST:
             print(
                 f"After adding cluster points and centroids, number of edges: {total_edges}"
             )
-            print(f"Total weight of edges: {self.calculate_total_weight(G)}")
+            print(f"Total weight of edges: {self.calculate_total_weight_fmst(G)}")
 
         centroid_points = np.array(centroids)
         centroid_edges = self.prim_mst_cluster(centroid_points)
@@ -359,10 +357,19 @@ class MST:
                 )
                 core_points_map[centroid] = core_points_map[closest_point]
 
+        # Ensure all centroids are mapped
+        for centroid in centroids:
+            if centroid not in core_points_map:
+                closest_point = min(
+                    core_points_map.keys(),
+                    key=lambda node: self.euclidean_distance(node, centroid),
+                )
+                core_points_map[centroid] = core_points_map[closest_point]
+
         centroid_points = [tuple(point) for point in centroid_points]
 
         for edge in centroid_edges:
-            self.merge_comps(
+            self.merge_comps_fmst(
                 centroid_points[edge[0]],
                 centroid_points[edge[1]],
                 core_points_map,
@@ -374,15 +381,15 @@ class MST:
                 print(
                     f"After merging {centroid_points[edge[0]]} and {centroid_points[edge[1]]}, number of edges: {total_edges}"
                 )
-                print(f"Total weight of edges: {self.calculate_total_weight(G)}")
+                print(f"Total weight of edges: {self.calculate_total_weight_fmst(G)}")
 
         if to_plot:
             plt.figure(figsize=(10, 8))
+            pos = {node: node for node in G.keys()}
             nx_graph = nx.Graph()
             for node, edges in G.items():
                 for neighbor, weight in edges:
                     nx_graph.add_edge(node, neighbor, weight=weight)
-            pos = {node: node for node in nx_graph.nodes()}
             nx.draw(
                 nx_graph,
                 pos,
@@ -396,7 +403,7 @@ class MST:
             plt.ylabel("Y-coordinate")
             plt.show()
 
-        mst_weight = self.calculate_total_weight(G)
+        mst_weight = self.calculate_total_weight_fmst(G)
         return mst_weight, total_edges, G
 
     def prim_mst_cluster(self, points):
@@ -441,10 +448,49 @@ class MST:
             core_points_map[core2],
             key=lambda node: self.euclidean_distance(node, pivot1),
         )
+        G.add_edge(pivot1, pivot2, weight=self.euclidean_distance(pivot1, pivot2))
+        if to_plot:
+            print(f"Merging {core1} and {core2} with pivot {pivot1} and {pivot2}")
+
+    def merge_comps_fmst(self, core1, core2, core_points_map, G, to_plot):
+        pivot1 = min(
+            core_points_map[core1],
+            key=lambda node: self.euclidean_distance(node, core2),
+        )
+        pivot2 = min(
+            core_points_map[core2],
+            key=lambda node: self.euclidean_distance(node, pivot1),
+        )
         G[pivot1].append((pivot2, self.euclidean_distance(pivot1, pivot2)))
         G[pivot2].append((pivot1, self.euclidean_distance(pivot1, pivot2)))
         if to_plot:
             print(f"Merging {core1} and {core2} with pivot {pivot1} and {pivot2}")
+
+    def merge_phase(self, G, to_plot):
+        core_points_map = {}
+        for component in nx.connected_components(G):
+            centroid = np.mean([node for node in component], axis=0)
+            closest_point = min(
+                component, key=lambda node: self.euclidean_distance(node, centroid)
+            )
+            core_points_map[closest_point] = component
+
+        core_points = list(core_points_map.keys())
+
+        minc = [float("inf")] * len(core_points[0])
+        maxc = [float("-inf")] * len(core_points[0])
+
+        for point in core_points:
+            for i in range(len(point)):
+                minc[i] = min(minc[i], point[i])
+                maxc[i] = max(maxc[i], point[i])
+
+        diff = [maxc[i] - minc[i] for i in range(len(minc))]
+        min_diff_axis = diff.index(max(diff))
+
+        sorted_core_points = sorted(core_points, key=lambda point: point[min_diff_axis])
+        for core1, core2 in zip(sorted_core_points, sorted_core_points[1:]):
+            self.merge_comps(core1, core2, core_points_map, G, to_plot)
 
     @staticmethod
     def euclidean_distance(point1, point2):
@@ -452,6 +498,11 @@ class MST:
 
     @staticmethod
     def calculate_total_weight(G):
+        total_weight = sum(data["weight"] for u, v, data in G.edges(data=True))
+        return total_weight
+
+    @staticmethod
+    def calculate_total_weight_fmst(G):
         total_weight = sum(weight for edges in G.values() for _, weight in edges) / 2
         return total_weight
 

@@ -1,0 +1,34 @@
+{
+    "dataset_type": "iris",
+    "points_count": 150,
+    "run": 1,
+    "kmistree": {
+        "weight": 53.51,
+        "edge_count": 488,
+        "runtime": 0.10044550895690918,
+        "weight_error": 0.0,
+        "edge_count_error": 46.10655737704918,
+        "runtime_error": 0.4905993130769359
+    },
+    "kmist": {
+        "weight": 53.51,
+        "edge_count": 408,
+        "runtime": 0.021095752716064453,
+        "weight_error": 0.0,
+        "edge_count_error": 55.14705882352941,
+        "runtime_error": 2.335944033814787
+    },
+    "prim": {
+        "weight": 53.51,
+        "edge_count": 22500,
+        "runtime": 0.04927849769592285
+    },
+    "fmst": {
+        "weight": 54.5466578544642,
+        "edge_count": 1134,
+        "runtime": 0.035634756088256836,
+        "weight_error": 1.0366578544642024,
+        "edge_count_error": 19.841269841269842,
+        "runtime_error": 1.382877367642828
+    }
+}
