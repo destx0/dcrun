@@ -32,3 +32,37 @@
         "runtime_error": 3.121038572753997
     }
 }
+{
+    "dataset_type": "wholesale_customers",
+    "points_count": 440,
+    "run": 1,
+    "kmistree": {
+        "weight": 255.43,
+        "edge_count": 954,
+        "runtime": 0.16669583320617676,
+        "weight_error": 0.5100000000000193,
+        "edge_count_error": 202.9350104821803,
+        "runtime_error": 2.2438294957042104
+    },
+    "kmist": {
+        "weight": 255.03,
+        "edge_count": 1304,
+        "runtime": 0.17842626571655273,
+        "weight_error": 0.11000000000001364,
+        "edge_count_error": 148.46625766871165,
+        "runtime_error": 2.0963114699334824
+    },
+    "prim": {
+        "weight": 254.92,
+        "edge_count": 193600,
+        "runtime": 0.3740370273590088
+    },
+    "fmst": {
+        "weight": 261.61749722326607,
+        "edge_count": 14590,
+        "runtime": 0.15026140213012695,
+        "weight_error": 6.697497223266083,
+        "edge_count_error": 13.269362577107607,
+        "runtime_error": 2.4892422275887673
+    }
+}

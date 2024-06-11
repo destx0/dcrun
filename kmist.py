@@ -355,6 +355,15 @@ class MST:
                 )
                 core_points_map[centroid] = core_points_map[closest_point]
 
+        # Ensure all centroids are mapped
+        for centroid in centroids:
+            if centroid not in core_points_map:
+                closest_point = min(
+                    core_points_map.keys(),
+                    key=lambda node: self.euclidean_distance(node, centroid),
+                )
+                core_points_map[centroid] = core_points_map[closest_point]
+
         centroid_points = [tuple(point) for point in centroid_points]
 
         for edge in centroid_edges:
