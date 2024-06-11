@@ -221,16 +221,18 @@ class MST:
                     parent[v] = u
                 edge_count += 1
 
-        G = nx.Graph()
-        for u, v in mst_edges:
-            G.add_edge(
-                tuple(self.points[u]),
-                tuple(self.points[v]),
-                weight=self.euclidean_distance(self.points[u], self.points[v]),
-            )
-
         total_weight = round(total_weight, 2)
         if to_plot:
+            G = nx.Graph()
+            for point in self.points:
+                G.add_node(tuple(point), pos=point)
+
+            for u, v in mst_edges:
+                G.add_edge(
+                    tuple(self.points[u]),
+                    tuple(self.points[v]),
+                    weight=self.euclidean_distance(self.points[u], self.points[v]),
+                )
             print(
                 f"Prim's MST: {len(G.nodes())} nodes, {edge_count} edges, Total Weight: {total_weight}"
             )
