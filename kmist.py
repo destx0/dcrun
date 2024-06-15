@@ -220,10 +220,10 @@ class MST:
                 edge_count += 1
 
         total_weight = round(total_weight, 2)
+        G = nx.Graph()
+        for point in self.points:
+            G.add_node(tuple(point), pos=point)
         if to_plot:
-            G = nx.Graph()
-            for point in self.points:
-                G.add_node(tuple(point), pos=point)
 
             for u, v in mst_edges:
                 G.add_edge(
@@ -383,6 +383,7 @@ class MST:
                 )
                 print(f"Total weight of edges: {self.calculate_total_weight_fmst(G)}")
 
+        mst_weight = self.calculate_total_weight_fmst(G)
         if to_plot:
             plt.figure(figsize=(10, 8))
             pos = {node: node for node in G.keys()}
@@ -402,8 +403,7 @@ class MST:
             plt.xlabel("X-coordinate")
             plt.ylabel("Y-coordinate")
             plt.show()
-
-        mst_weight = self.calculate_total_weight_fmst(G)
+            return mst_weight, total_edges, nx_graph
         return mst_weight, total_edges, G
 
     def prim_mst_cluster(self, points):
